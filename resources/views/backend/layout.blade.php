@@ -132,6 +132,46 @@
                             নিবন্ধন
                         </a>
                     </li>
+                    <li class="dashboard-items">
+                        <button id="doropdown-toggoler" class="{{ (request()->segment(2) == 'media') ? 'active' : '' }}">
+                            <div class="dashbord-link">
+                                <img  src="{{ asset('media/icon/registration.png') }}" alt="pdf-icon">
+                                <img class="img-white" src="{{ asset('media/icon/registration-white.png') }}" alt="pdf-icon">
+                                বিজ্ঞাপন
+                                <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
+                                <img class="img-white icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
+                            </div>
+                            
+
+                            <ul class="dropdown-items ml-[30px] hidden">
+
+                                <li class="mt-[23px]">
+                                    <a href="{{route('admin.media.registereds.index')}}" class="dashbord-link active">
+                                        মোট নিবন্ধিত
+                                    </a> 
+                                </li>
+                                <li class="mt-[23px]">
+                                    <a href="{{route('admin.media.inputs.index')}}" class="dashbord-link active">
+                                        আবেদন
+                                    </a> 
+                                </li>
+                                <li class="mt-[23px]">
+                                    <a href="{{route('admin.submedia.inputs.index')}}" class="dashbord-link active">
+                                        সাব আবেদন
+                                    </a> 
+                                </li>
+                                
+                            </ul>
+                        </button>
+                    </li>
+
+                    <li class="dashboard-items">
+                        <a href="{{route('admin.setting.index')}}" class="dashbord-link {{ (request()->segment(2) == 'newspaper') ? 'active' : '' }}">
+                            <img  src="{{ asset('media/icon/registration.png') }}" alt="pdf-icon">
+                            <img class="img-white" src="{{ asset('media/icon/registration-white.png') }}" alt="pdf-icon">
+                            Settings
+                        </a>
+                    </li>
                 </ul>
             </div>
 

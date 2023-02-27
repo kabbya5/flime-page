@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\NewsPaperNameClearance;
-use App\Models\NewspaperNameClearanceHeader;
+use App\Models\MediaInput;
+use App\Models\MediaInputHeader;
 use Illuminate\Http\Request;
 
-class NewspaperNameClearanceController extends Controller
+class MediaInputController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,11 @@ class NewspaperNameClearanceController extends Controller
      */
     public function index()
     {
-        $clearences_header = NewspaperNameClearanceHeader::first();
-        $newspaper_clearenc = new NewsPaperNameClearance(); 
-        $newspaper_clearences = NewsPaperNameClearance::orderBy('input_position','asc')->get();
-        return view('backend.newspaper_clearence.index',compact('newspaper_clearences','newspaper_clearenc','clearences_header'));
+        $media_header = MediaInputHeader::first();
+        $input = new MediaInput(); 
+        $inputs = MediaInput::orderBy('input_position','asc')->get();
+        return view('backend.media_input.index',compact('inputs','input','media_header'));
     }
-    
     public function store(Request $request)
     {
         $request->validate([
@@ -30,9 +29,9 @@ class NewspaperNameClearanceController extends Controller
         ]);
 
         $data = $request->all();
-        $data['slug'] = str_slug($data['input_name']);
+        $data['slug'] = str_slug($data['input_name']).rand(1,1000);
 
-        NewsPaperNameClearance::create($data);
+        MediaInput::create($data);
         return back()->with('message','Input file add successfully');
     }
 
@@ -41,13 +40,13 @@ class NewspaperNameClearanceController extends Controller
             'title' => 'required|min:15|max:150',
             'short_text' => 'required|min:40',
         ]);
-        $item = NewspaperNameClearanceHeader::first();
+        $item = MediaInputHeader::first();
         if($item){
             $item->delete();
         }
 
         $data = $request->all();
-        NewspaperNameClearanceHeader::create($data);
+        MediaInputHeader::create($data);
 
         return back()->with('message','The old data hsa been deleted and updated the new data');
 
@@ -55,20 +54,25 @@ class NewspaperNameClearanceController extends Controller
 
     }
 
-    public function edit(NewsPaperNameClearance $input)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\MediaInput  $input
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(MediaInput $input)
     {
-        $newspaper_clearenc = $input;
-        return view('backend.newspaper_clearence.edit',compact('newspaper_clearenc'));
+        return view('backend.media_input.edit',compact('input'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NewsPaperNameClearance  $newsPaperNameClearance
+     * @param  \App\Models\MediaInput  $input
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NewsPaperNameClearance $input)
+    public function update(Request $request, MediaInput $input)
     {
         $data=$request->all();
         if(!$request->has('need_file')){
@@ -76,16 +80,16 @@ class NewspaperNameClearanceController extends Controller
         }
         $input->update($data);
 
-        return redirect()->route('admin.clearence.inputs.index')->with('message', 'The input section has been update successfully');
+        return redirect()->route('admin.submedia.inputs.index')->with('message', 'The input section has been update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NewsPaperNameClearance  $newsPaperNameClearance
+     * @param  \App\Models\MediaInput  $input
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NewsPaperNameClearance $input)
+    public function destroy(MediaInput $input)
     {
         $input->delete();
         return back()->with('message','Successfully deleted input section');

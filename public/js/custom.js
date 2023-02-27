@@ -113,6 +113,7 @@ $(document).ready(function(){
     $('#add_post_button').click(function(){
         var form = $('.form');
         form.toggleClass('show'); 
+        $('form').trigger("reset");
     })
 
     $('#cancle-post-create-btn').click(function(){

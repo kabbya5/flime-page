@@ -19,8 +19,8 @@
                             @endif
                             
                         </div>
-                        <label for="image" class="imageEditDiv absolute top-[55%] right-[13px] bg-[#D8D8D8] w-[50px] h-[50px]  flex items-center justify-center">
-                            <i class="fa-solid fa-camera text-xl"></i>
+                        <label for="image" class="imageEditDiv absolute top-[55%] right-[13px] bg-white w-[50px] h-[50px] p-2 flex items-center justify-center">
+                            <img src="{{ asset('media/icon/img-edit.png') }}" alt="">
                             <input type="file" class="hidden" id="image" name="profile_image">
                         </label>
                     </div>

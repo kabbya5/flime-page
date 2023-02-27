@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NewspaperNameClearance extends Model
+class SubMediaInput extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
-
-    public function getRouteKeyName(){
-        return 'slug';
+    public function mediaInput(){
+        return $this->belongsTo(MediaInput::class);
     }
 }

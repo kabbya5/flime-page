@@ -2,25 +2,19 @@
 
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\MediaInputController;
+use App\Http\Controllers\Backend\MediaRegisteredController;
 use App\Http\Controllers\Backend\NewspaperNameClearanceController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SectionController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\SubMediaInputController;
 use App\Http\Controllers\Backend\SubsectionController;
 use App\Http\Controllers\Backend\UserControlController;
 use App\Http\Controllers\Backend\VideoPostController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -80,5 +74,25 @@ function(){
     ])->except('create','show');
 
     Route::post('/newspaper/clearence/header',[NewspaperNameClearanceController::class,'headerStore'])->name('amdin.clearence.header.store');
+
+    Route::resource('/admin/media/registereds',MediaRegisteredController::class,[
+        'as' => 'admin.media'
+    ]);
+    Route::get('/admin/media/registereds/duplicate/{registered}',[MediaRegisteredController::class,'duplicate'])->name('admin.media.registereds.duplicate');
+
+    Route::resource('/media/inputs',MediaInputController::class,[
+        'as' => 'admin.media'
+    ])->except('create','show');
+
+    Route::post('/media/header',[MediaInputController::class,'headerStore'])->name('amdin.media.header.store');
+
+    Route::controller(SettingController::class)->group(function(){
+        Route::get('/admin/setting/index','index')->name('admin.setting.index');
+        Route::post('/admin/setting/store','store')->name('admin.setting.store');
+    });
+
+    Route::resource('/submedia/inputs',SubMediaInputController::class,[
+        'as' => 'admin.submedia'
+    ])->except('create','show');
 });
 

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('newspaper_name_clearances', function (Blueprint $table) {
+        Schema::create('media_inputs', function (Blueprint $table) {
             $table->id();
             $table->string('input_name');
             $table->string('need_file')->default('text');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('newspaper_name_clearances');
+        Schema::dropIfExists('media_inputs');
     }
 };

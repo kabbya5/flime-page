@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NewspaperNameClearance extends Model
+class TotalRegistered extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
-
-    public function getRouteKeyName(){
+    public function getRouteKeyName()
+    {
         return 'slug';
     }
 }

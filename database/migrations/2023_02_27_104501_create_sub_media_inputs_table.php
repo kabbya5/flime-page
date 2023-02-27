@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('newspaper_name_clearances', function (Blueprint $table) {
+        Schema::create('sub_media_inputs', function (Blueprint $table) {
             $table->id();
             $table->string('input_name');
-            $table->string('need_file')->default('text');
+            $table->string('input_position');
             $table->string('slug');
-            $table->string('input_position')->nullable();
+            $table->string('need_file')->default('text');
+            $table->unsignedBigInteger('media_input_id');
             $table->timestamps();
+            $table->foreign('media_input_id')->references('id')->on('media_inputs')->onDelete('cascade');
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('newspaper_name_clearances');
+        Schema::dropIfExists('sub_media_inputs');
     }
 };

@@ -3,9 +3,9 @@
 
 <div class="pt-[72px] pb-[49px]">
     <div class="flex items-center justify-between">
-        <h2 class="font-700 text-[30px] text-black leading-[20px]"> {{ $clearences_header->title }} </h2>
+        <h2 class="font-700 text-[20px] text-black leading-[40px]"> {{ $media_header->title }} </h2>
         <div class="flex">
-            <button id="add_header_button" class="btn-gradient-pink mr-4">
+            <button id="add_header_button" class="btn-gray mr-4">
                 হেডার যোগ করুন
             </button>  
             <button id="add_post_button" class="btn-gradient">
@@ -15,8 +15,8 @@
     </div>
 
     <div class="mt-[85px]">
-        <p class="font-[600] text-[18px] leading-[30px] text-[#8d8989]">
-            {{ $clearences_header->short_text }}
+        <p class="font-[600] text-[16px] leading-[30px] text-[#8d8989]">
+            {{ $media_header->short_text }}
 
         </p>
     </div>
@@ -35,14 +35,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($newspaper_clearences as $clearence)
+                        @foreach ($inputs as $item)
                             <tr tabindex="0" class="panding focus:outline-non rounded mt-[3px]">
                                 <td>
                                     <div class="form-group mt-5 md:mt-[24px]">
-                                        <label for="" class="">{{ $clearence->input_name }}</label>
+                                        <label for="" class="">{{ $item->input_name }}</label>
                                         <label class="flex mt-3 md:w-[400px]" for="id-card">
                                             <span class="w-full ml-6 border-2 h-10"> </span>
-                                            @if ($clearence->need_file == 'file')
+                                            @if ($item->need_file == 'file')
                                             <span class="ml-2 py-2 px-6 bg-[#EBEBEB] text-[#C7C7CC]"> <i class="fa-solid fa-up-long"></i> </span>
                                             @endif
                                             
@@ -52,10 +52,10 @@
                                 </td>
                                 
                                 <td class="text-left pr-10">
-                                    <p class="font-[600] text-[14px] leading-[21px] text-black">{{ $clearence->input_position }} </p>
+                                    <p class="font-[600] text-[14px] leading-[21px] text-black">{{ $item->input_position }} </p>
                                 </td>
                                 <td class="text-left">
-                                    <p class="font-[600] text-[14px] leading-[21px] text-black capitalize">{{ $clearence->need_file }}</p>
+                                    <p class="font-[600] text-[14px] leading-[21px] text-black capitalize">{{ $item->need_file }}</p>
                                 </td>
                                 <td class="text-right px-2">             
                                     <div id="doropdown-toggoler" class="w-full pr-[22px] relative flex flex-col ">
@@ -64,11 +64,11 @@
                                         <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
 
                                         <div class="shadow-lg dropdown-items absolute hidden left-[-160px] top-[-10px]">
-                                            <a href="{{ route('admin.clearence.inputs.edit',$clearence->slug) }}" class="btn text-[#2518FF] border-b flex items-center capitalize font-[600] text-[18px] leading-7">
+                                            <a href="{{ route('admin.media.inputs.edit',$item->slug) }}" class="btn text-[#2518FF] border-b flex items-center capitalize font-[600] text-[18px] leading-7">
                                                 <img src="{{ asset('media/icon/edit.png') }}" alt="" class="mr-[10px] h-[18px]"> edit
                                             </a>
 
-                                            <form action="{{ route('admin.clearence.inputs.destroy',$clearence->slug) }}" method="POST">
+                                            <form action="{{ route('admin.media.inputs.destroy',$item->slug) }}" method="POST">
                                                 @csrf
                                                 @method("DELETE")
 
@@ -99,9 +99,9 @@
                     trasition duration-300 hover:text-white hover:bg-black shadow-md">
             X
         </button>
-        <form id="fileUploadForm" action="{{ route('admin.clearence.inputs.store') }}" method="POST">
+        <form  action="{{ route('admin.media.inputs.store') }}" method="POST">
             @csrf   
-            @include('backend.newspaper_clearence._form',['button_text' => 'Create Newspager Clearence'])
+            @include('backend.media_input._form',['button_text' => 'প্রকাশ করুন'])
         </form>
     </div>
 </div> 
@@ -113,12 +113,12 @@
                 trasition duration-300 hover:text-white hover:bg-black shadow-md">
             X
         </button>
-        <form id="fileUploadForm" action="{{ route('amdin.clearence.header.store') }}" method="POST">
+        <form action="{{ route('amdin.media.header.store') }}" method="POST">
             @csrf   
             <div class="form-group flex flex-col w-full">
                 <label for="title"> টাইটেল </label>
                 <input id="title" type="text" class="outline-none mt-3 @error('title') error @enderror" placeholder="নাম"
-                value="{{ old('title',$clearences_header->title) }}" name="title">
+                value="{{ old('title',$media_header->title) }}" name="title">
                 @error('title')
                     <p class="text-red-500">{{$message }}</p>
                 @enderror
@@ -128,7 +128,7 @@
                 <label for="short_text">বর্ণনা</label>
             
                 <textarea name="short_text" id="" cols="30" rows="7" class="mt-3 border-2 border-gray-200 focus:outline-none @error('short_text') error @enderror">
-                    {{ old('short_text',$clearences_header->short_text) }}
+                    {{ old('short_text',$media_header->short_text) }}
                 </textarea>
             
                 @error('short_text')
