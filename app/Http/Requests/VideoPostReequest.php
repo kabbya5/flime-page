@@ -27,7 +27,6 @@ class VideoPostReequest extends FormRequest
             "section_id" => 'required|integer',
             'subsection_id' => 'required|integer',
             'post_name' => 'required',
-            'thumbnail'  => 'required:mimes:jpeg,png,jpg',
             'post_description' => 'required|min:50|max:800',
             'director' => 'required',
             'producer' => 'required',

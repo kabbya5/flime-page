@@ -14,7 +14,7 @@
         <form class="d-full md:w-[500px]" action="{{ route('admin.submedia.inputs.update',$input->id) }}" method="POST">
             @csrf  
             @method('PUT'); 
-            @include('backend.media_input._form',['button_text' => 'প্রকাশ করুন'])
+            @include('backend.sub_media_input._form',['button_text' => 'প্রকাশ করুন'])
         </form>
     </div>
 </div>

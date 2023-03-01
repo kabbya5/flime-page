@@ -132,6 +132,16 @@ $(document).ready(function(){
         form.addClass('hidden'); 
         form.toggleClass('show'); 
     }) 
+
+    
+})
+
+// page-loader 
+
+$(window).on('load', function() { 
+    $(".page-loader").delay(2000).fadeOut("slow");
+    $(".loader").delay(2000).fadeOut("slow");
+    $("#overlayer").delay(2000).fadeOut("slow");
 })
 
 

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('subsection_id');
-            $table->string('post_title')->nullable();
+            $table->string('post_date')->nullable();
             $table->string('post_name');
-            $table->post_type('pdf');
+            $table->string('post_type')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('slug');
             $table->string('file_url');

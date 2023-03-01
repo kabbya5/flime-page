@@ -25,12 +25,20 @@
 </div>
 
 <div class="form-group flex flex-col w-full mt-6 selected">
-    <label for="need_file" class="flex input-checkbox items-center text-[9px] font-[600px] leading-[21px]"> 
-        <input type="checkbox" value="file" id="need_file" name="need_file"
-        {{  ($input->need_file == 'file' ? ' checked' : '') }}> 
+    <label for="input_type" class="flex input-checkbox items-center text-[9px] font-[600px] leading-[21px]"> 
+        <input type="radio" value="file" id="input_type" name="input_type"
+        {{  ($input->input_type == 'file' ? ' checked' : '') }}> 
         <span class="checkmark mt-2"></span> 
         <span class="text-[14px] -ml-2"> আপলোড বাটন </span>    
     </label>  
+</div>
+<div class="form-group flex flex-col w-full mt-6 selected">
+    <label for="parent" class="flex input-checkbox items-center text-[9px] font-[600px] leading-[21px]"> 
+        <input type="radio" value="parent" id="parent" name="input_type"
+        {{  ($input->input_type == 'parent' ? ' checked' : '') }}> 
+        <span class="checkmark mt-2"></span> 
+        <span class="text-[14px] -ml-2"> প্যারেন্ট ইনপুট </span>    
+    </label> 
 </div>
 
 <div class="w-full form-group flex mt-10">

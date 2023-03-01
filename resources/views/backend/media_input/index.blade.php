@@ -38,6 +38,11 @@
                         @foreach ($inputs as $item)
                             <tr tabindex="0" class="panding focus:outline-non rounded mt-[3px]">
                                 <td>
+                                    @if($item->input_type == 'parent')
+                                    <div class="form-group mt-5 md:mt-[24px]">
+                                        <label for="" class="">{{ $item->input_name }}</label>
+                                    </div>
+                                    @else
                                     <div class="form-group mt-5 md:mt-[24px]">
                                         <label for="" class="">{{ $item->input_name }}</label>
                                         <label class="flex mt-3 md:w-[400px]" for="id-card">
@@ -49,13 +54,29 @@
                                             <input type="file" id="id-card" class="hidden">
                                         </label>
                                     </div>
+                                    @endif
+                                    
+                                    @foreach ($item->subMediaInput as $child_item)
+                                    <div class="form-group mt-5 md:mt-[24px] ml-[20px]">
+                                        <label for="" class="">{{ $child_item->input_name }}</label>
+                                        <label class="flex mt-3 md:w-[380px]" for="id-card">
+                                            <span class="w-full ml-6 border-2 h-10"> </span>
+                                            @if ($child_item->need_file == 'file')
+                                            <span class="ml-2 py-2 px-6 bg-[#EBEBEB] text-[#C7C7CC]"> <i class="fa-solid fa-up-long"></i> </span>
+                                            @endif
+                                            
+                                            <input type="file" id="id-card" class="hidden">
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                    
                                 </td>
                                 
                                 <td class="text-left pr-10">
                                     <p class="font-[600] text-[14px] leading-[21px] text-black">{{ $item->input_position }} </p>
                                 </td>
                                 <td class="text-left">
-                                    <p class="font-[600] text-[14px] leading-[21px] text-black capitalize">{{ $item->need_file }}</p>
+                                    <p class="font-[600] text-[14px] leading-[21px] text-black capitalize">{{ $item->input_type}}</p>
                                 </td>
                                 <td class="text-right px-2">             
                                     <div id="doropdown-toggoler" class="w-full pr-[22px] relative flex flex-col ">

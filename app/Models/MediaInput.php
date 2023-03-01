@@ -16,6 +16,6 @@ class MediaInput extends Model
     }
 
     public function subMediaInput(){
-        return $this->hasMany(SubMediaInput::class,'media_input');
+        return $this->hasMany(SubMediaInput::class);
     }
 }

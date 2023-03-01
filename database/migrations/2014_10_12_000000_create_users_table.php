@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->string('profile_image');
+            $table->string('slug')->nullable();
+            $table->string('profile_image')->nullable();
             $table->string('permision_post')->nullable()->default('permited');
             $table->string('user_type')->nullable()->default('user');
             $table->timestamp('email_verified_at')->nullable();

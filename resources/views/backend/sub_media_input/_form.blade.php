@@ -1,7 +1,7 @@
 <div class="form-group flex flex-col w-full">
     <div class="flex">
         <label for="input_name">  নাম  </label>
-        <img class="ml-1 h-4" src="{{ asset('media/icon/mandatory.png') }}" alt=""> 
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt=""> 
     </div>
 
     <input id="input_name" type="text" class="outline-none mt-3 @error('input_name') error @enderror" placeholder="নাম"
@@ -28,7 +28,7 @@
 <div class="form-group flex flex-col w-full mt-6">
     <div class="flex">
         <label for="input_position"> নাম  পসিশন </label>
-        <img class="ml-1 h-4" src="{{ asset('media/icon/mandatory.png') }}" alt=""> 
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt=""> 
     </div>
     <input id="input_position" type="text" class="outline-none mt-3 @error('input_position') error @enderror"  placeholder="1,2,3,4....." 
     value="{{ old('input_position',$input->input_position) }}" name="input_position">

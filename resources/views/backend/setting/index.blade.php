@@ -14,7 +14,7 @@
                 <div class="form-group flex flex-col">
                     <div class="flex">
                         <label for="page_name"> পেজ নাম </label>
-                        <img class="ml-1 h-4" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
                     </div>
                     
                     <input type="text" class="outline-none mt-3 @error('page_name') error @enderror" placeholder="পেজ নাম"
@@ -28,7 +28,7 @@
                 <div class="form-group flex flex-col mt-10">
                     <div class="flex">
                         <label for="title"> নাববার টাইটেল </label>
-                        <img class="ml-1 h-4" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
                     </div>
                     
                     <input type="text" class="outline-none mt-3 @error('title') error @enderror" placeholder="নাববার টাইটেল"

@@ -40,41 +40,26 @@ class VideoPostController extends Controller
      */
     public function store(VideoPostReequest $request)
     {
-        $data = $request->except('video_file','thumbnail', 'old_thumbnail', 'old_video_file' );
+        $data = $request->except('video_file', 'old_video_file' );
 
         if($request->hasFile('thumbnail')){
-            $thumbnail = $this->fileUpload($request->file('thumbnail'),NULL,'image');
-            $data['thumbnail'] = $thumbnail;
-        }
-
-        if($request->hasFile('thumbnail')){
-            $file = $this->fileUpload($request->file('video_file'),NULL,'video');
+            $file = $this->fileUpload($request->file('video_file'),NULL);
             $data['file_url'] = $file;
         }
 
         $data['slug'] = str_replace(' ','-',$data['post_name']);
         Post::create($data);
-
-        return redirect()->route('admin.video.posts.index')->with('message',"The book Post has been created successfully");
     }
 
-    private function fileUpload($file,$old_file,$file_type){
+    private function fileUpload($file,$old_file){
         if($file){
             if($old_file){
                 $this->deleteFile($old_file);
             }
 
-            if($file_type == 'image'){
-                $file_name = hexdec(uniqid()).time().".".$file->getClientOriginalExtension();
-                \Image::make($file)->resize(200,260)->save(public_path('/media/post/image/'.$file_name));
-                
-                return 'media/post/image/'.$file_name;
-
-            }elseif($file_type =='video'){
-                $file_name = hexdec(uniqid()).time().".".$file->getClientOriginalExtension();
-                $file->move(public_path('/media/post/video/'), $file_name);
-                return 'media/post/video/'.$file_name;  
-            }    
+            $file_name = hexdec(uniqid()).time().".".$file->getClientOriginalExtension();
+            $file->move(public_path('/media/post/video/'), $file_name);
+            return 'media/post/video/'.$file_name;     
         }
     }
 
@@ -106,15 +91,10 @@ class VideoPostController extends Controller
      */
     public function update(VideoPostReequest $request, Post $post)
     {
-        $data = $request->except('video_file','thumbnail', 'old_thumbnail', 'old_video_file' );
+        $data = $request->except('video_file','old_video_file' );
         
-        if($request->hasFile('thumbnail')){
-            $thumbnail = $this->fileUpload($request->file('thumbnail'),NULL,'image');
-            $data['thumbnail'] = $thumbnail;
-        }
-
-        if($request->hasFile('thumbnail')){
-            $file = $this->fileUpload($request->file('video_file'),NULL,'video');
+        if($request->hasFile('video_file')){
+            $file = $this->fileUpload($request->file('video_file'),NULL);
             $data['file_url'] = $file;
         }
         

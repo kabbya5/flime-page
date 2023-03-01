@@ -26,8 +26,7 @@ class SectionController extends Controller
         ]);
 
         $data = $request->all();
-        dd($data);
-        // Section::create($data);
+        Section::create($data);
 
         return back()->with('message',"Section has been create successfully");
 

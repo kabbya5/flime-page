@@ -43,10 +43,10 @@
                                     <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">{{ $post->post_type }}</p>
                                 </td>
                                 <td class="text-center px-2">
-                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {{ $post->published_at }} </span>
+                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {{ $post->published_date }} </span>
                                 </td>
                                 <td class="text-center px-2">
-                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {{ $post->status }} </span>
+                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {!! $post->publicationLabel() !!} </span>
                                 </td>
                                 <td class="text-right px-2">             
                                     <div id="doropdown-toggoler" class="w-full pr-[22px] relative flex flex-col ">

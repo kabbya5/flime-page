@@ -24,8 +24,11 @@
         transition: all 0.3s linear;
 
         a{
+            padding: 10px 30px;
+            margin: 0;
+            border-bottom: 1px solid #d9d3d3;
             &:hover{
-                color: #E25896;
+                background-color: #d9d3d3 !important;
             }
 
         }
@@ -36,7 +39,7 @@
     }
 
     &:hover a.flex{
-        color:#E25896;
+        color:#8d8989;
     }
 }
 
@@ -130,9 +133,8 @@
 {
     color: #CFCCFF;
 }
-
-.documentary .slider .owl-next span, 
-.documentary .slider .owl-prev span
+.ডকুমেন্টারি .slider .owl-next span, 
+.ডকুমেন্টারি .slider .owl-prev span
 {
     color: #EFCAE5;
 }
@@ -511,8 +513,8 @@ select.dropdown:focus{
     background: linear-gradient(299.52deg, #0D9E7A 10.46%, #1AD444 77.77%);
 }
 
-.bg-red-10{
-    background-color: rgb(226,88,150,0.1);
+.bg-red-10,.ডকুমেন্টারি{
+    background-color: rgb(226,88,150,0.1) !important;
     border-radius: 10px;
 }
 .bg-green-10{
@@ -531,6 +533,12 @@ select.dropdown:focus{
     background-color:rgb(0, 122, 255,0.1);
     border-radius: 10px;
     color: #4801FF;
+}
+
+.hover-flim-btn:hover{
+    background-image: linear-gradient(270deg, #b465da 0%, #cf6cc9 28.04%, #ee609c 67.6%, #ee609c 100%);
+    border-radius: 5px;
+    color:#ffffff !important;
 }
 
 /* admin dashboard  */
@@ -592,4 +600,77 @@ select.dropdown:focus{
     overflow-y:scroll;
     overflow-x:hidden;
     transition: all 0.3s linear;
+}
+
+// page loading 
+
+/*PRELOADING------------ */
+#overlayer {
+  width:100%;
+  height:100%;  
+  position:fixed;
+  z-index:100;
+  background:#4a4a4a;
+}
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  z-index:300;
+  border: 4px solid #Fff;
+  top: 50%;
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(180deg);
+  }
+  
+  50% {
+    transform: rotate(180deg);
+  }
+  
+  75% {
+    transform: rotate(360deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  
+  25% {
+    height: 0%;
+  }
+  
+  50% {
+    height: 100%;
+  }
+  
+  75% {
+    height: 100%;
+  }
+  
+  100% {
+    height: 0%;
+  }
 }

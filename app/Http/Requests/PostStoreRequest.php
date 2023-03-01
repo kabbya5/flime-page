@@ -27,7 +27,7 @@ class PostStoreRequest extends FormRequest
             "section_id" => 'required|integer',
             'subsection_id' => 'required|integer',
             'post_name' => 'required',
-            'post_title' => 'required',
+            'post_date' => 'required',
             'thumbnail'  => 'required:mimes:jpeg,png,jpg',
             'post_description' => 'required|min:50|max:800',
             'pdf_file' => 'required|mimes:pdf',

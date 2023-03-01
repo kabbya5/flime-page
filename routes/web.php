@@ -13,17 +13,23 @@ use App\Http\Controllers\Backend\SubsectionController;
 use App\Http\Controllers\Backend\UserControlController;
 use App\Http\Controllers\Backend\VideoPostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostShowController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
 // user 
 Route::post('/emiail/verification/code',[VerificationController::class,'emaliVerification'])->name('email-verification-code');
 
 Auth::routes(['verify' => true]);
+
+Route::controller(PostShowController::class)->group(function(){
+    Route::get('/video/posts','videoPosts')->name('video.posts');
+    Route::get('/video/subsections/posts/{subsection}','videoSubsectionPosts')->name('video.subsection.posts');
+    Route::get('/subsection/{subsection}/posts','subsectionPosts')->name('subsection.posts');
+});
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function (){
     Route::controller(HomeController::class)->group(function(){
@@ -33,6 +39,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function
         Route::delete('/{slug}/delete/{id}', 'destroyAccount')->name('user.delete');
     });
 });
+
+
 
 Route::group(['prefix' => 'admin', 'middleware' =>['auth','admin','verified']],
 function(){
@@ -55,7 +63,8 @@ function(){
     Route::resource('/posts',PostController::class,[
         'as' => 'admin'
     ]);
-    Route::get('/admin/posts/section/{id}',[PostController::class,'getSubcategory'])->name('admin.posts.getsubsection');
+    Route::get('/posts/section/{id}',[PostController::class,'getSubcategory'])->name('admin.posts.getsubsection');
+    Route::get('/posts/{slug}/duplicate/{post}',[PostController::class,'duplicatePost'])->name('admin.posts.duplicate');
 
     Route::resource('/video/posts',VideoPostController::class,[
         'as' => 'admin.video'
@@ -75,7 +84,7 @@ function(){
 
     Route::post('/newspaper/clearence/header',[NewspaperNameClearanceController::class,'headerStore'])->name('amdin.clearence.header.store');
 
-    Route::resource('/admin/media/registereds',MediaRegisteredController::class,[
+    Route::resource('/media/registereds',MediaRegisteredController::class,[
         'as' => 'admin.media'
     ]);
     Route::get('/admin/media/registereds/duplicate/{registered}',[MediaRegisteredController::class,'duplicate'])->name('admin.media.registereds.duplicate');
@@ -87,8 +96,8 @@ function(){
     Route::post('/media/header',[MediaInputController::class,'headerStore'])->name('amdin.media.header.store');
 
     Route::controller(SettingController::class)->group(function(){
-        Route::get('/admin/setting/index','index')->name('admin.setting.index');
-        Route::post('/admin/setting/store','store')->name('admin.setting.store');
+        Route::get('/setting/index','index')->name('admin.setting.index');
+        Route::post('/setting/store','store')->name('admin.setting.store');
     });
 
     Route::resource('/submedia/inputs',SubMediaInputController::class,[

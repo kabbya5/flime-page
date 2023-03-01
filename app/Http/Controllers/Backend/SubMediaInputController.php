@@ -40,7 +40,8 @@ class SubMediaInputController extends Controller
 
     public function edit(SubMediaInput $input)
     {
-        return view('backend.sub_media_input.edit',compact('input'));
+        $media_inputs = MediaInput::orderBy('input_position','asc')->get();
+        return view('backend.sub_media_input.edit',compact('input','media_inputs'));
     }
 
     /**

@@ -91,20 +91,24 @@
 
                     <li class="dashboard-items">
                         <a href="{{route('admin.sections.index')}}" class="dashbord-link {{ (request()->segment(2) == 'sections') ? 'active' : '' }}">
-                            <img src="{{ asset('media/icon/home.png') }}" alt="home-icon"> সেকশন
+                            <img src="{{ asset('media/icon/section.png') }}" alt="home-icon"> 
+                            <img class="img-white " src="{{ asset('media/icon/section-white.png') }}" alt="pdf-icon">
+                            সেকশন
                         </a>
                     </li>
 
                     <li class="dashboard-items">
                         <a href="{{route('admin.subsections.index')}}" class="dashbord-link {{ (request()->segment(2) == 'subsections') ? 'active' : '' }}">
-                            <img src="{{ asset('media/icon/home.png') }}" alt="home-icon"> সাব সেকশন
+                            <img src="{{ asset('media/icon/sub-section.png') }}" alt="home-icon"> 
+                            <img class="img-white " src="{{ asset('media/icon/sub-section-white.png') }}" alt="pdf-icon">
+                            সাব সেকশন
                         </a>
                     </li>
 
                     <li class="dashboard-items">
                         <a href="{{route('admin.posts.index')}}" class="dashbord-link {{ (request()->segment(2) == 'posts') ? 'active' : '' }}">
-                            <img class="pdf-img" src="{{ asset('media/icon/pdf.png') }}" alt="pdf-icon">
-                            <img class="img-white pdf-img" src="{{ asset('media/icon/pdf-white.png') }}" alt="pdf-icon">
+                            <img class="" src="{{ asset('media/icon/pdf.png') }}" alt="pdf-icon">
+                            <img class="img-white " src="{{ asset('media/icon/pdf-white.png') }}" alt="pdf-icon">
                             প্রকাশনা
                         </a>
                     </li>
@@ -135,8 +139,8 @@
                     <li class="dashboard-items">
                         <button id="doropdown-toggoler" class="{{ (request()->segment(2) == 'media') ? 'active' : '' }}">
                             <div class="dashbord-link">
-                                <img  src="{{ asset('media/icon/registration.png') }}" alt="pdf-icon">
-                                <img class="img-white" src="{{ asset('media/icon/registration-white.png') }}" alt="pdf-icon">
+                                <img  src="{{ asset('media/icon/media-registration.png') }}" alt="pdf-icon">
+                                <img class="img-white" src="{{ asset('media/icon/media-registration-white.png') }}" alt="pdf-icon">
                                 বিজ্ঞাপন
                                 <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
                                 <img class="img-white icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
@@ -166,9 +170,9 @@
                     </li>
 
                     <li class="dashboard-items">
-                        <a href="{{route('admin.setting.index')}}" class="dashbord-link {{ (request()->segment(2) == 'newspaper') ? 'active' : '' }}">
-                            <img  src="{{ asset('media/icon/registration.png') }}" alt="pdf-icon">
-                            <img class="img-white" src="{{ asset('media/icon/registration-white.png') }}" alt="pdf-icon">
+                        <a href="{{route('admin.setting.index')}}" class="dashbord-link {{ (request()->segment(2) == 'setting') ? 'active' : '' }}">
+                            <img  src="{{ asset('media/icon/setting.png') }}" alt="pdf-icon">
+                            <img class="img-white" src="{{ asset('media/icon/setting-white.png') }}" alt="pdf-icon">
                             Settings
                         </a>
                     </li>
@@ -177,7 +181,7 @@
 
             {{-- content --}}
 
-            <div class="content ml-[16px] w-full">
+            <div class="content bg-white px-[16px] w-full mb-10 shadow-sm">
                 @yield('content')
             </div>
             

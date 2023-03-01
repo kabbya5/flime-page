@@ -75,12 +75,12 @@ class MediaInputController extends Controller
     public function update(Request $request, MediaInput $input)
     {
         $data=$request->all();
-        if(!$request->has('need_file')){
-            $data['need_file'] = 'text';
+        if(!$request->has('input_type')){
+            $data['input_type'] = 'text';
         }
         $input->update($data);
 
-        return redirect()->route('admin.submedia.inputs.index')->with('message', 'The input section has been update successfully');
+        return redirect()->route('admin.media.inputs.index')->with('message', 'The input section has been update successfully');
     }
 
     /**

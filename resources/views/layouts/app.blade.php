@@ -27,6 +27,14 @@
     </style>
 </head>
 <body class="bg-[#F2F2F2]">
+    {{-- page loder --}}
+    <div class="page-loader flex items-cente justify-center">
+        <div id="overlayer"></div>
+        <span class="loader">
+            <span class="loader-inner"></span>
+        </span>
+    </div>
+    
     <div class="header header-home h-full" style="background-image: url({{ asset('image/Header.png') }});">   
         <nav class="px-2 pb-1 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             <div class="container flex flex-wrap items-center justify-between  md:justify-center lg:justify-between mx-auto">
@@ -49,11 +57,11 @@
 
                             {{-- Dropdown menu --}}
                             
-                            <div id="dropdownNavbar" class="z-10  font-normal  divide-y divide-gray-100 rounded-lg shadow w-44">
-                                <ul class="py-2 text-sm text-white" aria-labelledby="dropdownLargeButton">
+                            <div id="dropdownNavbar" class="z-10  font-normal md:bg-white md:-ml-8">
+                                <ul class="text-sm text-white">
                                     @foreach ($section->subsections as $subsection)
                                     <li>
-                                        <a href="#" class="block py-2 text-red-600">{{ $subsection->subsection_name }}</a>
+                                        <a href="#" class="block text-black">{{ $subsection->subsection_name }}</a>
                                     </li> 
                                     @endforeach   
                                 </ul>
@@ -119,8 +127,10 @@
             </div>
         </nav>  
 
-        @yield('hero_text')
+        @yield('hero_section')
     </div>
+
+    
 
     <main>
         @yield('content')

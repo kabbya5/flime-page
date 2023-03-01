@@ -1,7 +1,7 @@
 <div class="form-group flex justify-between">
     <div class="form-group flex flex-col w-full">
         <label for="post_name"> পোস্টের নাম  </label>
-        <input type="text" class="outline-none mt-3 @error('post_name') error @enderror" placeholder="বইয়ের নাম"
+        <input type="text" class="outline-none mt-3 @error('post_name') error @enderror" placeholder="পোস্টের নাম"
         name="post_name" value="{{ old('post_name',$post->post_name) }}">
     
         @error('post_name')
@@ -149,19 +149,6 @@
     <div class="flex flex-col w-1/2">
         <div class="form-group flex justify-between w-full mr-[10px]">
             <div class="form-group flex flex-col w-full mr-[10px]">
-                <label for="" class="text-[14px]"> থাম্বনেইল আপলোড </label>
-
-                <label for="thumbnail" class="blcok w-[146px] h-[110px] mt-3 border-2 border-gray-300  flex items-center justify-center @error('thumbnail') error @enderror">
-                    <input type="file" name="thumbnail" id="thumbnail" class="hidden">
-                    <img class="image-upload-icon" src="{{ asset('media/icon/image-upload.png') }}" alt="">
-                </label>
-                
-            
-                @error('thumbnail')
-                        <p class="mt-2 text-red-500">{{ $message }}</p>    
-                @enderror
-            </div>
-            <div class="form-group flex flex-col w-full mr-[10px]">
                 <label for="" class="text-[14px]"> ফাইল আপলোড </label>
         
                 <label for="file" class="blcok w-[136px] h-[110px] border-2 mt-3 border-gray-300  flex items-center justify-center @error('video_file') error @enderror">
@@ -175,17 +162,19 @@
             </div>
         </div> 
     </div>
-    <div class="flex items-center justify-between w-1/2">
-        <div class="file-preview w-1/2 mr-2">
-            <div id="image-holder">
-                <img src="{{ asset($post->thumbnail) }}" class="thumb-image w-[120px] h-[160px] hidden">
-            </div>
-        </div>
+    <div class="flex justify-between w-1/2">
         <div id="video" class="hidden w-1/2 ml-2">
-            <video class="w-full h-full" controls>
-                <source src="{{ asset($post->file_url) }}" id="video_here">
-              Your browser does not support HTML5 video.
-            </video>
+            @if ($post->file_url)
+                <video class="w-full h-full" controls>
+                    <source src="{{ asset($post->file_url) }}" id="video_here">
+                Your browser does not support HTML5 video.
+                </video> 
+            @else
+            <div class="w-32 h-20">
+                <iframe src="{{ $post->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            @endif
+            
         </div>
     </div>    
 </div>
@@ -199,7 +188,6 @@
 </div>
 
 <input type="hidden" name="post_type" value="VIDEO">
-<input type="hidden" name="old_thumbnail" value="{{ $post->thumbnail }}">
 <input type="hidden" name="old_video_file" value="{{ $post->file_url }}">
 
 <div class="w-full form-group flex mt-10">

@@ -13,6 +13,8 @@ class Post extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $dates = ['published_at'];
+
     public function section(){
         return $this->belongsTo(Section::class);
     }
@@ -21,15 +23,23 @@ class Post extends Model
         return $this->belongsTo(Subsection::class);
     }
 
-    public function getStatusAttribute(){
-        $date = $this->publish_at;
-        if($date <= Carbon::now()){
-            return 'PUBLISHED';
-        }elseif(!$date){
-            return 'DRIFT';
+    public function  publicationLabel()
+    {
+        if(!$this->published_at){
+            return '<span class="badge text-bg-warning"> Draft </span>';
+        }elseif($this->published_at > Carbon::now()){
+            return '<span class="badge text-bg-info"> Schedule </span>';
         }else{
-            return "UPCOMMING";
+            return '<span class="badge text-bg-success"> Published </span>';
         }
+    }
+
+    public function getPublishedDateAttribute(){
+        $date = $this->published_at;
+        if($date){
+            return $date->format('d/m/Y');
+        }
+        
     }
 
 }
