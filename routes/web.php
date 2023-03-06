@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserFileUploadProcessed;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\MediaInputController;
@@ -12,8 +13,11 @@ use App\Http\Controllers\Backend\SubMediaInputController;
 use App\Http\Controllers\Backend\SubsectionController;
 use App\Http\Controllers\Backend\UserControlController;
 use App\Http\Controllers\Backend\VideoPostController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostDetailsController;
 use App\Http\Controllers\PostShowController;
+use App\Http\Controllers\UserFileUploadController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +32,15 @@ Auth::routes(['verify' => true]);
 Route::controller(PostShowController::class)->group(function(){
     Route::get('/video/posts','videoPosts')->name('video.posts');
     Route::get('/video/subsections/posts/{subsection}','videoSubsectionPosts')->name('video.subsection.posts');
-    Route::get('/subsection/{subsection}/posts','subsectionPosts')->name('subsection.posts');
+
+    Route::get('/book/posts','bookPosts')->name('book.posts');
+    Route::get('/book/subsections/posts/{subsection}','bookSubsectionPosts')->name('book.subsection.posts');
+});
+
+Route::controller(PostDetailsController::class)->group(function(){
+    Route::get('/video/posts/{post}','videoPostDetails')->name('video.posts.details');
+    Route::get('/book/post/detials/{post}','bookDetails')->name('book.post.details');
+    Route::get('/book/{post}/donwload','downloadBook')->name('download.book');
 });
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function (){
@@ -37,6 +49,18 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function
         Route::put('/profile/update/','updateProfile')->name('user.profile.update');
         Route::put('/password/update/','updatePassword')->name('user.password.update');
         Route::delete('/{slug}/delete/{id}', 'destroyAccount')->name('user.delete');
+    });
+
+    Route::controller(UserFileUploadController::class)->group(function(){
+        Route::get('/file/upload','fileUpload')->name('user.file.upload');
+        Route::post('/file/store','storeFile')->name('user.file.store');
+
+        
+    });
+
+    Route::controller(FormController::class)->group(function(){
+        Route::get('/news/clearence/form','clearenceForm')->name('new.clearence.form');
+        Route::post('/input/store','inputStore')->name('user.input.store'); 
     });
 });
 

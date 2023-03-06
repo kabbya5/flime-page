@@ -17,6 +17,9 @@ class MediaInputController extends Controller
     public function index()
     {
         $media_header = MediaInputHeader::first();
+        if(!$media_header){
+            $media_header = new MediaInputHeader();
+        }
         $input = new MediaInput(); 
         $inputs = MediaInput::orderBy('input_position','asc')->get();
         return view('backend.media_input.index',compact('inputs','input','media_header'));

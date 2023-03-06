@@ -5,7 +5,7 @@
 <div class="container flex mx-auto md:px-5 mb-10 md:mb-[150px] md:pr-4">
     <!-- image  -->
     <div class="w-[487px] h-[920px] hidden md:block text-right">
-        <img class="w-[487px] h-full block" src="image/Photo (4).png" alt="">
+        <img class="w-[487px] h-full block" src="{{ asset('media/auth/registration.png') }}" alt="">
     </div>
 
     <form  method="POST" action="{{ route('register') }}"

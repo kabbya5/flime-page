@@ -39,7 +39,7 @@
                             <tr tabindex="0" class="panding focus:outline-non rounded mt-[3px]">
                                 <td>
                                     <div class="form-group mt-5 md:mt-[24px]">
-                                        <label for="" class="">{{ $clearence->input_name }}</label>
+                                        <label for="" class="">{{ $clearence->input_title }}</label>
                                         <label class="flex mt-3 md:w-[400px]" for="id-card">
                                             <span class="w-full ml-6 border-2 h-10"> </span>
                                             @if ($clearence->need_file == 'file')

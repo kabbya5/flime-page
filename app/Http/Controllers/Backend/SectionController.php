@@ -22,6 +22,7 @@ class SectionController extends Controller
         $request->validate([
             'section_name' => 'required|unique:sections,section_name',
             'section_slug' => 'required|unique:sections,section_slug',
+            'section_description' => 'required|max:1000',
             'section_position' => 'integer',
         ]);
 
@@ -41,9 +42,11 @@ class SectionController extends Controller
             'section_name' => 'required|unique:sections,section_name,'.$section->id,
             'section_slug' => 'required|unique:sections,section_slug,'.$section->id,
             'section_position' => 'integer',
+            'section_description' => 'required|max:1000',
         ]);
 
         $data = $request->all();
+
 
         $section->update($data);
 

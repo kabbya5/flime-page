@@ -26,12 +26,12 @@
                             <source src="{{ asset($post->file_url) }}" type="video/mp4"> 
                         </div>                             
                                        
-                        <p class="font-700 text-[19px] leading-[28px] text-black block my-4">{{ $post->post_name }} </p>
+                        <a href={{ route('video.posts.details',$post->slug) }} class="font-700 text-[19px] leading-[28px] text-black block my-4">{{ $post->post_name }} </a>
                     </div>
                     @else
                     <div class="item">
                         <iframe width="560" height="315" src="{{ $post->video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <p class="font-700 text-[19px] leading-[28px] text-black block my-4">{{ $post->post_name }} </p>
+                        <a href={{ route('video.posts.details',$post->slug) }} class="font-700 text-[19px] leading-[28px] text-black block my-4">{{ $post->post_name }} </a>
                     </div>
                     @endif
                     

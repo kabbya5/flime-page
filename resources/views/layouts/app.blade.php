@@ -7,7 +7,16 @@
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{  $setting->page_name }}</title>
+    <link rel="shortcut icon" href="{{ asset($setting->title_image)}}" type="image/x-icon">
+    <meta name="description" content="{{ $setting->seo_content }}">
+    <meta name="verify-v1" content="{{ $setting->title }}">
+    <meta name="robots" content="{{ $setting->seo_tag }}">
+    <meta property="og:image" content="{{ asset($setting->share_image) }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="400">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
      {{-- Fonts  --}}
@@ -23,6 +32,7 @@
     {{-- Scripts --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
+        
         @yield('style')
     </style>
 </head>
@@ -39,8 +49,8 @@
         <nav class="px-2 pb-1 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             <div class="container flex flex-wrap items-center justify-between  md:justify-center lg:justify-between mx-auto">
                 <a href="/" class="flex items-center px-4">
-                    <img src="{{ asset('image/Capture.png')}}" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
-                    <span class="self-center text-sm md:text-[24px] font-semibold whitespace-nowrap text-white"> চলচ্চিত্র ও প্রকাশনা অধিদপ্তর  </span>
+                    <img src="{{ asset($setting->title_image)}}" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
+                    <span class="self-center text-sm md:text-[24px] font-semibold whitespace-nowrap text-white"> {{ $setting->title }} </span>
                 </a>
                 <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                     <span class="sr-only"> Open main menu </span>

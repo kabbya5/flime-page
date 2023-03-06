@@ -28,7 +28,7 @@
 <body id="admin-layout" class="bg-[#F2F2F2]">
     <div class="header header-home h-full" style="background-image: url({{ asset('image/Header.png') }});">   
         <nav class="px-2 pb-1 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-            <div class="container flex flex-wrap items-center justify-between  md:justify-center lg:justify-between mx-auto">
+            <div class="flex flex-wrap items-center justify-between  md:justify-center lg:justify-between mx-auto">
                 <a href="/" class="flex items-center px-4">
                     <img src="{{ asset('image/Capture.png')}}" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
                     <span class="self-center text-sm md:text-[24px] font-semibold whitespace-nowrap text-white"> চলচ্চিত্র ও প্রকাশনা অধিদপ্তর  </span>
@@ -79,9 +79,9 @@
         </nav>  
     </div>
 
-    <main class="container mx-auto px-3 md:px-4">
+    <main class="px-3 md:px-4">
         <div class="flex">
-            <div class="sidebar w-[204px] justify-center h-screen bg-gradient-blue sticky transition duration-300">
+            <div class="sidebar w-[350px] justify-center h-screen bg-gradient-blue sticky transition duration-300">
                 <ul class="">
                     <li class="dashboard-items">
                         <a href="" class="dashbord-link">
@@ -168,7 +168,6 @@
                             </ul>
                         </button>
                     </li>
-
                     <li class="dashboard-items">
                         <a href="{{route('admin.setting.index')}}" class="dashbord-link {{ (request()->segment(2) == 'setting') ? 'active' : '' }}">
                             <img  src="{{ asset('media/icon/setting.png') }}" alt="pdf-icon">

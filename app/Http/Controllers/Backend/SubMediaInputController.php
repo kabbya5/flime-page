@@ -17,7 +17,7 @@ class SubMediaInputController extends Controller
     public function index()
     {
         $input = new SubMediaInput(); 
-        $media_inputs = MediaInput::orderBy('input_position','asc')->get();
+        $media_inputs = MediaInput::where('input_type','parent')->orderBy('input_position','asc')->get();
         $subinputs = SubMediaInput::orderBy('media_input_id','asc')->orderBy('input_position','asc')->get();
         return view('backend.sub_media_input.index',compact('media_inputs','input','subinputs'));
     }
@@ -32,6 +32,8 @@ class SubMediaInputController extends Controller
         ]);
 
         $data = $request->all();
+        
+        $data['slug'] = str_slug($data['input_name']);
 
         SubMediaInput::create($data);
         return back()->with('message','Input file add successfully');
@@ -58,7 +60,7 @@ class SubMediaInputController extends Controller
             $data['need_file'] = 'text';
         }
         $input->update($data);
-
+        $data['slug'] = str_slug($data['input_name']);
         return redirect()->route('admin.submedia.inputs.index')->with('message', 'The input section has been update successfully');
     }
 

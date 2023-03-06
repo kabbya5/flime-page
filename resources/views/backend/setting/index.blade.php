@@ -38,6 +38,19 @@
                             <p class="mt-2 text-red-500">{{ $message }}</p>    
                     @enderror
                 </div>
+                <div class="form-group flex flex-col mt-10">
+                    <div class="flex">
+                        <label for="email"> ইমেইল </label>
+                        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                    </div>
+                    
+                    <input type="text" class="outline-none mt-3 @error('email') error @enderror" placeholder="ইমেইল"
+                    name="email" value="{{ old('email',$setting->email) }}">
+                
+                    @error('email')
+                            <p class="mt-2 text-red-500">{{ $message }}</p>    
+                    @enderror
+                </div>
 
                 <div class="form-group flex justify-between mt-10">
                     <div class="flex flex-col w-1/2">
@@ -83,7 +96,7 @@
                 </div>
 
                 <div class="form-group flex flex-col mt-10">
-                    <label for="phone">SEO content </label>
+                    <label for="phone">SEO Content </label>
                    <textarea name="seo_content" cols="30" rows="10" class="outline-none mt-3 @error('seo_content') error @enderror
                    bg-transparent border-2 border-gray-300"
                    >
@@ -96,7 +109,7 @@
                 </div>
 
                 <div class="form-group flex flex-col mt-10">
-                    <label for="phone">SEO content </label>
+                    <label for="phone">SEO Tags </label>
                    <textarea name="seo_tag" cols="30" rows="10" class="outline-none mt-3 @error('seo_tag') error @enderror
                    bg-transparent border-2 border-gray-300"
                    >
@@ -107,6 +120,9 @@
                             <p class="mt-2 text-red-500">{{ $message }}</p>    
                     @enderror
                 </div>
+
+                <input type="hidden" name="old_title_image" value="{{ $setting->title_image }}">
+                <input type="hidden" name="old_share_image" value="{{ $setting->share_image }}">
 
                 <button type="submit" class="my-2 btn-gradient-pink mt-10"> যোগ করুন </button>
             </form>

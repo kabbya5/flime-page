@@ -19,6 +19,10 @@ class NewspaperNameClearanceController extends Controller
         $clearences_header = NewspaperNameClearanceHeader::first();
         $newspaper_clearenc = new NewsPaperNameClearance(); 
         $newspaper_clearences = NewsPaperNameClearance::orderBy('input_position','asc')->get();
+        
+        if(!$clearences_header){
+            $clearences_header = new NewspaperNameClearanceHeader();
+        }
         return view('backend.newspaper_clearence.index',compact('newspaper_clearences','newspaper_clearenc','clearences_header'));
     }
     
@@ -27,10 +31,11 @@ class NewspaperNameClearanceController extends Controller
         $request->validate([
             'input_name' => 'required|unique:newspaper_name_clearances,input_name',
             'input_position' => 'required',
+            'input_title' => 'required,'
         ]);
 
         $data = $request->all();
-        $data['slug'] = str_slug($data['input_name']);
+        $data['slug'] = str_slug($data['input_title']);
 
         NewsPaperNameClearance::create($data);
         return back()->with('message','Input file add successfully');

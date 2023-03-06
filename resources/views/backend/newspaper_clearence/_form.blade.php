@@ -1,14 +1,35 @@
 <div class="form-group flex flex-col w-full">
-    <label for="input_name">  নাম  </label>
-    <input id="input_name" type="text" class="outline-none mt-3 @error('input_name') error @enderror" placeholder="নাম"
+    <div class="flex">
+        <label for="input_title">  ইনপুট শিরোনাম </label>
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+    </div>
+    
+    <input id="input_title" type="text" class="outline-none mt-3 @error('input_title') error @enderror" placeholder="শিরোনাম"
+    value="{{ old('input_title',$newspaper_clearenc->input_title) }}" name="input_title">
+    @error('input_title')
+        <p class="text-red-500">{{$message }}</p>
+    @enderror
+</div>
+
+<div class="form-group flex flex-col w-full mt-10">
+    
+    <div class="flex">
+        <label for="input_name"> ইনপুট নাম  </label>
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+    </div>
+    <input id="input_name" type="text" class="outline-none mt-3 @error('input_name') error @enderror" placeholder="ইনপুট_নাম "
     value="{{ old('input_name',$newspaper_clearenc->input_name) }}" name="input_name">
-    @error('input_name')
+    @error('name')
         <p class="text-red-500">{{$message }}</p>
     @enderror
 </div>
 
 <div class="form-group flex flex-col w-full mt-6">
-    <label for="input_position"> নাম  পসিশন </label>
+    
+    <div class="flex">
+        <label for="input_position"> পসিশন </label>
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+    </div>
     <input id="input_position" type="text" class="outline-none mt-3 @error('input_position') error @enderror"  placeholder="1,2,3,4....." 
     value="{{ old('input_position',$newspaper_clearenc->input_position) }}" name="input_position">
     

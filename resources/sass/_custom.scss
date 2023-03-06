@@ -21,14 +21,16 @@
     #dropdownNavbar{
         position: absolute;
         display: none;
+        width: 170px;
         transition: all 0.3s linear;
 
         a{
-            padding: 10px 30px;
+            padding: 10px 0;
+            text-align: center;
             margin: 0;
             border-bottom: 1px solid #d9d3d3;
             &:hover{
-                background-color: #d9d3d3 !important;
+                background-color: rgb(16,138,37,0.1) !important;
             }
 
         }
@@ -67,6 +69,38 @@
     width: 140px !important;
     height: auto;
 }
+
+.input-overflow{
+    height: 468px !important;
+    overflow-x:auto;
+}
+
+.file-input[type="file"] {
+    /* Style the color of the message that says 'No file chosen' */
+      color: #878787;
+    }
+    [type="file"]::-webkit-file-upload-button {
+        background: #ED1C1B;
+        height: 100%;
+        padding: 0;
+        margin-left:-14px;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        outline: none;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        transition: all 1s ease;
+    }
+    
+    [type="file"]::-webkit-file-upload-button:hover {
+      background: #fff;
+      color: #000;
+    }
+    
+
 .border-blue{
     border:1px solid #007aff;
     height: fit-content;
@@ -133,11 +167,7 @@
 {
     color: #CFCCFF;
 }
-.ডকুমেন্টারি .slider .owl-next span, 
-.ডকুমেন্টারি .slider .owl-prev span
-{
-    color: #EFCAE5;
-}
+
 .short-flim .slider .owl-next span, 
 .short-flim .slider .owl-prev span
 {
@@ -370,6 +400,14 @@ select.dropdown:focus{
     border-bottom: 1px solid #D1D1D6;
 }
 
+// upload-file
+.dz-button{
+    background-color: #F2F2F2 !important;
+    border: 2px dashed #8E8E93 !important;
+    width: 100% !important;
+}
+
+
 
 @media screen and (max-width:1335px) {
     .slider .owl-next{
@@ -472,7 +510,7 @@ select.dropdown:focus{
 .btn-gradient-green{
     background: linear-gradient(299.52deg, #0D9E7A 10.46%, #1AD444 77.77%);
     border-radius: 5px;
-    color:#ffffff;
+    color:#ffffff !important;
     font-weight: 600;
     padding: 12px 45px;
     font-size: 16px;
@@ -481,14 +519,13 @@ select.dropdown:focus{
     background: linear-gradient(132.78deg, #F09819 7.53%, #FF5858 89.96%);
     border-radius: 5px;
     border-radius: 5px;
-    padding: 12px 45px;
     color:#ffffff;
 }
-.btn-gradient-pink,button.btn-gradient-pink{
+.btn-gradient-pink,button.btn-gradient-pink, .hover-bg-pink:hover{
     background: linear-gradient(225deg, #AC32E4 0%, #7918F2 47.87%, #4801FF 100%) !important;
     border-radius: 5px;
     padding: 12px 45px;
-    color:#ffffff;
+    color:#ffffff !important;
     font-weight: 600;
     font-size: 16px;
 }
@@ -537,6 +574,11 @@ select.dropdown:focus{
 
 .hover-flim-btn:hover{
     background-image: linear-gradient(270deg, #b465da 0%, #cf6cc9 28.04%, #ee609c 67.6%, #ee609c 100%);
+    border-radius: 5px;
+    color:#ffffff !important;
+}
+.hover-book-btn:hover{
+    background: linear-gradient(299.52deg, #0D9E7A 10.46%, #1AD444 77.77%);
     border-radius: 5px;
     color:#ffffff !important;
 }
@@ -605,31 +647,31 @@ select.dropdown:focus{
 // page loading 
 
 /*PRELOADING------------ */
-#overlayer {
-  width:100%;
-  height:100%;  
-  position:fixed;
-  z-index:100;
-  background:#4a4a4a;
-}
-.loader {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  position: fixed;
-  z-index:300;
-  border: 4px solid #Fff;
-  top: 50%;
-  animation: loader 2s infinite ease;
-}
+// #overlayer {
+//   width:100%;
+//   height:100%;  
+//   position:fixed;
+//   z-index:100;
+//   background:#4a4a4a;
+// }
+// .loader {
+//   display: inline-block;
+//   width: 30px;
+//   height: 30px;
+//   position: fixed;
+//   z-index:300;
+//   border: 4px solid #Fff;
+//   top: 50%;
+//   animation: loader 2s infinite ease;
+// }
 
-.loader-inner {
-  vertical-align: top;
-  display: inline-block;
-  width: 100%;
-  background-color: #fff;
-  animation: loader-inner 2s infinite ease-in;
-}
+// .loader-inner {
+//   vertical-align: top;
+//   display: inline-block;
+//   width: 100%;
+//   background-color: #fff;
+//   animation: loader-inner 2s infinite ease-in;
+// }
 
 @keyframes loader {
   0% {

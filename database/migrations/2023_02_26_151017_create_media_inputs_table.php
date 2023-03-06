@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('input_name');
             $table->string('need_file')->default('text');
             $table->string('slug');
+            $table->string('input_type')->nullable();
             $table->string('input_position')->nullable();
             $table->timestamps();
         });

@@ -17,7 +17,7 @@
     <select name="media_input_id" id="media_input_id" class="dropdown  py-3 px-4  border border-[#B0B0B0] focus:outline-none mt-3 @error('media_input_id') error @enderror">
         <option class="dropdown"> সিলেটে আবেদন </option>
         @foreach ($media_inputs as $item)
-        <option value="{{ $item->id }}" {{ ($item->id === old('media_input_id',$input->media_input_id)) ? 'selected' : ' '}} class="dropdown"> {{ $item->input_name }} </option>
+        <option value="{{ $item->id }}" {{ ($item->id === old('media_input_id',$input->media_input_id)) ? 'selected' : ' '}} class="dropdown"> {{ str_limit($item->input_name,50) }} </option>
         @endforeach
     </select>
     @error('media_input_id')

@@ -9,11 +9,6 @@ use Image;
 
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $setting= Setting::first();
@@ -23,42 +18,41 @@ class SettingController extends Controller
         return view('backend.setting.index',compact('setting'));
     }
 
-   
-
-   
     public function store(Request $request)
     {
         $request->validate([
             'page_name' => 'required',
             'title' => 'required',
+            'email' => 'required',
         ]);
 
         $old_data = Setting::first();
-        if($old_data){
-            $this->deleteOldFile($old_data->title_image);
-            $this->deleteOldFile($old_data->share_image);
-            $old_data->delete();
-        }
-
-        $data = $request->except('title_image','share_image');
+        
+        $data = $request->except('title_image','share_image','old_title_image','old_share_image');
 
         if($request->hasFile('title_image')){
-            $title_image = $this->imageUploade($request->file('title_image'),'title_image');
+            $title_image = $this->imageUploade($request->file('title_image'),'title_image',$request->old_title_image);
             $data['title_image'] = $title_image;
         }
 
         if($request->hasFile('share_image')){
-            $share_image = $this->imageUploade($request->file('share_image'), 'share_image');
+            $share_image = $this->imageUploade($request->file('share_image'), 'share_image',$request->old_share_image);
             $data['share_image'] = $share_image;
         }
 
-        Setting::create($data);
-
+        if($old_data){
+            $old_data->update($data);
+        }else{
+            Setting::create($data);
+        }
         return back()->with('message',"The setting has been created successfully");
         
     }
 
-    private function imageUploade($image, $name){
+    private function imageUploade($image, $name,$old_image){
+        if($old_image){
+            $this->deleteOldFile($old_image);
+        }
         
         if($name == 'title_image'){
             $file_name = 'title_image'.".".$image->getClientOriginalExtension();
@@ -69,12 +63,10 @@ class SettingController extends Controller
         }
 
         $img->save(public_path('/media/setting/') . $file_name);
-        return  "media/setting/" . $file_name;
-        
-        
+        return  "media/setting/" . $file_name;   
     }
 
-    public function deleteOldFIle($image){
+    public function deleteOldFile($image){
         if(file_exists($image)){
             unlink($image);
         }

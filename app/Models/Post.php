@@ -38,8 +38,16 @@ class Post extends Model
         $date = $this->published_at;
         if($date){
             return $date->format('d/m/Y');
-        }
-        
+        } 
+    }
+
+    public function getEditorialNameAttribute(){
+        return  explode(',',$this->editorial_associate);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
 }

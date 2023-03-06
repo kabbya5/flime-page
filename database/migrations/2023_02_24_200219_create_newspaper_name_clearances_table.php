@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('newspaper_name_clearances', function (Blueprint $table) {
             $table->id();
             $table->string('input_name');
+            $table->string('input_title');
             $table->string('need_file')->default('text');
             $table->string('slug');
             $table->string('input_position')->nullable();

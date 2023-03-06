@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('section_name');
+            $table->text('section_description');
             $table->string('section_slug');
             $table->integer('section_position');
             $table->timestamps();
