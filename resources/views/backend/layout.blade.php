@@ -45,7 +45,9 @@
                                 <li>
                                     <a href="login.html"  class="relative block py-1 pl-3 pr-4 text-white rounded hover:text-gray-100"> 
                                         <i class="fa-solid fa-bell fa-2x"></i>
-                                        <span class="bg-[#FE0000] text-white w-[17px] h-[17px] rounded-full absolute flex items-center justify-center top-0 right-3"> 2 </span>
+                                        @if (auth()->user()->unreadNotifications->count())
+                                        <span class="bg-[#FE0000] text-white w-[17px] h-[17px] rounded-full absolute flex items-center justify-center top-0 right-3"> {{ auth()->user()->unreadNotifications->count() }} </span> 
+                                        @endif
                                     </a>
                                 </li>
 
@@ -79,13 +81,15 @@
         </nav>  
     </div>
 
-    <main class="px-3 md:px-4">
+    <main class="">
         <div class="flex">
             <div class="sidebar w-[350px] justify-center h-screen bg-gradient-blue sticky transition duration-300">
-                <ul class="">
+                <ul class="ml-6">
                     <li class="dashboard-items">
-                        <a href="" class="dashbord-link">
-                            <img src="{{ asset('media/icon/home.png') }}" alt="home-icon"> হোম
+                        <a href="{{ route('admin.dashboard',auth()->user()->slug) }}" class="dashbord-link {{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}">
+                            <img class="img-white"  src="{{ asset('media/icon/home-white.png') }}" alt="home-icon">
+                            <img src="{{ asset('media/icon/home.png') }}" alt="pdf-icon">
+                            হোম
                         </a>
                     </li>
 
@@ -159,12 +163,6 @@
                                         আবেদন
                                     </a> 
                                 </li>
-                                <li class="mt-[23px]">
-                                    <a href="{{route('admin.submedia.inputs.index')}}" class="dashbord-link active">
-                                        সাব আবেদন
-                                    </a> 
-                                </li>
-                                
                             </ul>
                         </button>
                     </li>
@@ -180,7 +178,7 @@
 
             {{-- content --}}
 
-            <div class="content bg-white px-[16px] w-full mb-10 shadow-sm">
+            <div class="content bg-white px-[40px] w-full mb-10 shadow-sm">
                 @yield('content')
             </div>
             

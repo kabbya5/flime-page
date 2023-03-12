@@ -19,40 +19,24 @@
 
             <div class="mx-4 mb-8 mt-0 md:mt-2">
                 <a href="#" class="flex">
-                    <span class="self-center text-sm md:text-md font-semibold whitespace-nowrap text-black"> চলচ্চিত্র </span>
+                    <span class="self-center text-sm md:text-md font-semibold whitespace-nowrap text-black"> {{ $sections[0]->section_name }} </span>
                 </a>
                 <div>
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        চলচ্চিত্রসমূহ
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        ডকুমেন্টারি
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        শর্ট ফিল্ম
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        নিউজ
-                    </p> 
+                    @foreach ($sections[0]->subsections as $subsection)
+                        <a href="{{ route('video.subsection.posts',$subsection->slug) }}" class="block text-black mt-2">{{ $subsection->subsection_name }}</a>
+                    @endforeach
+                    
                 </div>
             </div>
             <div class="mx-4 mb-8 mt-0 md:mt-2">
                 <a href="#" class="flex">
-                    <span class="self-center text-sm md:text-md font-semibold whitespace-nowrap text-black"> প্রকাশনা </span>
+                    <span class="self-center text-sm md:text-md font-semibold whitespace-nowrap text-black"> {{ $sections[1]->section_name}}</span>
                 </a>
                 <div class="w-48">
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        সচিত্র বাংলাদেশ
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        মাসিক নবারুণ
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        বাংলাদেশ কোয়ার্টারলি
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        নিউজ
-                    </p> 
+                    @foreach ($sections[1]->subsections as $subsection)
+                    <a href="{{ route('book.subsection.posts',$subsection->slug) }}" class="block text-black mt-2">{{ $subsection->subsection_name }}</a>
+                    @endforeach
+                   
                 </div>
             </div>
                    
@@ -61,18 +45,21 @@
                     <span class="self-center text-sm md:text-md font-semibold whitespace-nowrap text-black"> নিবন্ধন, বিজ্ঞাপন ও নিরীক্ষা  </span>
                 </a>
                 <div>
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        মোট নিবন্ধিত পত্রিকা
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
+                    @foreach ($sections[2]->subsections as $subsection)
+                    @if($subsection->subsection_position === 1)
+                        
+                        <a href="{{ route('all.media.news') }}" class="block text-black mt-2">{{ $subsection->subsection_name }}</a>
+                         
+                    @else
+                        
+                        <a href="{{ route('media.form') }}" class="block text-black mt-2">{{ $subsection->subsection_name }}</a>
+                        
+                    @endif                      
+                    @endforeach 
+                    
+                    <a href="{{ route('new.clearence.form') }}" class="block text-black mt-2">
                         পত্রিকা নামের ছাড়পত্র
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        বাংলাদেশ কোয়ার্টারলি
-                    </p> 
-                    <p class="font-[600] mt-4 text-[#4e4e51] text-sm">
-                        মিডিয়া তালিকাভুক্তির আবেদন
-                    </p> 
+                    </a>  
                 </div>
             </div>
         </div>

@@ -53,7 +53,6 @@ $("#thumbnail").on('change', function () {
 
         var reader = new FileReader();
         reader.onload = function (e) {
-            // $('.image-upload-icon').hide();
             $("<img />", {
                 "src": e.target.result,
                 "class": "thumb-image w-[136px] h-[110px]"

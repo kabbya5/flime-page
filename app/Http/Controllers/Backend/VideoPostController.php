@@ -16,7 +16,7 @@ class VideoPostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->with('section','subsection')->paginate(25);
+        $posts = Post::latest()->with('section','subsection')->where('post_type','VIDEO')->paginate(25);
         return view('backend.video_post.index',compact('posts'));
     }
 
@@ -28,8 +28,8 @@ class VideoPostController extends Controller
     public function create()
     {
         $post = new Post();
-        $sections = Section::OrderBy('section_position','asc')->get();
-        return view('backend.video_post.create',compact('post','sections'));
+        $section = Section::OrderBy('section_position','asc')->first();
+        return view('backend.video_post.create',compact('post','section'));
     }
 
     /**
@@ -42,12 +42,12 @@ class VideoPostController extends Controller
     {
         $data = $request->except('video_file', 'old_video_file' );
 
-        if($request->hasFile('thumbnail')){
+        if($request->hasFile('video_file')){
             $file = $this->fileUpload($request->file('video_file'),NULL);
             $data['file_url'] = $file;
         }
 
-        $data['slug'] = str_replace(' ','-',$data['post_name']);
+        $data['slug'] = str_replace(' ','-',$data['post_name']).time();
         Post::create($data);
     }
 
@@ -56,7 +56,6 @@ class VideoPostController extends Controller
             if($old_file){
                 $this->deleteFile($old_file);
             }
-
             $file_name = hexdec(uniqid()).time().".".$file->getClientOriginalExtension();
             $file->move(public_path('/media/post/video/'), $file_name);
             return 'media/post/video/'.$file_name;     
@@ -69,17 +68,17 @@ class VideoPostController extends Controller
         }
     }
 
-    public function duplicatePost($slug,Post $post){
-        $sections = Section::orderBy('section_position','asc')->get();
-        return view('backend.video_post.create',compact('post','sections'));
+    public function duplicatePost(Post $post){
+        $section = Section::orderBy('section_position','asc')->first();
+        return view('backend.video_post.create',compact('post','section'));
     }
 
   
   
-    public function edit($slug,Post $post)
+    public function edit(Post $post)
     {
-        $sections = Section::OrderBy('section_position','asc')->get();
-        return view('backend.video_post.edit',compact('post','sections'));
+        $section = Section::OrderBy('section_position','asc')->get()->first();
+        return view('backend.video_post.edit',compact('post','section'));
     }
 
     /**
@@ -94,11 +93,13 @@ class VideoPostController extends Controller
         $data = $request->except('video_file','old_video_file' );
         
         if($request->hasFile('video_file')){
-            $file = $this->fileUpload($request->file('video_file'),NULL);
+            $file = $this->fileUpload($request->file('video_file'),$request->old_video_file);
             $data['file_url'] = $file;
         }
-        
-        $data['slug'] = str_replace(' ','-',$data['post_name']);
+
+        if($request->published_at == NULL){
+            unset($data['published_at']);
+        }
         $post->update($data);
     }
 

@@ -78,19 +78,7 @@ $('.book-editing-slider').owlCarousel({
     }
 })
 
-// drag and drop upload page
 
-// $(function(){
-//     $('.drag-file').aksFIleUpload({
-//         fileUpload:"#file",
-//         dragDrop:true,
-//         maxSize:'400 MB',
-//         multiple:true,
-//         maxFile:10
-//     })
-// })
-
-//user drop down 
 
 $(document).ready(function(){
     $('#doropdown').click(function(){

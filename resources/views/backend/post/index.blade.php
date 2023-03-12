@@ -19,8 +19,7 @@
                             <th align="left" class="py-[18px] px-3 font-700 text-white text-[13px] leading-[18px]"> নাম </th>
                             <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> সেকশন    </th>
                             <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> সাব সেকশন </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> আইটেম টাইপ  </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> প্রকাশের তারিখ  </th>
+                            <th align="center" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> প্রকাশের তারিখ  </th>
                             <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> অবস্থা</th>
                             <th align="center"></th>
                         </tr>
@@ -29,7 +28,7 @@
                         @foreach ($posts as $post)
                             <tr tabindex="0" class="panding focus:outline-none border-t border-gray-200 rounded mt-[3px]">
                                 <td>
-                                    <div class="ml-5 flex items-center py-[24px]">
+                                    <div class="ml-3 flex items-center py-[24px]">
                                         <p class="font-700 text-[14px] leading-[21px] text-black">{{ $post->post_name }}</p>
                                     </div>
                                 </td>
@@ -37,16 +36,13 @@
                                     <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]"> {{ $post->section->section_name }}</p>
                                 </td>
                                 <td class="text-left px-2">
-                                    <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">সচিত্র বাংলাদেশ</p>
-                                </td>
-                                <td class="text-center px-2">
-                                    <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">{{ $post->post_type }}</p>
-                                </td>
+                                    <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">{{ $post->subsection->subsection_name }}</p>
+                                </td>   
                                 <td class="text-center px-2">
                                     <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {{ $post->post_date }} </span>
                                 </td>
                                 <td class="text-center px-2">
-                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1 text-black"> {!! $post->publicationLabel() !!} </span>
+                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px]"> {!! $post->publicationLabel() !!} </span>
                                 </td>
                                 <td class="text-right px-2">             
                                     <div id="doropdown-toggoler" class="w-full pr-[22px] relative flex flex-col ">
@@ -55,15 +51,15 @@
                                         <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
 
                                         <div class="shadow-lg dropdown-items absolute hidden left-[-160px] top-[-10px]">
-                                            <a href="{{ route('admin.posts.edit',$post->id) }}" class="btn text-[#2518FF] border-b flex items-center capitalize font-[600] text-[18px] leading-7">
+                                            <a href="{{ route('admin.posts.edit',$post->slug) }}" class="btn text-[#2518FF] border-b flex items-center capitalize font-[600] text-[18px] leading-7">
                                                 <img src="{{ asset('media/icon/edit.png') }}" alt="" class="mr-[10px] h-[18px]"> edit
                                             </a>
 
-                                            <a href="{{ route('admin.posts.duplicate',[$post->slug,$post->id]) }}" class="btn border-1 text-[#565956] flex items-center capitalize font-[600] text-[18px] leading-7">
+                                            <a href="{{ route('admin.posts.duplicate',$post->slug) }}" class="btn border-1 text-[#565956] flex items-center capitalize font-[600] text-[18px] leading-7">
                                                 <img src="{{ asset('media/icon/duplicate.png') }}" alt="" class="mr-[10px] h-[18px]"> duplicate
                                             </a>
 
-                                            <form action="{{ route('admin.posts.destroy',$post->id) }}" method="POST">
+                                            <form action="{{ route('admin.posts.destroy',$post->slug) }}" method="POST">
                                                 @csrf
                                                 @method("DELETE")
 

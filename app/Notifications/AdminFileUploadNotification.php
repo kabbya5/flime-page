@@ -14,12 +14,12 @@ class AdminFileUploadNotification extends Notification implements ShouldQueue
     use Queueable;
 
     public $user;
-    public $data;
+    public $subject;
     public $admin;
-    public function __construct($user, $data,$admin)
+    public function __construct($user, $subject,$admin)
     {
         $this->user = $user;
-        $this->data = $data;
+        $this->subject = $subject;
         $this->admin = $admin;
     }
 
@@ -45,7 +45,7 @@ class AdminFileUploadNotification extends Notification implements ShouldQueue
         $url = url('/admin/dasboard/'. $this->admin->slug);
         return (new MailMessage)
             ->from($this->user->email)
-            ->subject('New file uploaded '.$this->data['subject'])
+            ->subject('New file uploaded '.$this->subject)
             ->greeting("Dear " .$this->admin->name)
             ->line('This is to notify you that a new file has been uploaded to Your Website.')
             ->line('You can access the file by logging into your account and navigating to the appropriate section of the website.')
@@ -63,8 +63,8 @@ class AdminFileUploadNotification extends Notification implements ShouldQueue
         return [
             'image' => $this->user->profile_img,
             'user_name' => $this->user->name,
-            'subject'  => $this->data['subject'],
-            'subsection_name' =>$this->data['subsection_name'],
+            'subject'  => $this->subject,
+            'subsection_name' =>$this->subject,
             'date' => Carbon::now()->format('Y-m-d'),
         ];
     }

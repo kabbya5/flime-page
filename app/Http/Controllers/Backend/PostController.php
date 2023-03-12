@@ -19,17 +19,8 @@ class PostController extends Controller
 
     public function create(){
         $post = new Post();
-        $sections = Section::orderBy('section_position','asc')->get();
-        return view('backend.post.create',compact('sections','post'));
-    }
-
-
-    public function getSubcategory(Request $request,$id){
-        $section = Section::where('id',$id)->with('subsections')->first();
-        $subsections = $section->subsections;
-        
-        return response()->json($subsections);
-        
+        $section = Section::where('section_position',2)->first();
+        return view('backend.post.create',compact('section','post'));
     }
 
     // pdf post 
@@ -48,7 +39,7 @@ class PostController extends Controller
             $data['file_url'] = $file;
         }
         
-        $data['slug'] = $data['post_name'].'-'.$data['post_date'];
+        $data['slug'] = str_replace(' ','-',$data['post_name']).time();
 
         Post::create($data);
 
@@ -76,6 +67,11 @@ class PostController extends Controller
         }
     }
 
+    public function duplicatePost(Post $post){
+        $section = Section::where('section_position',2)->first();
+        return view('backend.post.create',compact('post','section'));
+    }
+
 
         
    
@@ -88,8 +84,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $sections = Section::orderBy('section_position','asc')->get();
-        return view('backend.post.edit',compact('post','sections'));
+        $section = Section::where('section_position',2)->first();
+        return view('backend.post.edit',compact('post','section'));
     }
 
     /**
@@ -112,8 +108,10 @@ class PostController extends Controller
             $file = $this->fileUpload($request->file('pdf_file'),$request->old_file,'pdf');
             $data['file_url'] = $file;
         }
-        
-        $data['slug'] = $data['post_name'].'-'.$data['post_date'];
+
+        if($request->published_at == null){
+            unset($data['published_at']);
+        }
 
         $post->update($data);
     }

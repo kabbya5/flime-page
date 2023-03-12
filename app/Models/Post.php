@@ -26,11 +26,11 @@ class Post extends Model
     public function  publicationLabel()
     {
         if(!$this->published_at){
-            return '<span class="badge text-bg-warning"> Draft </span>';
+            return '<span class="py-1 px-2 rounded-md text-red-500"> Draft </span>';
         }elseif($this->published_at > Carbon::now()){
-            return '<span class="badge text-bg-info"> Schedule </span>';
+            return '<span class="py-1 px-2 rounded-md text-orange-400 "> Schedule </span>';
         }else{
-            return '<span class="badge text-bg-success"> Published </span>';
+            return '<span class="py-1 px-2 rounded-md text-green-600"> Published </span>';
         }
     }
 

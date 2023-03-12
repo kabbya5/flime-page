@@ -23,7 +23,7 @@ class Subsection extends Model
     }
 
     public function getCreatedDateAttribute(){
-        return $this->created_at->format('d/m/y');
+        return $this->created_at ? $this->created_at->format('d/m/y') : '';
     }
 
 

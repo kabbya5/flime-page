@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="user">
-    <div class="container mx-auto md:px-[50px]">
+    <div class="">
         <div class="pt-[72px] pb-[49px]">
             <h2 class="font-700 text-[30px] text-black leading-[20px]"> সকল ইউজার </h2>
         

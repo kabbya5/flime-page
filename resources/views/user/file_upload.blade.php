@@ -65,6 +65,26 @@ Dropzone.options.dropzone =
     }
 };
 $(document).ready(function(){
+    $("input").prop('disabled', true);
+    $("input.mb-5").prop('disabled', false);
+    
+    let subject = '';
+    let date = '';
+    $('input[name="subject"]').change(function(){
+        subject = $(this).val();
+        if(subject.length > 2 && date.length > 2 ){
+        $("input").prop('disabled', false);
+    }
+    });
+    $('input[name="date"]').change(function(){
+        let date = $(this).val();
+        if(subject.length > 2 && date.length > 2 ){
+        $("input").prop('disabled', false);
+    }
+    });
+    
+    
+
     $('.dz-button').addClass("mt-[30px] flex flex-col items-center justify-center h-[200px] md:h-[346px]");
     $('.dz-button').empty();
     $('.dz-button').append(

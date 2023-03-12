@@ -9,7 +9,7 @@
             সব সাবসেকশন
         </a>
     </div>
-    <div class="bg-white md:w-[500px] mt-10 md:mt-[100px] py-10 md:py-[50px] px-4 md:mx-auto shadow-lg border-1">
+    <div class="bg-white md:w-[500px] mt-10 md:mt-[100px] py-10 md:py-[50px] shadow-lg border-1">
         
         <form action="{{ route('admin.subsections.store') }}" method="POST">
             @csrf 

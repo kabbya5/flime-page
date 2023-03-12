@@ -11,7 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Notification;
 
-class SendFileUploadNotification 
+class SendFileUploadNotification  
 {
     /**
      * Create the event listener.
@@ -34,7 +34,7 @@ class SendFileUploadNotification
         $user = User::where('id', Auth::id())->first();
         $admins = User::where('user_type','admin')->get();
 
-        Notification::send($user, new UserFileUploadNotification($event->data));
+        Notification::send($user, new UserFileUploadNotification($event->data['subject']));
 
         foreach($admins as $admin){
             Notification::send($admin, new AdminFileUploadNotification($user,$event->data, $admin));

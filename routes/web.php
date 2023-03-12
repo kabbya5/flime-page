@@ -3,6 +3,7 @@
 use App\Events\UserFileUploadProcessed;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\FileManagementController;
 use App\Http\Controllers\Backend\MediaInputController;
 use App\Http\Controllers\Backend\MediaRegisteredController;
 use App\Http\Controllers\Backend\NewspaperNameClearanceController;
@@ -26,15 +27,17 @@ Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
 // user 
 Route::post('/emiail/verification/code',[VerificationController::class,'emaliVerification'])->name('email-verification-code');
-
-Auth::routes(['verify' => true]);
-
 Route::controller(PostShowController::class)->group(function(){
     Route::get('/video/posts','videoPosts')->name('video.posts');
     Route::get('/video/subsections/posts/{subsection}','videoSubsectionPosts')->name('video.subsection.posts');
+    // ajax 
+    Route::get('/video/post/{id}','ajaxSubsectionVideoPosts')->name('ajax.subsection.video.post');
+    Route::get('/book/post/{id}','ajaxSubsectionBookPosts')->name('ajax.subsection.video.post');
 
     Route::get('/book/posts','bookPosts')->name('book.posts');
     Route::get('/book/subsections/posts/{subsection}','bookSubsectionPosts')->name('book.subsection.posts');
+
+    Route::get('/media/new/post','mediaNews')->name('all.media.news');
 });
 
 Route::controller(PostDetailsController::class)->group(function(){
@@ -42,6 +45,9 @@ Route::controller(PostDetailsController::class)->group(function(){
     Route::get('/book/post/detials/{post}','bookDetails')->name('book.post.details');
     Route::get('/book/{post}/donwload','downloadBook')->name('download.book');
 });
+
+
+Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function (){
     Route::controller(HomeController::class)->group(function(){
@@ -54,13 +60,13 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function
     Route::controller(UserFileUploadController::class)->group(function(){
         Route::get('/file/upload','fileUpload')->name('user.file.upload');
         Route::post('/file/store','storeFile')->name('user.file.store');
-
-        
     });
 
     Route::controller(FormController::class)->group(function(){
         Route::get('/news/clearence/form','clearenceForm')->name('new.clearence.form');
         Route::post('/input/store','inputStore')->name('user.input.store'); 
+        Route::post('/media/input/store','mediaInputStore')->name('user.media.input.store');
+        Route::get('/media/form','mediaForm')->name('media.form'); 
     });
 });
 
@@ -69,7 +75,13 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function
 Route::group(['prefix' => 'admin', 'middleware' =>['auth','admin','verified']],
 function(){
     Route::controller(AdminController::class)->group(function(){
-        Route::get('/dasboard/{slug}/','adminDashboard')->name('admin.dashboard');
+        Route::get('/dashboard/{slug}/','adminDashboard')->name('admin.dashboard');
+        Route::get('/media/file/','mediaFile')->name('media.file');
+        Route::get('/clearence/file/','clearencFile')->name('clearence.file');
+        Route::get('/pictorial/bangladesh/file','pictorialBangladeshFile')->name('pictorial.bangladesh.file');
+        Route::get('/menstrual/newborn/file','menstrualNewbornFile')->name('menstrual.newborn.file');
+        Route::get('/bangladesh/quarterly/file','bangladeshQuarterlyFile')->name('bangladesh.quarterly.file');
+
     });
 
     Route::controller(SectionController::class)->group(function(){
@@ -88,13 +100,13 @@ function(){
         'as' => 'admin'
     ]);
     Route::get('/posts/section/{id}',[PostController::class,'getSubcategory'])->name('admin.posts.getsubsection');
-    Route::get('/posts/{slug}/duplicate/{post}',[PostController::class,'duplicatePost'])->name('admin.posts.duplicate');
+    Route::get('/posts/duplicate/{post}',[PostController::class,'duplicatePost'])->name('admin.posts.duplicate');
 
     Route::resource('/video/posts',VideoPostController::class,[
         'as' => 'admin.video'
     ])->except('edit','show');
-    Route::get('/video/posts/{slug}/edit/{post}',[VideoPostController::class,'edit'])->name('admin.video.posts.edit');
-    Route::get('/video/posts/{slug}/duplicate/{post}',[VideoPostController::class,'duplicatePost'])->name('admin.video.posts.duplicate');
+    Route::get('/video/posts/edit/{post}',[VideoPostController::class,'edit'])->name('admin.video.posts.edit');
+    Route::get('/video/posts/duplicate/{post}',[VideoPostController::class,'duplicatePost'])->name('admin.video.posts.duplicate');
 
     Route::controller(UserControlController::class)->group(function(){
         Route::get('/users','index')->name('admin.users.index');
@@ -127,5 +139,16 @@ function(){
     Route::resource('/submedia/inputs',SubMediaInputController::class,[
         'as' => 'admin.submedia'
     ])->except('create','show');
+
+    Route::controller(FileManagementController::class)->group(function(){
+        Route::get('/file/status/{file}/change/{status}','statusChange')->name('file.status.change');
+        Route::get('/file/detials/{file}','fileDetails')->name('file.details');
+
+        Route::get('/download/all/{file}','allDownload');
+        Route::get('/download/{file}/form/clearence/{name}','downloadClearence');
+        Route::get('/download/{file}/form/media/{name}','downloadMedia');
+        Route::get('/download/user/file/{file}','downloadUploadFile');
+        Route::get('/file/delete/{file}','deleteFile')->name('file.delete');
+    });
 });
 

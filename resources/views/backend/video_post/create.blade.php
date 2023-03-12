@@ -23,26 +23,7 @@
 <script type="text/javascript"  src="{{ asset('js/jquery-1.7.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('js/jquery_form.js') }}"></script>
 <script>
-$('#section').change(function(){
-    let id = $(this).val();
-    let url = "{{route('admin.posts.getsubsection' , ":id")}}";
-    url = url.replace(':id', id);
-    
-    if(id){
-        $.ajax({
-            url:url,
-            dataType:"json",
-            type:'get',
-            success: function (data) {
-                $('#subsection_id').empty();
-                $.each(data, function (key, value) {
-                    $('#subsection_id').append('<option value=" ' + value.id + '">' + value.subsection_name + '</option>');
-                })
-            }
 
-        })
-    }
-})
 // file change 
 
 $(document).on("change", "#file", function(evt) {

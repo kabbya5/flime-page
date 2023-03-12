@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('slug');
             $table->string('file_url');
-            $table->text('post_desciption')->nullable();
+            $table->text('post_description')->nullable();
             $table->string('chief_editor')->nullable();
             $table->string('senior_editor')->nullable();
             $table->string('editor')->nullable();

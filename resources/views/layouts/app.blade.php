@@ -66,14 +66,35 @@
                             </a>
 
                             {{-- Dropdown menu --}}
-                            
                             <div id="dropdownNavbar" class="z-10  font-normal md:bg-white md:-ml-8">
                                 <ul class="text-sm text-white">
-                                    @foreach ($section->subsections as $subsection)
-                                    <li>
-                                        <a href="#" class="block text-black">{{ $subsection->subsection_name }}</a>
-                                    </li> 
-                                    @endforeach   
+                                    @if($section->section_position === 1)
+                                        @foreach ($section->subsections as $subsection)
+                                            <li>
+                                                <a href="{{ route('video.subsection.posts',$subsection->slug) }}" class="block text-black">{{ $subsection->subsection_name }}</a>
+                                            </li> 
+                                    @endforeach  
+                                    @elseif ($section->section_position === 2)
+                                        @foreach ($section->subsections as $subsection)
+                                            <li>
+                                                <a href="{{ route('book.subsection.posts',$subsection->slug) }}" class="block text-black">{{ $subsection->subsection_name }}</a>
+                                            </li> 
+                                        @endforeach 
+                                    @else
+                                        @foreach ($section->subsections as $subsection)
+                                            @if($subsection->subsection_position === 1)
+                                                <li>
+                                                    <a href="{{ route('all.media.news') }}" class="block text-black">{{ $subsection->subsection_name }}</a>
+                                                </li> 
+                                            @else
+                                                <li>
+                                                    <a href="{{ route('media.form') }}" class="block text-black">{{ $subsection->subsection_name }}</a>
+                                                </li> 
+                                            @endif
+                                            
+                                        @endforeach 
+                                    @endif
+                                    
                                 </ul>
                             </div>
                         </li>

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\View\NavigationComposer;
+use App\View\AdminNavigationComposer;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('layouts.app',NavigationComposer::class);
+        view()->composer('backend.layout',AdminNavigationComposer::class);
     }
 }

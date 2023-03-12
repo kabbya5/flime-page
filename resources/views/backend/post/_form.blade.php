@@ -12,13 +12,14 @@
 
 <div class="form-group flex justify-between">
     <div class="form-group flex flex-col mt-10 w-full mr-[9px]">
-        <label for="phone">সিলেটে সেকশন</label>
-    
-        <select name="section_id" id="section" class="dropdown py-2 px-4 w-full mt-3 border border-[#B0B0B0] focus:outline-none pr-4 @error('post_date') error @enderror">
-            <option value="" disabled selected> সিলেটে সেকশন </option>
-            @foreach ($sections as $section)
-            <option value="{{ $section->id }}" {{ ($section->id === old('section_id',$post->section_id)) ? 'selected' : ' '}} class="dropdown"> {{ $section->section_name }} </option>
-            @endforeach
+        
+        <div class="flex">
+            <label for="phone">সিলেটে সেকশন</label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
+        <select name="section_id" id="section" class="dropdown py-2 px-4 w-full mt-3 border border-[#B0B0B0] focus:outline-none pr-4 @error('cooperation') error @enderror">
+            <option value="{{ $section->id }}"> {{ $section->section_name }}</option>
+            
         </select>
     
         @error('section_id')
@@ -26,19 +27,23 @@
         @enderror
     </div>
     
-    <div class="form-group flex flex-col mt-10 w-full ml-[9px]">
-        <label for="phone"> সিলেটে সাব সেকশন </label>
+    <div class="form-group flex flex-col mt-10 w-full">
+        <div class="flex">
+            <label for="phone">সিলেটে সাব সেকশন</label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
+        
     
-        <select name="subsection_id" id="subsection_id" class="dropdown py-2 px-4 w-full mt-3 border border-[#B0B0B0] focus:outline-none @error('post_date') error @enderror">
-            @if ($post->subsettion_id)
-            <option value="{{ $post->subsection_id }}"  selected> {{ $post->subsection->subsection_name }} </option> 
-            @endif
+        <select name="subsection_id" id="section" class="dropdown  py-2 px-4  border border-[#B0B0B0] focus:outline-none mt-3">
+            <option value="" class="dropdown"> সিলেটে সেকশন </option>
+            @foreach ($section->subsections as $subsection)
+            <option value="{{ $subsection->id }}" {{ ($subsection->id === old('subsection_id',$post->subsection_id)) ? 'selected' : ' '}} class="dropdown"> {{ $subsection->subsection_name }} </option>
+            @endforeach
         </select>
-    
         @error('section_id')
                 <p class="mt-2 text-red-500">{{ $message }}</p>    
         @enderror
-    </div>   
+    </div>  
 </div>
 
 <div class="form-group flex flex-col mt-10">
@@ -170,7 +175,7 @@
                 <img src="{{ asset($post->thumbnail) }}" class="thumb-image w-[136px] h-[110px]">
             </a>
         </div>
-    </div>        
+    </div>       
 </div>
 
 <div class="errors">
@@ -182,5 +187,5 @@
 <input type="hidden" name="old_file" value="{{ $post->file_url }}">
 
 <div class="w-full form-group flex mt-10">
-    <button type="submit" class="w-full py-2 md:py-3 text-center btn-gradient-green capitalize"> create post </button>
+    <button type="submit" class="w-full py-2 md:py-3 text-center btn-gradient-green capitalize"> যোগ করুন </button>
 </div>

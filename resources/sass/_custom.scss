@@ -74,13 +74,17 @@
     height: 468px !important;
     overflow-x:auto;
 }
+.input-overflow::-webkit-scrollbar { 
+    width: 0;
+    height: 0;
+}
 
 .file-input[type="file"] {
     /* Style the color of the message that says 'No file chosen' */
       color: #878787;
     }
     [type="file"]::-webkit-file-upload-button {
-        background: #ED1C1B;
+        background-image: linear-gradient(to bottom left, #3c40f9, #275cfa);
         height: 100%;
         padding: 0;
         margin-left:-14px;
@@ -243,33 +247,62 @@ select.dropdown:focus{
   outline: 0;
 }
 
+// admin dashboard 
+.dashboard .header a{
+    padding:10px;
+    transition: all 0.3s;
+}
+.dashboard .header a.active, 
+.dashboard .header a:hover{
+    background-color: #fff;
+    color: #000;
+    font: 700;
+}
+.dashboard #result .download-icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+
 
 
 .dashboard .data-table td .panding{
     color: #5856D6;
     padding: 6px 15px;
-    background:rgb(88, 86, 214, 0.1);
+    background:rgba(88, 86, 214, 0.1);
 }
 .dashboard .data-table td .selected{
     color: #00B035;
     padding: 6px 15px;
-    background:rgb(88, 86, 214, 0.1);
+    background:rgba(0, 176, 53, 0.10)
+
 }
 .dashboard .data-table td .none{
     color:#565956;
     padding: 6px 24px;
-    background:rgb(86, 89, 86, 0.1);
+    background:rgba(86, 89, 86, 0.1);
 }
 .dashboard .data-table td .rejected{
     color: #F71111;
     padding:6px 13px;
-    background:rgb(88, 86, 214, 0.1);
+    background:rgba(247, 17, 17, .1)
+
 }
 
-.dashboard .data-table tr.rejected{
+.dashboard .data-table tr.none.selected-checkbox{
+    border: 1px solid #565956 !important;
+}
+.dashboard .data-table tr.rejected.selected-checkbox{
     border: 1px solid #F71111 !important;
 }
-.dashboard .data-table tr.rejected:hover ~ tr{
+.dashboard .data-table tr.selected.selected-checkbox{
+    border: 1px solid #00B035 !important;
+}
+.dashboard .data-table tr.panding.selected-checkbox{
+    border: 1px solid #5856D6 !important;
+}
+.dashboard .data-table tr:hover ~ tr{
     border-bottom: none;
 }
 
@@ -496,7 +529,7 @@ select.dropdown:focus{
     background-image: linear-gradient(270deg, #b465da 0%, #cf6cc9 28.04%, #ee609c 67.6%, #ee609c 100%);
     border-radius: 5px;
     padding: 12px 45px;
-    color:#ffffff;
+    color:#ffffff !important;
 }
 .btn-gray{
     background: #D8D8D8;
@@ -587,44 +620,49 @@ select.dropdown:focus{
 .bg-gradient-blue{
     background: #3023AE;
 }
-
-.dashboard-items{
-    margin-top: 60px;
-
-    .dashbord-link{
-        display: flex;
-        align-items: center;
-        font-style: normal;
-        font-weight: 600;
-        padding-left: 20px;
-        font-size: 14px;
-        line-height: 20px;
-        color: #A366F8;
-    
-        img{
-            margin-right:12px;
-            width: 25px;
-            height: 26px;
-        }
-        .img-white{
-            display: none;
-        }
-        .icon{
-            margin-left: 10px;
-            width: 15px;
-            height: 8px;
-        }
+#admin-layout{
+    .sidebar{
+        overflow: auto;
     }
-    .active{
-        color:#ffffff !important;
-        img{
-            display: none;
+    .dashboard-items{
+        margin-top: 60px;
+    
+        .dashbord-link{
+            display: flex;
+            align-items: center;
+            font-style: normal;
+            font-weight: 600;
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #A366F8;
+        
+            img{
+                margin-right:12px;
+                width: 25px;
+                height: 26px;
+            }
+            .img-white{
+                display: none;
+            }
+            .icon{
+                margin-left: 10px;
+                width: 15px;
+                height: 8px;
+            }
         }
-        .img-white{
-            display: block;
+        .active{
+            color:#ffffff !important;
+            img{
+                display: none;
+            }
+            .img-white{
+                display: block;
+            }
         }
     }
 }
+
 .icon{
     width: 15px;
     height: 8px;

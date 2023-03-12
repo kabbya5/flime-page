@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserFileUploadProcessed;
-use App\Models\NewspaperNameClearance;
+
 use App\Models\Section;
 use App\Models\UserFile;
 use Illuminate\Http\Request;
 use Auth;
-use Laravel\Ui\Presets\React;
+use App\Models\file;
 
 class UserFileUploadController extends Controller
 {
@@ -30,22 +30,19 @@ class UserFileUploadController extends Controller
 
         $file = $request->file('file');
         $name =  hexdec(uniqid()).time().".". $file->getClientOriginalExtension();
-        $file->move(public_path('/media/user/file/'),$name);
+        $file->move(public_path('/media/form/'),$name);
 
-        $data['file_name'] = 'media/user/file/' .$name;
+        $data['file_name'] = 'media/form/' .$name;
 
-        UserFile::create($data);
+        $id = UserFile::create($data)->id;
+
+        File::create([
+            'user_id' => $data['user_id'],
+            'user_file_id' => $id,
+            'subject' => $data['subject'],
+            'section' => $data['subsection_name'],
+        ]);
 
         event(new UserFileUploadProcessed($data));
-    }
-
-    public function notification(){
-        $data = [
-            'subsection_name' => 'name',
-            'subject' => 'subject', 
-        ];
-        event (new UserFileUploadProcessed($data));
-
-        return back()->with('message', 'successfull');
     }
 }

@@ -24,7 +24,7 @@
                             <input type="file" class="hidden" id="image" name="profile_image">
                         </label>
                     </div>
-                    <p class="ml-[31px] font-700 text-[30px] leading-[45px] text-black">আব্দুর রহিম </p>   
+                    <p class="ml-[31px] font-700 text-[30px] leading-[45px] text-black">{{ $user->name }} </p>   
                 </div>
             </div>
             
@@ -91,8 +91,8 @@
             <div class="form-group flex flex-col mt-10">
                 <label for=""> পুনরায় পাসওয়ার্ড </label>
                 <input type="password" class="outline-none mt-3" placeholder="পাসওয়ার্ড" name="password_confirmation">  
-    
             </div>
+            
             <div class="form-group flex flex-col mt-10">
                 <button class="  lg:py-3 text-center text-white btn-gradient-pink"> পাসওয়ার্ড পরিবর্তন করুন </button>  
             </div>

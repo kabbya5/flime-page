@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\FormSubmitedProcessed;
 use App\Events\UserFileUploadProcessed;
+use App\Listeners\FormSubmiteNotification;
 use App\Listeners\SendFileUploadNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserFileUploadProcessed::class =>[
             SendFileUploadNotification::class,
+        ],
+        FormSubmitedProcessed::class => [
+            FormSubmiteNotification::class,
         ],
     ];
 

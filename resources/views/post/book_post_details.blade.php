@@ -11,7 +11,7 @@
         <div class="flex flex-col md:flex-row justify-center items-center md:items-start">
             <div class="post-item">
                 <div class="w-[363px] h-[503px]">
-                    <img class="w-full h-full" src="{{ $post->thumbnail }}" alt="">
+                    <img class="w-full h-full" src="{{ asset($post->thumbnail) }}" alt="">
                 </div> 
                 <a  href="{{ route('download.book', $post->slug) }}" class="mt-[17px] py-2 text-white text-[18px] font-700 flex items-center justify-center btn-gradient-pink">
                     <img src="{{ asset('media/icon/pdf.png') }}" alt="icon" class="mr-[23px] h-8"> ডাউনলোড

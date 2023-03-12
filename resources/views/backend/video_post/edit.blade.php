@@ -10,7 +10,7 @@
         </a>
     </div>
     <div class="bg-white mt-10 md:mt-[100px] py-10 md:py-[50px] px-4 md:mx-auto shadow-lg border-1">
-        <form id="fileUploadForm" action="{{ route('admin.video.posts.update',$post->id) }}" method="POST" enctype="multipart/form-data" class="md:w-[700px]">
+        <form id="fileUploadForm" action="{{ route('admin.video.posts.update',$post->slug) }}" method="POST" enctype="multipart/form-data" class="md:w-[700px]">
             @csrf 
             @method('PUT')
             @include('backend.video_post._form',['model'=> $post, 'button_text' => 'এডিট করুন'])

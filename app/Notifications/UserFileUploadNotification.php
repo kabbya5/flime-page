@@ -14,12 +14,12 @@ class UserFileUploadNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $data;
+    public $subject;
     public $name;
     public $email;
-    public function __construct($data)
+    public function __construct($subject)
     {
-        $this->data = $data;
+        $this->subject = $subject;
         $this->name = Auth::user()->name;
         $this->email = Setting::first()->email;
     }
@@ -45,12 +45,14 @@ class UserFileUploadNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
         ->from($this->email)
-        ->subject('File Upload Confirmation '.$this->data['subject'])
+        ->subject('File Upload Confirmation '.$this->subject)
         ->greeting("Dear " .$this->name)
-        ->line('This email is to confirm that the file you uploaded on ' . Carbon::now()->format('Y-m-d g:i A') .' has been successfully received and saved in our system.')
-        ->line('If you have any questions or concerns regarding this file upload, please do not hesitate to contact us.
-            Thank you for using our services.
-        .');
+        ->line('    
+            This is to confirm that the file you uploaded or your application has been successfully submitted. 
+            You will be notified whether it has been selected or rejected. If you have any questions 
+             or concerns regarding this, please do not hesitate to contact us.
+         ');
+        
     }
 
     /**

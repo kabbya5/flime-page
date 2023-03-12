@@ -13,11 +13,11 @@
         <div class="post-item p-2 w-[475px] h-[300px]">
             <video class="rounded-md"  width="500px" height="500px" controls="controls"/>
             
-            <source class="rounded-md" src="video/রুপালি পর্দায় সোনালি দিনের সুলতানা জামান  ২.mp4" type="video/mp4"> 
+            <source class="rounded-md" src="{{ asset($post->file_url) }}" type="video/mp4"> 
         </div>  
         @else
         <div class="post-item p-2 w-[475px] h-[289px]">                    
-            <iframe class="rounded-md w-full h-full" src="https://www.youtube.com/embed/mJBVSgTErvk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="rounded-md w-full h-full" src="{{ $post->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>   
         @endif
         

@@ -1,6 +1,10 @@
 <div class="form-group flex justify-between">
     <div class="form-group flex flex-col w-full">
-        <label for="post_name"> পোস্টের নাম  </label>
+        <div class="flex">
+            <label for="post_name"> পোস্টের নাম  </label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
+        
         <input type="text" class="outline-none mt-3 @error('post_name') error @enderror" placeholder="পোস্টের নাম"
         name="post_name" value="{{ old('post_name',$post->post_name) }}">
     
@@ -12,13 +16,14 @@
 
 <div class="form-group flex justify-between">
     <div class="form-group flex flex-col mt-10 w-full mr-[9px]">
-        <label for="phone">সিলেটে সেকশন</label>
-    
+        
+        <div class="flex">
+            <label for="phone">সিলেটে সেকশন</label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
         <select name="section_id" id="section" class="dropdown py-2 px-4 w-full mt-3 border border-[#B0B0B0] focus:outline-none pr-4 @error('cooperation') error @enderror">
-            <option value="" disabled selected> সিলেটে সেকশন </option>
-            @foreach ($sections as $section)
-            <option value="{{ $section->id }}" {{ ($section->id === old('section_id',$post->section_id)) ? 'selected' : ' '}} class="dropdown"> {{ $section->section_name }} </option>
-            @endforeach
+            <option value="{{ $section->id }}"> {{ $section->section_name }}</option>
+            
         </select>
     
         @error('section_id')
@@ -26,22 +31,31 @@
         @enderror
     </div>
     
-    <div class="form-group flex flex-col mt-10 w-full ml-[9px]">
-        <label for="phone"> সিলেটে সাব সেকশন </label>
+    <div class="form-group flex flex-col mt-10 w-full">
+        <div class="flex">
+            <label for="phone">সিলেটে সাব সেকশন</label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
+        
     
-        <select name="subsection_id" id="subsection_id" class="dropdown py-2 px-4 w-full mt-3 border border-[#B0B0B0] focus:outline-none @error('cooperation') error @enderror">
-            <option value="{{ $post->subsection_id }}"  selected>  সাব সেকশন  </option>
-            
+        <select name="subsection_id" id="section" class="dropdown  py-2 px-4  border border-[#B0B0B0] focus:outline-none mt-3">
+            <option value="" class="dropdown"> সিলেটে সেকশন </option>
+            @foreach ($section->subsections as $subsection)
+            <option value="{{ $subsection->id }}" {{ ($subsection->id === old('subsection_id',$post->subsection_id)) ? 'selected' : ' '}} class="dropdown"> {{ $subsection->subsection_name }} </option>
+            @endforeach
         </select>
-    
         @error('section_id')
                 <p class="mt-2 text-red-500">{{ $message }}</p>    
         @enderror
-    </div>   
+    </div>  
 </div>
 
 <div class="form-group  flex flex-col mt-10">
-    <label for="post_description">বর্ণনা</label>
+    
+    <div class="flex">
+        <label for="post_description">বর্ণনা</label>
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+    </div>
 
     <textarea name="post_description" id="" cols="30" rows="7" class="mt-3 px-3 border-2 border-gray-200 focus:outline-none @error('post_description') error @enderror">
         {{ old('post_description',$post->post_description) }}
@@ -54,7 +68,11 @@
 
 <div class="form-group flex justify-between mt-10">
     <div class="form-group flex flex-col w-full mr-[10px]">
-        <label for="director"> পরিচালক </label>
+        
+        <div class="flex">
+            <label for="director"> পরিচালক </label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
         <input type="text" class="outline-none mt-3 @error('director') error @enderror" placeholder="পরিচালক"
         name="director" value="{{ old('director',$post->director) }}">
     
@@ -64,7 +82,10 @@
     </div>
     
     <div class="form-group flex flex-col w-full  ml-[10px]">
-        <label for="producer"> প্রযোজক </label>
+        <div class="flex">
+            <label for="producer"> প্রযোজক </label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
         <input type="text" class="outline-none mt-3 @error('producer') error @enderror" placeholder="প্রযোজক"
         name="producer" value="{{ old('producer',$post->producer) }}">
     
@@ -75,7 +96,10 @@
 </div>
 <div class="form-group flex justify-between mt-10">
     <div class="form-group flex flex-col w-full mr-[10px]">
-        <label for="script_writer"> স্ক্রিপ্ট রাইটার </label>
+        <div class="flex">
+            <label for="script_writer"> স্ক্রিপ্ট রাইটার </label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
         <input type="text" class="outline-none mt-3 @error('script_writer') error @enderror" placeholder="স্ক্রিপ্ট রাইটার"
         name="script_writer" value="{{ old('script_writer',$post->script_writer) }}">
     
@@ -85,7 +109,11 @@
     </div>
     
     <div class="form-group flex flex-col w-full  ml-[10px]">
-        <label for="cooperation"> সার্বিক সহযোগিতায়  </label>
+        <div class="flex">
+            <label for="cooperation"> সার্বিক সহযোগিতায়  </label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
+        
         <input type="text" class="outline-none mt-3 @error('cooperation') error @enderror" placeholder="সার্বিক সহযোগিতায় "
         name="cooperation" value="{{ old('cooperation',$post->cooperation) }}">
     
@@ -97,7 +125,10 @@
 
 <div class="form-group flex justify-between mt-10">
     <div class="form-group flex flex-col w-full mr-[10px]">
-        <label for="copyright"> কপিরাইট </label>
+        <div class="flex">
+            <label for="copyright"> কপিরাইট </label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
         <input type="text" class="outline-none mt-3 @error('copyright') error @enderror" placeholder="কপিরাইট"
         name="copyright" value="{{ old('copyright',$post->copyright) }}">
     
@@ -107,7 +138,10 @@
     </div>
     
     <div class="form-group flex flex-col w-full  ml-[10px]">
-        <label for="implementation"> বাস্তবায়নে  </label>
+        <div class="flex">
+            <label for="implementation"> বাস্তবায়নে  </label>
+            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+        </div>
         <input type="text" class="outline-none mt-3 @error('implementation') error @enderror" placeholder="বাস্তবায়নে"
         name="implementation" value="{{ old('implementation',$post->implementation) }}">
     
@@ -149,8 +183,11 @@
     <div class="flex flex-col w-1/2">
         <div class="form-group flex justify-between w-full mr-[10px]">
             <div class="form-group flex flex-col w-full mr-[10px]">
-                <label for="" class="text-[14px]"> ফাইল আপলোড </label>
-        
+               
+                <div class="flex">
+                    <label for="" class="text-[14px]"> ফাইল আপলোড </label>
+                    <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                </div>
                 <label for="file" class="blcok w-[136px] h-[110px] border-2 mt-3 border-gray-300  flex items-center justify-center @error('video_file') error @enderror">
                     <input type="file" id="file" name="video_file" class="hidden">
                     <img src="{{ asset('media/icon/file-upload.png') }}" alt="">
@@ -167,7 +204,7 @@
             @if ($post->file_url)
                 <video class="w-full h-full" controls>
                     <source src="{{ asset($post->file_url) }}" id="video_here">
-                Your browser does not support HTML5 video.
+                    Your browser does not support HTML5 video.
                 </video> 
             @else
             <div class="w-32 h-20">

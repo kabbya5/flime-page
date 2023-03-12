@@ -9,7 +9,7 @@
             সব সেকশন
         </a>
     </div>
-    <div class="bg-white md:w-[500px] mt-10 md:mt-[100px] py-10 md:py-[50px] px-4 md:mx-auto shadow-lg border-1">
+    <div class="bg-white md:w-[500px] mt-10 md:mt-[100px] py-10 md:py-[50px] shadow-lg border-1">
         <form action="{{ route('admin.sections.store') }}" method="POST">
             @csrf 
             @include('backend.section._form',['model'=> $section, 'button_text' => 'যোগ করুন'])

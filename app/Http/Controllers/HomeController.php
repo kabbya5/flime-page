@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         $data = $request->except('old_image','profile_image','password_confirmation'); 
         $data['slug'] = str_slug($request->name);
-        $old_image = $request->old_imgage;
+        $old_image = $request->old_image;
         if($request->hasFile('profile_image')){
             if($old_image){
                 if(file_exists($old_image)){
