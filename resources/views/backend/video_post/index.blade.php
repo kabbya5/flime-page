@@ -16,39 +16,39 @@
                 <table class="w-full whitespace-nowrap">
                     <thead class="bg-gradient-red">
                         <tr>
-                            <th align="left" class="py-[18px] px-3 font-700 text-white text-[13px] leading-[18px]"> নাম </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> সেকশন    </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> সাব সেকশন </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> আইটেম টাইপ  </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> প্রকাশের তারিখ  </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> অবস্থা</th>
+                            <th align="left" class="py-[18px] px-5 font-700 text-white text-[13px] leading-[18px]"> নাম </th>
+                            <th align="left" class="py-[18px] px-1 font-700 text-white text-[13px] leading-[18px]"> সেকশন    </th>
+                            <th align="left" class="py-[18px] px-1 font-700 text-white text-[13px] leading-[18px]"> সাব সেকশন </th>
+                            <th align="left" class="py-[18px] px-1 font-700 text-white text-[13px] leading-[18px]"> আইটেম টাইপ  </th>
+                            <th align="left" class="py-[18px] px-1 font-700 text-white text-[13px] leading-[18px]"> প্রকাশের তারিখ  </th>
+                            <th align="left" class="py-[18px] px-1 font-700 text-white text-[13px] leading-[18px]"> অবস্থা</th>
                             <th align="center"></th>
                         </tr>
                     </thead>
                     <tbody id="data-wrapper">
                         @foreach ($posts as $post)
                             <tr tabindex="0" class="panding focus:outline-none border-t border-gray-200 rounded mt-[3px]">
-                                <td>
+                                <td style="width:full">
                                     <div class="ml-5 flex items-center py-[24px]">
                                         <p class="font-700 text-[14px] leading-[21px] text-black">{{ $post->post_name }}</p>
                                     </div>
                                 </td>
-                                <td class="text-left px-2">
+                                <td style="width:10%" class="text-left px-1">
                                     <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]"> {{ $post->section->section_name }}</p>
                                 </td>
-                                <td class="text-left px-2">
-                                    <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">সচিত্র বাংলাদেশ</p>
+                                <td style="width:10%" class="text-left px-1">
+                                    <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">{{ $post->subsection->subsection_name }}</p>
                                 </td>
-                                <td class="text-center px-2">
+                                <td style="width:10%" class="text-left px-1">
                                     <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">{{ $post->post_type }}</p>
                                 </td>
-                                <td class="text-center px-2">
-                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {{ $post->published_date }} </span>
+                                <td style="width:10%" class="text-left px-1">
+                                    <span class="panding font-[600] text-[14px] leading-[21px]] py-1"> {{ $post->published_date }} </span>
                                 </td>
-                                <td class="text-center px-2">
+                                <td style="width:10%" class="text-left px-1">
                                      {!! $post->publicationLabel() !!} 
                                 </td>
-                                <td class="text-right px-2">             
+                                <td style="width:10%" class="text-right px-1">             
                                     <div id="doropdown-toggoler" class="w-full pr-[22px] relative flex flex-col ">
                                         <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
                                         <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
@@ -72,7 +72,6 @@
                                                     <img src="{{ asset('media/icon/delete.png') }}" alt="" class="mr-[10px] h-[18px]"> Delete
                                                 </button>
                                             </form>
-                                            
                                         </div>
                                     </div>
                                 </td>

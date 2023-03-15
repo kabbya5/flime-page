@@ -13,7 +13,7 @@
                         <table class="w-full whitespace-nowrap">
                             <thead class="bg-pink-gradient ">
                                 <tr>
-                                    <th align="center" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> নাম </th>
+                                    <th align="left" class="px-4 py-[18px] font-700 text-white text-[13px] leading-[18px]"> নাম </th>
                                     <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> ইমেইল  </th>
                                     <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> মোবাইল নাম্বার   </th>
                                     <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> ইউসার টাইপ </th>
@@ -24,13 +24,13 @@
                                 @foreach ($users as $user)
                                 <tr tabindex="0" class="panding focus:outline-none border-t border-gray-200 rounded mt-[3px]">
                                     <td>
-                                        <div class="ml-5 flex items-center py-[24px]">
+                                        <div class="ml-4 flex items-center py-[24px]">
                                             @if ($user->profile_image)
-                                                <img class="mx-4 h-[40px] w-[40px] rounded-full" src="{{ asset($user->profile_image) }}" alt="{{ $user->name }}">
+                                                <img class="h-[40px] w-[40px] rounded-full" src="{{ asset($user->profile_image) }}" alt="{{ $user->name }}">
                                             @else
-                                                <img class="mx-4 h-[40px] w-[40px] rounded-full" src="{{ asset('media/icon/user.png') }}" alt="{{ $user->name }}">  
+                                                <img class="h-[40px] w-[40px] rounded-full" src="{{ asset('media/icon/user.png') }}" alt="{{ $user->name }}">  
                                             @endif
-                                            <p class="font-700 text-[14px] leading-[21px] text-black">{{ $user->name }}</p>
+                                            <p class="pl-2 font-700 text-[14px] leading-[21px] text-black">{{ $user->name }}</p>
                                         </div>
                                     </td>
                                     <td class="text-left pr-10">

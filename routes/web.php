@@ -28,13 +28,11 @@ Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 // user 
 Route::post('/emiail/verification/code',[VerificationController::class,'emaliVerification'])->name('email-verification-code');
 Route::controller(PostShowController::class)->group(function(){
-    Route::get('/video/posts','videoPosts')->name('video.posts');
     Route::get('/video/subsections/posts/{subsection}','videoSubsectionPosts')->name('video.subsection.posts');
     // ajax 
     Route::get('/video/post/{id}','ajaxSubsectionVideoPosts')->name('ajax.subsection.video.post');
     Route::get('/book/post/{id}','ajaxSubsectionBookPosts')->name('ajax.subsection.video.post');
 
-    Route::get('/book/posts','bookPosts')->name('book.posts');
     Route::get('/book/subsections/posts/{subsection}','bookSubsectionPosts')->name('book.subsection.posts');
 
     Route::get('/media/new/post','mediaNews')->name('all.media.news');
@@ -54,7 +52,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function
         Route::get('/profile', 'index')->name('home');
         Route::put('/profile/update/','updateProfile')->name('user.profile.update');
         Route::put('/password/update/','updatePassword')->name('user.password.update');
-        Route::delete('/{slug}/delete/{id}', 'destroyAccount')->name('user.delete');
+        Route::get('/{slug}/delete', 'destroyAccount')->name('user.delete');
+
+        Route::get('/notification/read','notificationRead');
     });
 
     Route::controller(UserFileUploadController::class)->group(function(){

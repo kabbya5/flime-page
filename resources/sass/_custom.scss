@@ -438,6 +438,10 @@ select.dropdown:focus{
     background-color: #F2F2F2 !important;
     border: 2px dashed #8E8E93 !important;
     width: 100% !important;
+    
+}
+.dz-button p{
+    color:rgba(37, 8, 8, 0.326);
 }
 
 
@@ -548,11 +552,11 @@ select.dropdown:focus{
     padding: 12px 45px;
     font-size: 16px;
 }
-.btn-gradient-orange{
+.btn-gradient-orange, .media-hover:hover{
     background: linear-gradient(132.78deg, #F09819 7.53%, #FF5858 89.96%);
     border-radius: 5px;
     border-radius: 5px;
-    color:#ffffff;
+    color:#ffffff !important;
 }
 .btn-gradient-pink,button.btn-gradient-pink, .hover-bg-pink:hover{
     background: linear-gradient(225deg, #AC32E4 0%, #7918F2 47.87%, #4801FF 100%) !important;
@@ -578,6 +582,7 @@ select.dropdown:focus{
 
 .bg-gradient-red{
     background: #FF4E50;
+    background-repeat: no-repeat;
 }
 .bg-gradient-green{
     background: linear-gradient(299.52deg, #0D9E7A 10.46%, #1AD444 77.77%);
@@ -653,6 +658,9 @@ select.dropdown:focus{
         }
         .active{
             color:#ffffff !important;
+            .dashbord-link{
+                color:#ffffff !important; 
+            }
             img{
                 display: none;
             }
@@ -680,6 +688,10 @@ select.dropdown:focus{
     overflow-y:scroll;
     overflow-x:hidden;
     transition: all 0.3s linear;
+}
+
+.box-shadow{
+    box-shadow: 0px 30px 70px rgba(234, 234, 234, 0.569286);
 }
 
 // page loading 

@@ -76,13 +76,19 @@ class HomeController extends Controller
         }
     }
 
-    public function destroyAccount($slug,$id){
-        $user = User::where([['slug',$slug],['id',$id]])->first();
+    public function destroyAccount($slug){
+        $user = User::where('slug',$slug)->first();
         
-        if(file_exists($user->pfofile_image)){
+        if(file_exists($user->profile_image)){
             unlink($user->profile_image);
         }
         $user->delete();
         return back()->with('message', 'The account has been deleted successfull');
+    }
+
+    public function notificationRead (){
+        foreach(auth()->user()->unreadNotifications as $notification){
+            $notification->markAsRead();
+        };
     }
 }

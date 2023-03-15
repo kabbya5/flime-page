@@ -141,13 +141,13 @@
                         </a>
                     </li>
                     <li class="dashboard-items">
-                        <button id="doropdown-toggoler" class="{{ (request()->segment(2) == 'media') ? 'active' : '' }}">
+                        <button id="doropdown-toggoler" class="{{ (request()->segment(2) == 'media') ? 'text-white active' : '' }}">
                             <div class="dashbord-link">
                                 <img  src="{{ asset('media/icon/media-registration.png') }}" alt="pdf-icon">
                                 <img class="img-white" src="{{ asset('media/icon/media-registration-white.png') }}" alt="pdf-icon">
                                 বিজ্ঞাপন
                                 <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
-                                <img class="img-white icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
+                                <img class="img-white icon" src="{{ asset('media/icon/bottom-arrow-white.png') }}" alt="pdf-icon">
                             </div>
                             
 

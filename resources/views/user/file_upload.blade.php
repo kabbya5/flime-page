@@ -23,15 +23,36 @@ form{
         <form method="post" action="{{ route('user.file.store') }}" enctype="multipart/form-data" class="dropzone" id="dropzone">
             @csrf
             <div class="flex flex-wrap justify-center lg:flex-nowrap lg:justify-between">
-                <select name="subsection_name" class="dropdown mb-5 py-2 px-4 w-[419px] bg-[#F2F2F2] border border-[#B0B0B0] focus:outline-none pr-4">
-                   @foreach ($section->subsections as $item)
-                   <option value="{{ $item->subsection_name }}" class=""> {{ $item->subsection_name }} </option>
-                   @endforeach 
-                </select>
-                <input type="text" class="mb-5 ml-[19px] py-2 px-4 w-[419px] bg-[#F2F2F2] border border-[#B0B0B0] focus:outline-none"
-                    placeholder="বিষয়" name="subject">
-                <input type="text" class="mb-5 ml-[19px] py-2 px-4 bg-[#F2F2F2] border border-[#B0B0B0] focus:outline-none"
-                    placeholder="সংখ্যা ২০২৩" name="date">
+                <div class="flex flex-col">
+                    <div class="flex">
+                        <label for="subsection_name"> সেকশন </label>
+                        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                    </div>
+                    <select name="subsection_name" class="dropdown mt-2 mb-5 py-2 px-4 w-[419px] bg-[#F2F2F2] border border-[#B0B0B0] focus:outline-none pr-4">
+                       @foreach ($section->subsections as $item)
+                       <option value="{{ $item->subsection_name }}" class=""> {{ $item->subsection_name }} </option>
+                       @endforeach 
+                    </select>
+                </div>
+                
+                <div class="flex flex-col">
+                    <div class="flex ml-[19px]">
+                        <label for="subject"> বিষয় </label>
+                        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                    </div>
+
+                    <input type="text" class="mb-5 mt-2 ml-[19px] py-2 px-4 w-[419px] bg-[#F2F2F2] border border-[#B0B0B0] focus:outline-none"
+                        placeholder="বিষয়" name="subject">
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="flex ml-[19px]">
+                        <label for="subject"> সংখ্যা </label>
+                        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                    </div> 
+                    <input type="text" class="mb-5 mt-2 ml-[19px] py-2 px-4 bg-[#F2F2F2] border border-[#B0B0B0] focus:outline-none"
+                        placeholder="সংখ্যা ২০২৩" name="date">
+                <div>
             </div>
         </form>
     </div>
@@ -65,7 +86,7 @@ Dropzone.options.dropzone =
     }
 };
 $(document).ready(function(){
-    $("input").prop('disabled', true);
+    $('input').prop('disabled', true);
     $("input.mb-5").prop('disabled', false);
     
     let subject = '';
@@ -73,23 +94,22 @@ $(document).ready(function(){
     $('input[name="subject"]').change(function(){
         subject = $(this).val();
         if(subject.length > 2 && date.length > 2 ){
-        $("input").prop('disabled', false);
-    }
+            $("input").prop('disabled', false);
+        }
     });
     $('input[name="date"]').change(function(){
         let date = $(this).val();
         if(subject.length > 2 && date.length > 2 ){
-        $("input").prop('disabled', false);
-    }
+            $("input").prop('disabled', false);
+        }
     });
     
     
-
     $('.dz-button').addClass("mt-[30px] flex flex-col items-center justify-center h-[200px] md:h-[346px]");
     $('.dz-button').empty();
     $('.dz-button').append(
         '<img class="w-[88px] h-[88px]" src="/image/bg-upload.png">' +
-        '<P class="mt-[36px] text-[#454444] text-sm md:text-[21px] font-[500] leading-[31px]"> ক্লিক করুন অথবা আপনার ফাইলটি টেনে এখানে ছেড়ে দিন</P>'
+        '<P class="mt-[36px] text-sm md:text-[21px] font-[500] leading-[31px] text-[#454444]"> ক্লিক করুন অথবা আপনার ফাইলটি টেনে এখানে ছেড়ে দিন</P>'
     );
 });
 

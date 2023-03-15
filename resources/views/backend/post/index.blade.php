@@ -20,7 +20,7 @@
                             <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> সেকশন    </th>
                             <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> সাব সেকশন </th>
                             <th align="center" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> প্রকাশের তারিখ  </th>
-                            <th align="left" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> অবস্থা</th>
+                            <th align="center" class="py-[18px] px-2 font-700 text-white text-[13px] leading-[18px]"> অবস্থা</th>
                             <th align="center"></th>
                         </tr>
                     </thead>
@@ -39,10 +39,10 @@
                                     <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">{{ $post->subsection->subsection_name }}</p>
                                 </td>   
                                 <td class="text-center px-2">
-                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {{ $post->post_date }} </span>
+                                    <span class="panding font-[600] text-[14px] leading-[21px]]  py-1"> {{ $post->post_date }} </span>
                                 </td>
                                 <td class="text-center px-2">
-                                    <span class="panding font-[600] text-[14px] leading-[21px]] w-[82px]"> {!! $post->publicationLabel() !!} </span>
+                                    <span class="panding font-[600] text-[14px] leading-[21px]]"> {!! $post->publicationLabel() !!} </span>
                                 </td>
                                 <td class="text-right px-2">             
                                     <div id="doropdown-toggoler" class="w-full pr-[22px] relative flex flex-col ">

@@ -8,7 +8,6 @@ use App\Notifications\AdminFileUploadNotification;
 use App\Notifications\UserFileUploadNotification;
 use Auth;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Notification;
 
 class SendFileUploadNotification  
@@ -37,9 +36,7 @@ class SendFileUploadNotification
         Notification::send($user, new UserFileUploadNotification($event->data['subject']));
 
         foreach($admins as $admin){
-            Notification::send($admin, new AdminFileUploadNotification($user,$event->data, $admin));
-        }
-
-        
+            Notification::send($admin, new AdminFileUploadNotification($user,$event->data['subject'], $admin));
+        }    
     }
 }

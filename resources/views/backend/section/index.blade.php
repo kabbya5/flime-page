@@ -19,7 +19,7 @@
                         <tr>
                             <th align="left" class="py-[18px] px-5 font-700 text-white text-[13px] leading-[18px]"> নাম </th>
                             <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> সেকশন স্লাগ </th>
-                            <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> সাব সেকশন </th>
+                            <th align="center" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> সাব সেকশন </th>
                             <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> প্রকাশের তারিখ  </th>
                             <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> অ্যাকশন </th>
                         </tr>

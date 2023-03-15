@@ -25,7 +25,7 @@
     <div class="grid grid-cols-12 gap-4 my-10 md:my-[220px] px-2 md:px-0"> 
         <div class="col-span-12 md:col-start-6 md:col-span-12 lg:col-start-5 lg:col-span-8">  
             <div class="lg:w-[720px] px-2 lg:px-0">
-                <h2 class="text-black font-[700] text-[45px]"> {{ $first_section->section_name }} </h2>
+                <h2 class="subsection-name text-black font-[700] text-[45px]"> {{ $first_section->section_name }} </h2>
                 <p class="my-10 leading-[30px] text-[16px] text-[#8d8989] font-[600]">
                     {{ $first_section->section_description }}
                 </p>
@@ -36,9 +36,9 @@
             <div class="flex flex-col justify-end md:mr-[60px]">
                 @foreach ($first_section->subsections as $item)
                     @if($item->subsection_position == 1)
-                    <button  data-id="{{$item->id}}" class="subsection-video block font-700 lg:w-[300px] py-2 text-center  mb-[12px] text-black bg-white transition duration-100 hover-flim-btn shadow-sm  btn-gradient"> {{ $item->subsection_name }}</button>
+                    <button  data-id="{{$item->id}}" data-name="{{ $item->subsection_name }}" data-slug="{{ $item->slug }}" class="subsection-video block font-700 lg:w-[300px] py-2 text-center  mb-[12px] text-black bg-white transition duration-100 hover-flim-btn box-shadow  btn-gradient"> {{ $item->subsection_name }}</button>
                     @else
-                    <button  data-id="{{$item->id}}" class="subsection-video block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-flim-btn shadow-sm"> {{ $item->subsection_name }}</button>
+                    <button  data-id="{{$item->id}}" data-name="{{ $item->subsection_name }}" data-slug="{{ $item->slug }}" class="subsection-video block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-flim-btn box-shadow"> {{ $item->subsection_name }}</button>
                     @endif 
                 @endforeach
                 
@@ -46,7 +46,7 @@
         </div>
 
         <!-- POST  -->
-        <div   class="col-span-12 md:col-span-7 lg:col-span-8 bg-white py-10 pl-2 md:px-2 lg:px-[40px] post-box rounded-lg shadow-md">
+        <div class="col-span-12 md:col-span-7 lg:col-span-8 bg-white py-10 pl-2 md:px-2 lg:px-[40px] post-box rounded-lg box-shadow">
             <div class="flex items-center justify-between">
                 <h2 class="text-[#4e4e51] font-[700] text-sm md:text-[25px]"> {{ $first_section->subsections[0]->subsection_name }} </h2>
             </div>
@@ -78,7 +78,7 @@
                 
             <!-- Post Button  -->
             <div class="flex itmes-center justify-end -mt-11">
-                <a href="{{ route('video.posts') }}" class="relative z-50 font-[700] px-4 py-2 bg-red-10 text-md text-[#E25896] rounded-md"> সব দেখুন </a>            
+                <a href="{{ route('video.subsection.posts',$first_section->subsections[0]->slug) }}" class="video-subsection-all relative z-50 font-[700] px-4 py-2 bg-red-10 text-md text-[#E25896] rounded-md"> সব দেখুন </a>            
             </div>
         </div>
 
@@ -101,9 +101,9 @@
     
             <!-- POST BOOK -->
             <div class="col-span-12 md:col-span-7 lg:col-span-8">
-                <div class="lg:px-[48px] py-10 bg-white rounded-lg shadow-lg">
+                <div class="lg:px-[48px] py-10 bg-white rounded-lg box-shadow">
                     <div class="flex items-center justify-between">
-                        <h2 class="text-black font-[700] md:text-[25px] leading-36"> {{ $second_section->subsections[0]->subsection_name }} </h2>
+                        <h2 class="book-subsection-name text-black font-[700] md:text-[25px] leading-36"> {{ $second_section->subsections[0]->subsection_name }} </h2>
                     </div>
                     
                     <!-- slider  -->
@@ -123,7 +123,7 @@
 
                     <!-- Post Button  -->
                     <div class="flex itmes-center justify-end -mt-11">
-                        <a href="{{ route('book.posts') }}" class="relative z-50 font-[700] px-4 mr-4 py-2 bg-green-10 text-md text-[#108A25]"> সব দেখুন </a>   
+                        <a href="{{ route('book.subsection.posts',$second_section->subsections[0]->slug) }}" class="book-subsection-all relative z-50 font-[700] px-4 mr-4 py-2 bg-green-10 text-md text-[#108A25]"> সব দেখুন </a>   
                     </div>
                 </div>
             </div>
@@ -133,9 +133,9 @@
                 <div class="flex flex-col justify-start md:ml-[60px]">
                     @foreach ($second_section->subsections as $subsection)
                         @if($subsection->subsection_position == 1)
-                        <button data-id="{{ $subsection->id }}" class="book-subsection block font-700 lg:w-[300px] py-2 text-center  mb-[12px] btn-gradient-green"> {{ $subsection->subsection_name }}</button>
+                        <button data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-2 text-center  mb-[12px] btn-gradient-green box-shadow"> {{ $subsection->subsection_name }}</button>
                         @else
-                        <button  data-id="{{ $subsection->id }}" class="book-subsection block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-book-btn shadow-sm"> {{ $subsection->subsection_name }}</button>
+                        <button  data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-book-btn box-shadow"> {{ $subsection->subsection_name }}</button>
                         @endif 
                     @endforeach
                 </div>
@@ -336,15 +336,15 @@
                 <div class="lg:w-[700px] xl:w-[750px]">
                     <h2 class="text-black font-[700] text-[45px] leading-[67px]"> {{ $media_header->title }} </h2>
                     <p class="my-10 leading-[30px] text-[14px] xl:text-[16px] text-[#8d8989] font-[600]">
-                        {{ $news_header->short_text}}
+                        {{ $media_header->short_text}}
                     </p>
                 </div>  
             </div>
             <!-- button  -->
             <div class="col-span-12 md:col-span-5 lg:col-span-4">
                 <div class="flex flex-col justify-center md:mr-[60px]">
-                    <button class="block lg:w-[300px]  py-3 mb-[12px] font-700 bg-[#E6E5E5] text-center text-[#4e4e51]">মোট নিবন্ধিত পত্রিকা</button>
-                    <button class="block lg:w-[300px]  py-3 mb-[12px] font-700 text-center text-white btn-gradient-orange">মিডিয়া তালিকাভুক্তির আবেদন </button>
+                    <a href="{{ route('all.media.news') }}" class="block lg:w-[300px]  py-3 mb-[12px] font-700 bg-white text-center text-black box-shadow media-hover">মোট নিবন্ধিত পত্রিকা</a>
+                    <a href="{{ route('media.form') }}" class="block lg:w-[300px]  py-3 mb-[12px] font-700 text-center text-white btn-gradient-orange box-shadow">মিডিয়া তালিকাভুক্তির আবেদন </a>
                 </div>
             </div>
     
@@ -773,8 +773,16 @@
         $(document).ready(function(){
             $(".subsection-video").click(function(){
                 $(this).siblings('.subsection-video').removeClass('btn-gradient');
-                $(this).addClass('btn-gradient');   
+                $(this).addClass('btn-gradient');  
+
                 let id = $(this).attr('data-id');
+                let name = $(this).attr('data-name');
+                $('.subsection-name').text(name);
+
+                let slug = $(this).attr('data-slug');
+                var new_url = '/video/subsections/posts/' + slug;
+                $('.video-subsection-all').attr('href', new_url);
+        
                 $.ajax({
                         url:"/video/post/" + id,
                         type:"GET",
@@ -817,6 +825,13 @@
                 $(this).siblings('.book-subsection').removeClass('btn-gradient-green');
                 $(this).addClass('btn-gradient-green');   
                 let id = $(this).attr('data-id');
+                let name = $(this).attr('data-name');
+                $('.book-subsection-name').text(name);
+                let slug = $(this).attr('data-slug');
+
+                var new_url = '/book/subsections/posts/' + slug;
+                $('.book-subsection-all').attr('href', new_url);
+
                 $.ajax({
                     url:"/book/post/" + id,
                     type:"GET",

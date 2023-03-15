@@ -5,7 +5,7 @@
 <div class="mt-10 md:mt-[58px]">
     <div class="flex items-center justify-between">
         <h2 class="font-700 text-[30px] text-black leading-[20px]"> যোগ করুন  </h2>
-        <a href="{{ route('admin.video.posts.index') }}" class="btn-gradient-pink">
+        <a href="{{ route('admin.posts.index') }}" class="btn-gradient-pink">
             সব প্রকাশনা
         </a>
     </div>

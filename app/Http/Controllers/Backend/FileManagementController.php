@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\File;
+use App\Models\User;
 use App\Models\UserFile;
+use App\Notifications\userFileStatusChangeNotification;
 use ZipArchive;
+use Notification;
 
 class FileManagementController extends Controller
 {
@@ -14,6 +17,9 @@ class FileManagementController extends Controller
         $file->update([
             'status' => $status,
         ]);
+
+        $user = User::where('id',$file->user_id)->first();
+        Notification::send($user,new userFileStatusChangeNotification($status,$file,$file->user));
 
         return back()->with('message','Successfull Changed ' .$status);
     }

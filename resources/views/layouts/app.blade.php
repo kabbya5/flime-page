@@ -41,7 +41,7 @@
     <div class="page-loader flex items-cente justify-center">
         <div id="overlayer"></div>
         <span class="loader">
-            <span class="loader-inner"></span>
+            <span class="loader-inner">  </span>
         </span>
     </div>
     
@@ -49,7 +49,7 @@
         <nav class="px-2 pb-1 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             <div class="container flex flex-wrap items-center justify-between  md:justify-center lg:justify-between mx-auto">
                 <a href="/" class="flex items-center px-4">
-                    <img src="{{ asset($setting->title_image)}}" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
+                    <img src="{{ asset($setting->title_image)}}" class="h-6 mr-3 sm:h-10" alt="{{ $setting->title }}" />
                     <span class="self-center text-sm md:text-[24px] font-semibold whitespace-nowrap text-white"> {{ $setting->title }} </span>
                 </a>
                 <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
@@ -80,6 +80,10 @@
                                                 <a href="{{ route('book.subsection.posts',$subsection->slug) }}" class="block text-black">{{ $subsection->subsection_name }}</a>
                                             </li> 
                                         @endforeach 
+
+                                        <li>
+                                                <a href="{{ route('user.file.upload') }}" class="block text-black"> লেখা জমা দিন </a>
+                                        </li>
                                     @else
                                         @foreach ($section->subsections as $subsection)
                                             @if($subsection->subsection_position === 1)
@@ -102,12 +106,50 @@
 
                         @if (Route::has('login'))
                             @auth
-                                <li>
-                                    <a href="login.html"  class="relative block py-1 pl-3 pr-4 text-white rounded hover:text-gray-100"> 
+                                @if (auth()->user()->user_type == 'admin')
+                                <li class="relative cursor-pointer">
+                                    <a href="{{ route('admin.dashboard', auth()->user()->slug) }}" class="relative block py-1 pl-3 pr-4 text-white rounded hover:text-gray-100"> 
                                         <i class="fa-solid fa-bell fa-2x"></i>
-                                        <span class="bg-[#FE0000] text-white w-[17px] h-[17px] rounded-full absolute flex items-center justify-center top-0 right-3"> 2 </span>
+                                        @if (auth()->user()->unreadNotifications->count())
+                                        <span class="bg-[#FE0000] text-white w-[17px] h-[17px] rounded-full absolute flex items-center justify-center top-0 right-3"> {{ auth()->user()->unreadNotifications->count() }} </span> 
+                                        @endif
                                     </a>
                                 </li>
+
+                                @else
+
+                                <li id="notification-toggoller" class="relative cursor-pointer">
+                                    <a class="relative block py-1 pl-3 pr-4 text-white rounded hover:text-gray-100"> 
+                                        <i class="fa-solid fa-bell fa-2x"></i>
+                                        @if (auth()->user()->unreadNotifications->count())
+                                        <span class="bg-[#FE0000] text-white w-[17px] h-[17px] rounded-full absolute flex items-center justify-center top-0 right-3"> {{ auth()->user()->unreadNotifications->count() }} </span> 
+                                        @endif
+                                    </a>
+
+                                    @if (auth()->user()->unreadNotifications->count() > 0)
+                                        <div id="notification" class="hidden mt-10 absolute w-80 bg-white shadow-md right-[100%] pb-3 px-6">
+                                            @foreach (auth()->user()->unreadNotifications as $notification)
+                                                <div class="pt-4 border-b-2 border-gray-300">
+                                                    <p class="block text-[#454545] text-[18px] font-[500] leading-[29px] mb-4"> Your file has been {{ $notification->data['status']}} </p>
+                                                    <p class="block text-[#454545] text-[18px] font-[500] leading-[29px] mb-4"> Section name: {{ $notification->data['section'] }} </p> 
+                                                    <p class="block text-[#454545] text-[18px] font-[500] leading-[29px] mb-4"> Subject : {{ $notification->data['subject'] }} </p> 
+                                                    <p class="block text-[#454545] text-[18px] font-[500] leading-[29px] mb-4"> Data: {{ $notification->data['date'] }} </p>        
+                                                </div> 
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <div id="notification" class="hidden mt-10 absolute w-80 bg-white shadow-md right-[100%] pb-3 px-6">
+                                            
+                                            <div class="pt-4 border-b-2 border-gray-300">
+                                                <p class="block text-[#454545] text-[18px] font-[500] leading-[29px] mb-4"> Notification not found </p>          
+                                            </div> 
+                                        </div>
+                                    @endif
+                                    
+                                </li>   
+                                @endif
+                                
+                                
 
                                 
                                 <li id="doropdown" class="relative">
@@ -122,8 +164,7 @@
                                     <div class="dropdown-items hidden user-account-btn flex flex-col">
                                         <a href="{{ route('home') }}" class="font-[600px] text-[14px] leading-[20.25px] text-[#857F7F] border-b py-[13px]"> এডিট প্রোফাইল </a>
                                         @if(auth()->user()->user_type=='user')
-                                        <a href="{{ route('home') }}" class="font-[600px] text-[14px] leading-[20.25px] text-[#857F7F] border-b py-[13px]"> ড্যাশবোর্ড </a>
-                                        <a href="{{ route('home') }}" class="font-[600px] text-[14px] leading-[20.25px] text-[#857F7F] py-[13px]"> ডিলিট </a>
+                                        <a href="{{ route('user.delete',auth()->user()->slug) }}" class="font-[600px] text-[14px] leading-[20.25px] text-[#857F7F] py-[13px]"> ডিলিট </a>
                                         @else
                                         <a href="{{ route('admin.dashboard', auth()->user()->slug) }}" class="font-[600px] text-[14px] leading-[20.25px]  py-[13px] w-[191px] text-[#857F7F]"> ড্যাশবোর্ড  </a>
                                         @endif  
@@ -177,5 +218,18 @@
 <script type="text/javascript"  type="text/js" src="{{ asset('js/custom.js') }}"></script>
 
 @yield('script')
+
+<script>
+    $(document).ready(function(){
+        $('#notification-toggoller').click(function(){
+            $('#notification').toggleClass('show');
+
+            $.ajax({
+                url:'/user/notification/read/',
+                type:"GET",
+            });
+        });
+    });
+</script>
 </body>
 </html>
