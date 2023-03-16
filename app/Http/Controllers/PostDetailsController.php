@@ -15,10 +15,13 @@ class PostDetailsController extends Controller
         return view('post.book_post_details',compact('post'));
     }
 
-    public function downloadBook(Post $post){
+    public function downloadPost(Post $post){
+        $position = strpos($post->file_url,'.');
+        $extension = substr($post->file_url,$position + 1);
         $file = $post->file_url;
-        $name = $post->post_name . '.pdf';
-        $header = ['Content-Type: application/pdf'];
+        $name = $post->post_name . '.'.$extension;
+        $header = ['Content-Type: application/'.$extension];
+        
 
         return response()->download($file,$name,$header);
     }

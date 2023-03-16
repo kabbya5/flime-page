@@ -133,7 +133,7 @@
                 <div class="flex flex-col justify-start md:ml-[60px]">
                     @foreach ($second_section->subsections as $subsection)
                         @if($subsection->subsection_position == 1)
-                        <button data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-2 text-center  mb-[12px] btn-gradient-green box-shadow"> {{ $subsection->subsection_name }}</button>
+                        <button data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-2 text-center  mb-[12px] btn-gradient-green box-shadow  text-black bg-white transition duration-100 hover-book-btn"> {{ $subsection->subsection_name }}</button>
                         @else
                         <button  data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-book-btn box-shadow"> {{ $subsection->subsection_name }}</button>
                         @endif 

@@ -10,11 +10,18 @@
 <div class="post container mx-auto my-10 md:my-[182px]">
     <div class="flex flex-col md:flex-row justify-center items-center md:items-start">
         @if ($post->file_url)
-        <div class="post-item p-2 w-[475px] h-[300px]">
-            <video class="rounded-md"  width="500px" height="500px" controls="controls"/>
-            
-            <source class="rounded-md" src="{{ asset($post->file_url) }}" type="video/mp4"> 
-        </div>  
+        <div>
+            <div class="post-item p-2">
+                <video class="rounded-md"  width="475" height="300" controls="controls"/>
+                
+                <source class="rounded-md" src="{{ asset($post->file_url) }}" type="video/mp4"> 
+            </div> 
+            <a href="{{ route('download.post', $post->slug) }}" class="mt-[17px] py-2 text-white text-[18px] font-700 flex items-center justify-center btn-gradient-pink">
+                ডাউনলোড
+            </a> 
+        </div>
+        
+         
         @else
         <div class="post-item p-2 w-[475px] h-[289px]">                    
             <iframe class="rounded-md w-full h-full" src="{{ $post->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

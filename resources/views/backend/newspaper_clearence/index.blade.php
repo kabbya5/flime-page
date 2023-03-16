@@ -21,7 +21,11 @@
         <form id="fileUploadForm" action="{{ route('amdin.clearence.header.store') }}" method="POST">
             @csrf   
             <div class="form-group flex flex-col w-full">
-                <label for="title"> টাইটেল </label>
+                <div class="flex">
+                    <label for="title"> টাইটেল </label>
+                    <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                </div>
+                
                 <input id="title" type="text" class="outline-none mt-3 @error('title') error @enderror" placeholder="নাম"
                 value="{{ old('title',$clearences_header->title) }}" name="title">
                 @error('title')
@@ -30,7 +34,10 @@
             </div>
 
             <div class="form-group flex flex-col mt-10">
-                <label for="short_text">বর্ণনা</label>
+                <div class="flex">
+                    <label for="short_text">বর্ণনা</label>
+                    <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
+                </div>
             
                 <textarea name="short_text" id="" cols="30" rows="7" class="mt-3 p-2 border-2 border-gray-200 focus:outline-none @error('short_text') error @enderror">
                     {{ old('short_text',$clearences_header->short_text) }}

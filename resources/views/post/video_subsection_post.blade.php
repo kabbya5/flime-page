@@ -28,7 +28,7 @@
                     <div class="video">
                         <video class="rounded-md"  width="500px" height="500px" controls="controls"/>
                         
-                        <source class="rounded-md" src="video/রুপালি পর্দায় সোনালি দিনের সুলতানা জামান  ২.mp4" type="video/mp4"> 
+                        <source class="rounded-md" src="{{ asset($post->file_url) }}" type="video/mp4"> 
                     </div>                             
                                     
                     <a href="{{ route('video.posts.details',$post->slug) }}" class="font-700 text-[19px] leaidng-[18px] text-black block my-4">{{ $post->post_name }} </a>

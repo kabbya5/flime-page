@@ -1,6 +1,5 @@
 <?php
 
-use App\Events\UserFileUploadProcessed;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\FileManagementController;
@@ -14,14 +13,16 @@ use App\Http\Controllers\Backend\SubMediaInputController;
 use App\Http\Controllers\Backend\SubsectionController;
 use App\Http\Controllers\Backend\UserControlController;
 use App\Http\Controllers\Backend\VideoPostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostDetailsController;
 use App\Http\Controllers\PostShowController;
 use App\Http\Controllers\UserFileUploadController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
@@ -41,7 +42,7 @@ Route::controller(PostShowController::class)->group(function(){
 Route::controller(PostDetailsController::class)->group(function(){
     Route::get('/video/posts/{post}','videoPostDetails')->name('video.posts.details');
     Route::get('/book/post/detials/{post}','bookDetails')->name('book.post.details');
-    Route::get('/book/{post}/donwload','downloadBook')->name('download.book');
+    Route::get('/post/{post}/donwload','downloadPost')->name('download.post');
 });
 
 
@@ -152,3 +153,8 @@ function(){
     });
 });
 
+//test 
+
+Route::resource('/test/categories',CategoryController::class);
+Route::get('/category/image/{status}',[ImageController::class,'categoryImage'])->name('category.image');
+Route::resource('/test/images',ImageController::class);
