@@ -8,7 +8,7 @@ use App\Models\Section;
 use App\Models\UserFile;
 use Illuminate\Http\Request;
 use Auth;
-use App\Models\file;
+use App\Models\File;
 
 class UserFileUploadController extends Controller
 {

@@ -39,7 +39,7 @@
                                     <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">{{ $post->subsection->subsection_name }}</p>
                                 </td>   
                                 <td class="text-center px-2">
-                                    <span class="panding font-[600] text-[14px] leading-[21px]]  py-1"> {{ $post->post_date }} </span>
+                                    <span class="panding font-[600] text-[14px] leading-[21px]]  py-1"> {{ $post->published_date }} </span>
                                 </td>
                                 <td class="text-center px-2">
                                     <span class="panding font-[600] text-[14px] leading-[21px]]"> {!! $post->publicationLabel() !!} </span>

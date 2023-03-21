@@ -31,4 +31,14 @@ class UserControlController extends Controller
 
         return redirect()->route('admin.users.index')->with('message', 'Successfully update user');
     }
+
+    public function destroyAccount($slug){
+        $user = User::where('slug',$slug)->first();
+        
+        if(file_exists($user->profile_image)){
+            unlink($user->profile_image);
+        }
+        $user->delete();
+        return back()->with('message', 'The account has been deleted successfull');
+    }
 }

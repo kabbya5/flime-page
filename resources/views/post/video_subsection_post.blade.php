@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('style')
+    .video-image{
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+@endsection
 @section('content')
 <div class="hero">
     <div class="flex flex-col-reverse justify-center items-center md:flex-row md:justify-between items-center">
@@ -26,7 +33,7 @@
                 @if ($post->file_url)
                 <div class="item col-span-6 md:col-span-4 p-2 mt-[35px]"> 
                     <div class="video">
-                        <video class="rounded-md"  width="500px" height="500px" controls="controls"/>
+                        <video class="rounded-md"  controls="controls"/>
                         
                         <source class="rounded-md" src="{{ asset($post->file_url) }}" type="video/mp4"> 
                     </div>                             
@@ -35,7 +42,10 @@
                 </div>
                 @else
                 <div class="item col-span-6 md:col-span-4 p-2 mt-[35px]">
-                    <iframe class="rounded-md" width="560" height="315" src="https://www.youtube.com/embed/GTe7TEppmg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="youtube relative" video-id={{ $post->video_link }}>
+                        <img src="{{ asset('/media/icon/play.png') }}" class="absolute">
+                        <img src="//i.ytimg.com/vi/{{ $post->video_link}}/hqdefault.jpg" class="video-image">
+                    </div>
                     <a href="{{ route('video.posts.details',$post->slug) }}" class="font-700 text-[19px] leaidng-[18px] text-black block my-4">{{ $post->post_name }} </a>
                 </div>
                 @endif

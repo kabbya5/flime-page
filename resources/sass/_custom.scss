@@ -20,7 +20,6 @@
 
     #dropdownNavbar{
         position: absolute;
-        display: none;
         width: 170px;
         transition: all 0.3s linear;
 
@@ -61,7 +60,7 @@
 .post-slider .owl-nav,.post-book-slider .owl-nav{
     text-align: left;
 }
-.post-slider iframe, .post-slider video{
+.post-slider .video-image, .post-slider video{
     width: 210px;
     height:130px;
 }
@@ -73,6 +72,15 @@
 .input-overflow{
     height: 468px !important;
     overflow-x:auto;
+}
+
+//section post 
+
+.all-posts .item video,
+.all-posts .item .video-image{
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
 }
 .input-overflow::-webkit-scrollbar { 
     width: 0;
@@ -137,75 +145,16 @@
 }
 
 
-/* flim page  slider */
-
-.slider .owl-next, 
-.slider .owl-prev
-{
-    position: absolute;
-    top:40%;
-    transform: translateY(-50%);
-    z-index: 100;
-}
-.slider .owl-next:hover, 
-.slider .owl-prev:hover
-{
-    background-color: transparent !important;
-}
-.slider .owl-next{
-    right:-98px;
-}
-.slider .owl-prev{
-    left:-98px;
+.youtube img.absolute{
+    width: 80px;
+    height: 60px;
+    border-radius: 10px;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
-.slider .owl-next span, 
-.slider .owl-prev span
-{
-    font-size: 100px !important;
-    line-height: 40px;
-}
-
-.flim .slider .owl-next span, 
-.flim .slider .owl-prev span
-{
-    color: #CFCCFF;
-}
-
-.short-flim .slider .owl-next span, 
-.short-flim .slider .owl-prev span
-{
-    color: #CFE5FF;
-}
-.news .slider .owl-next span, 
-.news .slider .owl-prev span
-{
-    color: #B3E3B9
-}
-
-.flim-slider .item iframe,
-.flim-slider .item video,
-.all-posts .item iframe,
-.all-posts .item video{
-    width: 100%;
-    height:200px;
-}
-
-
-/* editing-section */
-.editing-section .slider .owl-next{
-    right:-56px;
-}
-.editing-section .slider .item img{
-    max-width: 190px;
-    height: 261px;
-}
-
-.editing-section .slider .owl-next span, 
-.editing-section .slider .owl-prev span
-{
-    color: #D9D9D9;
-}
 
 /* //file upload  */
 .dashed-border{
@@ -415,9 +364,13 @@ select.dropdown:focus{
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.box-shadow{
-    box-shadow: 0px 18px 20px #E6E5E5;
+.slider-btn-background{
+    margin-left: -6px;
+    margin-right: 6px;
+    background-color: rgb(16,138,37,0.1) !important;
 }
+
+
 .text-black{
     color:#000000 !important;
 }
@@ -444,19 +397,31 @@ select.dropdown:focus{
     color:rgba(37, 8, 8, 0.326);
 }
 
+@media screen and (max-width:767px) {
+    #dropdownNavbarLink,#notification-togller,#doropdown{
+        position: static !important;
+    }
+    #dropdownNavbar{
+        position: static !important;
+        width: 600px !important; 
+    }
+    #dropdownNavbar a{
+        color: #ffffff !important;
+        border:none !important;
+        text-align: left !important;
+        margin-left: 7px !important;
+    }
+    #notification{
+        margin:0  !important;
+        position: static !important;
+    }
+    .dropdown-items{
+        margin: 0 !important;
+        padding: 0 !important;
+        position: static !important;
+        background-color: transparent !important;
+    }
 
-
-@media screen and (max-width:1335px) {
-    .slider .owl-next{
-        right:-27px;
-    }
-    .slider .owl-prev{
-        left:-27px;
-    }
-    /* editing-section */
-    .editing-section .slider .owl-next{
-        right:11px;
-    }
 }
 
 @media screen and (max-width:800px){
@@ -464,20 +429,20 @@ select.dropdown:focus{
         height: 100%;
     }
     .hero img{
-        width: 100%;
-        height: auto;
+        width: 100% !important;
+        height: 300px !important;
     }
     .hero h1{
-        font-size: 18px;
-        padding: 20px 30px;
+        font-size: 30px;
+        padding: 10px 5px;
     }
-    .post-slider iframe, .post-slider video{
+    .post-slider .video-image, .post-slider video{
         width: 100%;
         height: 180px;
     }
-    .flim-slider .item iframe,
+    .flim-slider .item .video-image,
     .flim-slider .item video,
-    .all-posts .item iframe,
+    .all-posts .item .video-image,
     .all-posts .item video{
         height:140px;
     }
@@ -487,19 +452,19 @@ select.dropdown:focus{
         width: 100%;
         height: 250px;
     }
-    .post-slider iframe, .post-slider video{
+    .post-slider .video-image, .post-slider video{
         width: 100%;
         height: 100px;
     }
-    .flim-slider .item iframe,
+    .flim-slider .item .video-image,
     .flim-slider .item video,
-    .all-posts .item iframe,
+    .all-posts .item .video-image,
     .all-posts .item video{
         height:100px;
     }
 
     /* post detials  */
-    .post .item ifram, .post .item video{
+    .post .video-image, .post .item video{
         height: 150px;
     }
 }
@@ -691,38 +656,44 @@ select.dropdown:focus{
 }
 
 .box-shadow{
-    box-shadow: 0px 30px 70px rgba(234, 234, 234, 0.569286);
+    box-shadow: 0px 30px 70px rgba(234, 234, 234, 0.569286) !important;
 }
 
 // page loading 
 
-/*PRELOADING------------ */
-// #overlayer {
-//   width:100%;
-//   height:100%;  
-//   position:fixed;
-//   z-index:100;
-//   background:#4a4a4a;
-// }
-// .loader {
-//   display: inline-block;
-//   width: 30px;
-//   height: 30px;
-//   position: fixed;
-//   z-index:300;
-//   border: 4px solid #Fff;
-//   top: 50%;
-//   animation: loader 2s infinite ease;
-// }
+section.page-loader{
+    width:100%;
+    height:100%;  
+    position:fixed;
+    align-items: center;
+    justify-content: center;
+    background: #4070f4;
+    z-index: 100;
+}
+.page-loader .dots span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 10px;
+    width: 10px;
+    background: #fff;
+    border-radius: 50%;
+    transform: rotate(calc(var(--i) * (360deg / 15))) translateY(35px);
+    animation: animate 1.5s linear infinite;
+    animation-delay: calc(var(--i) * 0.1s);
+    z-index: 900;
+    opacity: 0;
+}
 
-// .loader-inner {
-//   vertical-align: top;
-//   display: inline-block;
-//   width: 100%;
-//   background-color: #fff;
-//   animation: loader-inner 2s infinite ease-in;
-// }
-
+@keyframes animate {
+    0%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
+    }
+}
 @keyframes loader {
   0% {
     transform: rotate(0deg);

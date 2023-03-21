@@ -43,7 +43,7 @@
                         @if (Route::has('login'))
                             @auth
                                 <li>
-                                    <a href="login.html"  class="relative block py-1 pl-3 pr-4 text-white rounded hover:text-gray-100"> 
+                                    <a href="{{ route('admin.dashboard',auth()->user()->slug) }}"  class="relative block py-1 pl-3 pr-4 text-white rounded hover:text-gray-100"> 
                                         <i class="fa-solid fa-bell fa-2x"></i>
                                         @if (auth()->user()->unreadNotifications->count())
                                         <span class="bg-[#FE0000] text-white w-[17px] h-[17px] rounded-full absolute flex items-center justify-center top-0 right-3"> {{ auth()->user()->unreadNotifications->count() }} </span> 
@@ -84,7 +84,7 @@
     <main class="">
         <div class="flex">
             <div class="sidebar w-[350px] justify-center h-screen bg-gradient-blue sticky transition duration-300">
-                <ul class="ml-6">
+                <ul class="ml-6 pb-10">
                     <li class="dashboard-items">
                         <a href="{{ route('admin.dashboard',auth()->user()->slug) }}" class="dashbord-link {{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}">
                             <img class="img-white"  src="{{ asset('media/icon/home-white.png') }}" alt="home-icon">

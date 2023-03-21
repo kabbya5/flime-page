@@ -14,7 +14,7 @@
                     <img class="w-full h-full" src="{{ asset($post->thumbnail) }}" alt="">
                 </div> 
                 <a  href="{{ route('download.post', $post->slug) }}" class="mt-[17px] py-2 text-white text-[18px] font-700 flex items-center justify-center btn-gradient-pink">
-                    <img src="{{ asset('media/icon/pdf.png') }}" alt="icon" class="mr-[23px] h-8"> ডাউনলোড
+                    <img src="{{ asset('media/icon/pdf-download.png') }}" alt="icon" class="mr-[23px] h-8"> ডাউনলোড
                 </a>                  
                
             </div>

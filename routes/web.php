@@ -21,7 +21,6 @@ use App\Http\Controllers\PostDetailsController;
 use App\Http\Controllers\PostShowController;
 use App\Http\Controllers\UserFileUploadController;
 use App\Http\Controllers\WelcomeController;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[WelcomeController::class,'index'])->name('welcome');
@@ -31,8 +30,8 @@ Route::post('/emiail/verification/code',[VerificationController::class,'emaliVer
 Route::controller(PostShowController::class)->group(function(){
     Route::get('/video/subsections/posts/{subsection}','videoSubsectionPosts')->name('video.subsection.posts');
     // ajax 
-    Route::get('/video/post/{id}','ajaxSubsectionVideoPosts')->name('ajax.subsection.video.post');
-    Route::get('/book/post/{id}','ajaxSubsectionBookPosts')->name('ajax.subsection.video.post');
+    Route::get('/video/post/{id}','ajaxSubsectionVideoPosts');
+    Route::get('/book/post/{id}','ajaxSubsectionBookPosts');
 
     Route::get('/book/subsections/posts/{subsection}','bookSubsectionPosts')->name('book.subsection.posts');
 
@@ -41,7 +40,7 @@ Route::controller(PostShowController::class)->group(function(){
 
 Route::controller(PostDetailsController::class)->group(function(){
     Route::get('/video/posts/{post}','videoPostDetails')->name('video.posts.details');
-    Route::get('/book/post/detials/{post}','bookDetails')->name('book.post.details');
+    Route::get('/book/post/details/{post}','bookDetails')->name('book.post.details');
     Route::get('/post/{post}/donwload','downloadPost')->name('download.post');
 });
 
@@ -113,6 +112,7 @@ function(){
         Route::get('/users','index')->name('admin.users.index');
         Route::get('/users/{slug}/edit/{id}','edit')->name('admin.users.edit');
         Route::put('/users/{slug}/update/{id}','update')->name('admin.users.update');
+        Route::delete('/{slug}/delete', 'destroyAccount')->name('admin.user.delete');
     });
 
     Route::resource('/newspaper/clearence/inputs',NewspaperNameClearanceController::class,[
@@ -153,8 +153,12 @@ function(){
     });
 });
 
-//test 
-
-Route::resource('/test/categories',CategoryController::class);
-Route::get('/category/image/{status}',[ImageController::class,'categoryImage'])->name('category.image');
-Route::resource('/test/images',ImageController::class);
+Route::get('/cache',function(){
+    \Artisan::call('route:clear');
+    dd('success');
+});
+  
+Route::get('/route/cache',function(){
+    \Artisan::call('route:cache');
+    dd('success');
+});

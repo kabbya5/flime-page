@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Auth;
 use Session;
-class EmailVerifyNotification extends Notification implements ShouldQueue
+class EmailVerifyNotification extends Notification 
 {
     use Queueable;
 

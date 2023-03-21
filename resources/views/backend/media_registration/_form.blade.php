@@ -1,7 +1,7 @@
 <div class="form-group flex flex-col">
-    <div class="flex justify-between items-center">
+    <div class="flex">
         <label for="phone"> বিষয় </label>
-        <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
     </div>
     
     <input type="text" class="outline-none mt-3 " placeholder="প্রকাশিত ইংরেজি ভাষায় প্রকাশিত মিডিয়াভুক্ত দৈনিক"
@@ -9,10 +9,12 @@
 </div>
 
 <div class="form-group flex flex-col mt-10">
-    <div class="flex justify-between items-center">
+    
+    <div class="flex">
         <label for="phone"> বর্ণনা </label>
-        <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
     </div>
+        
     
     <textarea name="description" id="" cols="30" rows="10"
     class="border-2 border-gray-300 p-2 bg-transparent mt-3 focus:outline-none" required>
@@ -21,9 +23,9 @@
 </div>
 
 <div class="form-group flex flex-col mt-10">
-    <div class="flex justify-between items-center">
-        <label for="phone"> প্রকাশের তারিখ</label>
-        <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
+    <div class="flex">
+        <label for="phone">প্রকাশের তারিখ </label>
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
     </div>
     
     <input type="text" class="outline-none mt-3" placeholder="১০-০২-২০২২"
@@ -31,9 +33,9 @@
 </div>
 
 <div class="form-group flex  flex-col mt-10">
-    <div class="flex justify-between items-center w-80">
-        <label for="" class="text-[14px]"> ফাইল আপলোড </label>
-        <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
+    <div class="flex">
+        <label for="phone"> ফাইল আপলোড</label>
+        <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
     </div>
     
     <div class="form-group flex  mr-[10px]">

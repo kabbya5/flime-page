@@ -27,7 +27,7 @@ class NewspaperNameClearanceController extends Controller
 
     public function headerStore(Request $request){
         $request->validate([
-            'title' => 'required|max:150',
+            'title' => 'required',
             'short_text' => 'required',
         ]);
         $item = NewspaperNameClearanceHeader::first();

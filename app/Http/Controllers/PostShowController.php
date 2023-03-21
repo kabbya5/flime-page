@@ -12,30 +12,7 @@ use Illuminate\Http\Request;
 
 class PostShowController extends Controller
 {
-    public function videoPosts(Section $section){
-        $documentaries = Subsection::where('slug','ডকুমেন্টারি')->with(['posts'=> function($e){
-            $e->latest()->limit(25)->get();
-        }
-        ])->first();
-        $flims = Subsection::where('slug','চলচ্চিত্র')->with(['posts' => function($e){
-            $e->latest()->limit(25)->get();
-        }])->first();
-        
-        $short_flims = Subsection::where('slug','শর্ট-ফিল্ম')->with(['posts' => function($e){
-            $e->latest()->limit(25)->get();
-        }])->first();
-        $news = Subsection::where('slug','নিউজ')->with(['posts' => function($e){
-            $e->latest()->limit(25)->get();
-        }])->first();
-
-        return view('post.all_video_posts',compact(
-            'documentaries',
-            'flims',
-            'short_flims',
-            'news',
-        ));
-    }
-
+    
     public function videoSubsectionPosts(Subsection $subsection)
     {
         $posts = Post::latest()->where('subsection_id',$subsection->id)->paginate(30);
@@ -43,30 +20,6 @@ class PostShowController extends Controller
 
     }
 
-
-    public function bookPosts(Section $section){
-        $pictorials = Subsection::where('slug','সচিত্র-বাংলাদেশ')->with(['posts'=> function($e){
-            $e->latest()->limit(25)->get();
-        }
-        ])->first();
-        $menstruals = Subsection::where('slug','মাসিক-নবারুণ')->with(['posts' => function($e){
-            $e->latest()->limit(25)->get();
-        }])->first();
-        
-        $quarterlies = Subsection::where('slug','বাংলাদেশ-কোয়ার্টারলি')->with(['posts' => function($e){
-            $e->latest()->limit(25)->get();
-        }])->first();
-        $publications = Subsection::where('slug','অ্যাডহক-প্রকাশনা')->with(['posts' => function($e){
-            $e->latest()->limit(25)->get();
-        }])->first();
-
-        return view('post.all_book_posts',compact(
-            'pictorials',
-            'menstruals',
-            'quarterlies',
-            'publications',
-        ));
-    }
 
     public function bookSubsectionPosts(Subsection $subsection)
     {
@@ -90,7 +43,7 @@ class PostShowController extends Controller
             foreach ($datas as $data){
                 if($data->file_url){
                     $posts.='
-                    
+
                         <div class="item">  
                             <div class="video">
                                 <video width="500px" height="500px" controls="controls"/>
@@ -100,14 +53,16 @@ class PostShowController extends Controller
                                         
                             <a href="/video/posts/' .$data->slug .'" class="font-[700] text-black block my-4">'.$data->post_name .'</a>
                         
-                    </div>';
+                        </div>';
                 }else{
-                    $posts.='
+                    $posts.=' 
                         <div class="item">
-                            <iframe width="560" height="315" src="'. $data->video_link .'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <a href="/video/posts/' .$data->slug .'" class="font-[700] text-black block my-4"> '.$data->post_name .'</a>
-                        
-                    </div>';
+                            <div class="youtube relative" video-id="'.$data->video_link .'">
+                                <img src="/media/icon/play.png" class="absolute">
+                                <img src="//i.ytimg.com/vi/'.$data->video_link.'/hqdefault.jpg" class="video-image">
+                            </div>
+                            <a href="/video/posts/' .$data->slug .'" class="font-[700] text-black block my-4"> '.$data->post_name .'</a>   
+                        </div>';
                 }
             }  
             

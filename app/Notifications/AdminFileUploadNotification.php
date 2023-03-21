@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminFileUploadNotification extends Notification implements ShouldQueue
+class AdminFileUploadNotification extends Notification 
 {
     use Queueable;
 

@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notification;
 use Auth;
 use Carbon\Carbon;
 
-class UserFileUploadNotification extends Notification implements ShouldQueue
+class UserFileUploadNotification extends Notification 
 {
     use Queueable;
 
@@ -50,8 +50,8 @@ class UserFileUploadNotification extends Notification implements ShouldQueue
         ->line('    
             This is to confirm that the file you uploaded or your application has been successfully submitted. 
             You will be notified whether it has been selected or rejected. If you have any questions 
-             or concerns regarding this, please do not hesitate to contact us.
-         ');    
+            or concerns regarding this, please do not hesitate to contact us.
+        ');    
     }
 
     /**

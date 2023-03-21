@@ -8,7 +8,7 @@
 
 @section('hero_section')
 <div class="hero w-full h-full">
-    <div class="flex justify-center items-center md:pt-[190px]">
+    <div class="flex justify-center items-center h-full">
         <h2 class="text-white text-sm md:text-[60px] font-[700] leading-[90px] h-f"> {{ $clearence->title }} </h2>
     </div>
 </div>

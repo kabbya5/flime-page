@@ -40,7 +40,7 @@ class userFileStatusChangeNotification extends Notification
         ->subject('Your file has been' .' ' .$this->status)
         ->greeting("Dear " .$this->user->name)
         ->line('    
-            This is to confirm that the file you  has been 
+            The file you have uploaded has been
             ' .$this->status. '. If you have any questions 
              or concerns regarding this, please do not hesitate to contact us.
          '); 

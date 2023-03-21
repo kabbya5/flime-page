@@ -33,7 +33,6 @@ class FormController extends Controller
             'বাড়ী_ভাড়া_চুক্তিপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
         ]);
 
-
         $data = [];
         $data['শিক্ষাসনদ_সবগুলো'] = $this->fileUpload($request->file('শিক্ষাসনদ_সবগুলো'));
         $data['ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র'] = $this->fileUpload($request->file('ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র'));
@@ -108,8 +107,6 @@ class FormController extends Controller
             'বেতন_পরিশোধের_বিবরণী' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
             'রিটার্ন_সনদপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
         ]);
-
-        
 
         $data = $request->except(
             'জাতীয়_পরিচয়পত্র','ভাউচারের_ফটোকপি',

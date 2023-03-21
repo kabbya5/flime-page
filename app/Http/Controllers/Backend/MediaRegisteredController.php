@@ -40,8 +40,8 @@ class MediaRegisteredController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'registered_name' => 'required|min:15',
-            'description' => 'required|min:50',
+            'registered_name' => 'required',
+            'description' => 'required',
             'published_date' => 'required',
             'pdf' => 'required|mimes:pdf',
         ]);

@@ -8,7 +8,7 @@
 @section('hero_section')
 <div class="hero pl-4 my-10 container mx-auto">
     <div class="flex flex-col-reverse justify-center  md:flex-row md:justify-between items-center">
-        <h1 class="text-white md:ml-3 font-bold text-[30px] w-[310px] md:text-[40px] md:w-[410px] leading-[70px] lg:text-[60px] lg:w-[600px] lg:leading-[90px]">
+        <h1 class="text-white md:ml-3 font-bold text-[30px] w-[310px] leading-[45px] md:text-[40px] md:w-[410px] md:leading-[70px] lg:text-[60px] lg:w-[600px] lg:leading-[90px]">
             চলচ্চিত্র, সম্পাদনা
             প্রকাশনা ও নিবন্ধনের
             ডিজিটাল প্লাটফর্ম
@@ -25,7 +25,7 @@
     <div class="grid grid-cols-12 gap-4 my-10 md:my-[220px] px-2 md:px-0"> 
         <div class="col-span-12 md:col-start-6 md:col-span-12 lg:col-start-5 lg:col-span-8">  
             <div class="lg:w-[720px] px-2 lg:px-0">
-                <h2 class="subsection-name text-black font-[700] text-[45px]"> {{ $first_section->section_name }} </h2>
+                <h2 class="text-black font-[700] text-[45px]"> {{ $first_section->section_name }} </h2>
                 <p class="my-10 leading-[30px] text-[16px] text-[#8d8989] font-[600]">
                     {{ $first_section->section_description }}
                 </p>
@@ -36,9 +36,9 @@
             <div class="flex flex-col justify-end md:mr-[60px]">
                 @foreach ($first_section->subsections as $item)
                     @if($item->subsection_position == 1)
-                    <button  data-id="{{$item->id}}" data-name="{{ $item->subsection_name }}" data-slug="{{ $item->slug }}" class="subsection-video block font-700 lg:w-[300px] py-2 text-center  mb-[12px] text-black bg-white transition duration-100 hover-flim-btn box-shadow  btn-gradient"> {{ $item->subsection_name }}</button>
+                    <button data-id="{{$item->id}}" data-name="{{ $item->subsection_name }}" data-slug="{{ $item->slug }}" class="subsection-video block font-700 lg:w-[300px] py-3 text-center  mb-[12px] text-black bg-white transition duration-100 hover-flim-btn box-shadow  btn-gradient"> {{ $item->subsection_name }}</button>
                     @else
-                    <button  data-id="{{$item->id}}" data-name="{{ $item->subsection_name }}" data-slug="{{ $item->slug }}" class="subsection-video block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-flim-btn box-shadow"> {{ $item->subsection_name }}</button>
+                    <button data-id="{{$item->id}}" data-name="{{ $item->subsection_name }}" data-slug="{{ $item->slug }}" class="subsection-video block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-flim-btn box-shadow"> {{ $item->subsection_name }}</button>
                     @endif 
                 @endforeach
                 
@@ -46,9 +46,9 @@
         </div>
 
         <!-- POST  -->
-        <div class="col-span-12 md:col-span-7 lg:col-span-8 bg-white py-10 pl-2 md:px-2 lg:px-[40px] post-box rounded-lg box-shadow">
+        <div class="col-span-12 md:col-span-7 lg:col-span-8 bg-white py-10 pl-2 md:px-2 lg:px-[40px] post-box rounded-lg box-shadow-div">
             <div class="flex items-center justify-between">
-                <h2 class="text-[#4e4e51] font-[700] text-sm md:text-[25px]"> {{ $first_section->subsections[0]->subsection_name }} </h2>
+                <h2 class="subsection-name text-[#4e4e51] font-[700] text-sm md:text-[25px]"> {{ $first_section->subsections[0]->subsection_name }} </h2>
             </div>
 
             <div id="result">
@@ -66,7 +66,10 @@
                             </div>
                         @else
                         <div class="item">
-                            <iframe width="560" height="315" src="{{ $post->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <div class="youtube relative" video-id={{ $post->video_link }}>
+                                <img src="{{ asset('/media/icon/play.png') }}" class="absolute">
+                                <img src="//i.ytimg.com/vi/{{ $post->video_link}}/hqdefault.jpg" class="video-image">
+                            </div>
                             <a href="{{ route('video.posts.details',$post->slug) }}" class="font-[700] text-black block my-4">{{ $post->post_name }} </a>
                         </div>
                         @endif   
@@ -78,7 +81,7 @@
                 
             <!-- Post Button  -->
             <div class="flex itmes-center justify-end -mt-11">
-                <a href="{{ route('video.subsection.posts',$first_section->subsections[0]->slug) }}" class="video-subsection-all relative z-50 font-[700] px-4 py-2 bg-red-10 text-md text-[#E25896] rounded-md"> সব দেখুন </a>            
+                <a href="{{ route('video.subsection.posts',$first_section->subsections[0]->slug) }}" class="video-subsection-all relative z-50 font-[700] px-4 py-2 bg-red-10 text-md text-[#E25896] rounded-md  mr-4"> সব দেখুন </a>            
             </div>
         </div>
 
@@ -122,8 +125,9 @@
                     
 
                     <!-- Post Button  -->
+                    
                     <div class="flex itmes-center justify-end -mt-11">
-                        <a href="{{ route('book.subsection.posts',$second_section->subsections[0]->slug) }}" class="book-subsection-all relative z-50 font-[700] px-4 mr-4 py-2 bg-green-10 text-md text-[#108A25]"> সব দেখুন </a>   
+                        <a href="{{ route('book.subsection.posts',$second_section->subsections[0]->slug) }}" class="book-subsection-all relative z-50 font-[700] px-4  py-2 bg-green-10 text-md text-[#108A25]"> সব দেখুন </a>   
                     </div>
                 </div>
             </div>
@@ -133,7 +137,7 @@
                 <div class="flex flex-col justify-start md:ml-[60px]">
                     @foreach ($second_section->subsections as $subsection)
                         @if($subsection->subsection_position == 1)
-                        <button data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-2 text-center  mb-[12px] btn-gradient-green box-shadow  text-black bg-white transition duration-100 hover-book-btn"> {{ $subsection->subsection_name }}</button>
+                        <button data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-3 text-center  mb-[12px] btn-gradient-green box-shadow  text-black bg-white transition duration-100 hover-book-btn"> {{ $subsection->subsection_name }}</button>
                         @else
                         <button  data-id="{{ $subsection->id }}" data-name="{{ $subsection->subsection_name }}" data-slug="{{ $subsection->slug }}" class="book-subsection block font-700 lg:w-[300px] py-3  mb-[12px] text-center text-black bg-white transition duration-100 hover-book-btn box-shadow"> {{ $subsection->subsection_name }}</button>
                         @endif 
@@ -144,17 +148,17 @@
             <div class="col-span-12">
                 <!-- upload-page-button  -->
                 <div class="mt-10 md:mt-[125px] lg:mr-[42px]"> 
-                    <h2 class="font-700 md:text-[36px] text-[#4801FF] leading-67 border-bottom-22"> সম্পাদনা শাখায় বিষয়ভিত্তিক লেখা জমা দিন </h2>
+                    <h2 class="font-700 md:text-[36px] text-[#4801FF] leading-67 border-bottom-22 text-center md:text-left"> সম্পাদনা শাখায় বিষয়ভিত্তিক লেখা জমা দিন </h2>
                     <div class="mt-10 md:mt-[50px]">
                         <label class="block mt-[22px]">
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center">
+                                <div class="flex md:items-center">
                                     <img class="w-10 h-10 md:w-[35px] md:h-[35px]" src="{{ asset('image/input-book.png') }}" alt="{{$second_section->section_name}}">
                                     <span class="ml-2 text-black font-700 text-sm md:text-[14px] xl:text-[17px] leading-36">
                                         সচিত্র বাংলাদেশ, মাসিক নবারুণ ও বাংলাদেশ কোয়ার্টারলিতে লেখা জমা দিতে <span class="text-[#3023AE]"> ‘জমা দিন’ </span>  বাটনে ক্লিক করুন
                                     </span>
                                 </div>
-                                <a href="{{ route('user.file.upload') }}" class="py-[12px] px-[45px] text-[12px] md:text-[16px] hover-bg-pink bg-[#C7C7CC] text-black rounded-md"> জমা দিন </a>
+                                <a href="{{ route('user.file.upload') }}" class="ml-12 md:ml-0 py-[12px] w-fit px-6  md:px-[45px] mt-10 md:mt-0 text-[12px] md:text-[16px] hover-bg-pink bg-[#C7C7CC] text-black rounded-md"> জমা দিন </a>
                             </div>
                         </label>
                     </div>
@@ -768,6 +772,7 @@
 
 @endsection
 
+
 @section('script')
     <script>
         $(document).ready(function(){
@@ -797,11 +802,11 @@
                         loop:true,
                         margin:10,
                         nav:true,
-                        navText: ["<div class='nav-button owl-prev'>"+
-                            "<i class='fa-solid fa-arrow-left text-lg text-[#857F7F] bg-white box-shadow  px-6 py-2'></i>"+
+                        navText: ["<div class='nav-button owl-prev -ml-4'>"+
+                            "<i class='fa-solid fa-arrow-left text-lg slider-btn-background  text-[#857F7F] bg-white slider-btn-shadow  px-6 py-2'></i>"+
                             "</div>", 
-                            "<div class='nav-button owl-next'>"+
-                                "<i class='fa-solid fa-arrow-right text-lg text-[#857F7F] bg-white box-shadow px-6 py-2'></i>"+
+                            "<div class='nav-button owl-next -ml-4'>"+
+                                "<i class='fa-solid fa-arrow-right text-lg slider-btn-background  text-[#857F7F] bg-white slider-btn-shadow px-6 py-2'></i>"+
                             "</div>"],  
                         responsive:{
                             0:{
@@ -846,11 +851,11 @@
                         loop:true,
                         margin:10,
                         nav:true,
-                        navText: ["<div class='nav-button owl-prev'>"+
-                            "<i class='fa-solid fa-arrow-left text-lg text-[#857F7F] bg-white box-shadow  px-6 py-2'></i>"+
+                        navText: ["<div class='nav-button owl-prev ml-4'>"+
+                            "<i class='fa-solid fa-arrow-left text-lg slider-btn-background  text-[#857F7F] bg-white slider-btn-shadow px-6 py-2'></i>"+
                             "</div>", 
-                            "<div class='nav-button owl-next'>"+
-                                "<i class='fa-solid fa-arrow-right text-lg text-[#857F7F] bg-white box-shadow px-6 py-2'></i>"+
+                            "<div class='nav-button owl-next ml-4'>"+
+                                "<i class='fa-solid fa-arrow-right slider-btn-background  text-lg text-[#857F7F] bg-white slider-btn-shadow px-6 py-2'></i>"+
                             "</div>"], 
                         responsive:{
                             0:{
@@ -866,7 +871,7 @@
                 .fail(function (jqXHR, ajaxOptions, thrownError) {
                     alert('Server error occured');
                 });
-            });
+            }); 
         });
     </script>
 @endsection

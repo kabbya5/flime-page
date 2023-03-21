@@ -95,6 +95,7 @@ class VideoPostController extends Controller
         if($request->hasFile('video_file')){
             $file = $this->fileUpload($request->file('video_file'),$request->old_video_file);
             $data['file_url'] = $file;
+            $data['video_link'] = ' ';
         }
 
         if($request->published_at == NULL){

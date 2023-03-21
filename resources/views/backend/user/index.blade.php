@@ -53,7 +53,7 @@
                                                     <img src="{{ asset('media/icon/edit.png') }}" alt="" class="mr-[10px] h-[18px]"> edit
                                                 </a>
     
-                                                <form action="{{ route('user.delete',[$user->slug,$user->id]) }}" method="POST">
+                                                <form action="{{ route('admin.user.delete',[$user->slug,$user->id]) }}" method="POST">
                                                     @csrf
                                                     @method("DELETE")
     

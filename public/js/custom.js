@@ -1,13 +1,15 @@
+
+
 // slider 
 $('.post-slider').owlCarousel({
     loop:true,
     margin:10,
     nav:true,
-    navText: ["<div class='nav-button owl-prev'>"+
-        "<i class='fa-solid fa-arrow-left text-lg text-[#857F7F] bg-white box-shadow  px-6 py-2'></i>"+
+    navText: ["<div class='nav-button owl-prev -ml-4'>"+
+        "<i class='fa-solid fa-arrow-left text-lg slider-btn-background  text-[#857F7F] bg-white slider-btn-shadow  px-6 py-2'></i>"+
         "</div>", 
-        "<div class='nav-button owl-next'>"+
-            "<i class='fa-solid fa-arrow-right text-lg text-[#857F7F] bg-white box-shadow px-6 py-2'></i>"+
+        "<div class='nav-button owl-next -ml-4'>"+
+            "<i class='fa-solid fa-arrow-right slider-btn-background  text-lg text-[#857F7F] bg-white slider-btn-shadow px-6 py-2'></i>"+
         "</div>"],  
     responsive:{
         0:{
@@ -26,10 +28,10 @@ $('.post-book-slider').owlCarousel({
     margin:10,
     nav:true,
     navText: ["<div class='nav-button owl-prev'>"+
-        "<i class='fa-solid fa-arrow-left text-lg text-[#857F7F] bg-white box-shadow  px-6 py-2'></i>"+
+        "<i class='fa-solid fa-arrow-left text-lg text-[#857F7F] slider-btn-background  px-6 py-2'></i>"+
         "</div>", 
         "<div class='nav-button owl-next'>"+
-            "<i class='fa-solid fa-arrow-right text-lg text-[#857F7F] bg-white box-shadow px-6 py-2'></i>"+
+            "<i class='fa-solid fa-arrow-right text-lg text-[#857F7F]  slider-btn-background  px-6 py-2'></i>"+
         "</div>"], 
     responsive:{
         0:{
@@ -81,13 +83,17 @@ $('.book-editing-slider').owlCarousel({
 
 
 $(document).ready(function(){
+    $('#navbar-toggler').click(function(){
+        $('#navbar-dropdown').toggleClass('show');
+    });
+    
     $('#doropdown').click(function(){
         $(this).children('.dropdown-items').toggleClass("hidden");
     });
 
     //admin layout 
 
-    $("#alert-message").delay(3000).slideUp(400);
+    $("#alert-message").delay(10000).slideUp(400);
 
     $(window).scroll(function(){
         if($(this).scrollTop() > 120){
@@ -95,35 +101,16 @@ $(document).ready(function(){
         } else{
             $('.sidebar').removeClass('top-0')
         }
-    });
-
-    // create post 
-    $('#add_post_button').click(function(){
-        var form = $('.form');
-        form.toggleClass('show'); 
-        $('form').trigger("reset");
-    })
-
-    $('#cancle-post-create-btn').click(function(){
-        var form = $('.form');
-        form.addClass('hidden'); 
-        form.toggleClass('show'); 
-    }) 
-
-    $('#add_header_button').click(function(){
-        var form = $('.header-form');
-        form.toggleClass('show'); 
-    })
-
-    $('#cancle-header-create-btn').click(function(){
-        var form = $('.header-form');
-        form.addClass('hidden'); 
-        form.toggleClass('show'); 
-    }) 
-
-    
+    });   
 })
-
+$(document).on('click','.youtube',function(){
+    let videoId = $(this).attr('video-id');
+    $(this).children('img').hide();
+    let src = 'https://www.youtube.com/embed/' + videoId + '?&autoplay=1';
+    $(this).empty;
+    $(this).append("<iframe class='video-image' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'  allowfullscreen></iframe>");
+    $(this).children('iframe').attr('src',src);
+})
 // page-loader 
 
 $(window).on('load', function() { 

@@ -3,10 +3,9 @@
 @section('content')
 <div class="container flex mx-auto md:px-5 md:mb-[140px]">
     <!-- login form  -->
-    <div class="w-full md:w-1/2 pb-6 md:pb-0">
+    <div class="w-full md:w-1/2 pb-6 md:pb-0 bg-white">
         <div class="login-form mt-10 px-4 md:mt-[57px] lg:px-[82px]">
             <h2 class="text-black font-700 leading-36 text-24"> লগইন করুন </h2>
-
             @if ($errors->any())
                 <div class="my-10 font-medium text-md text-red-600">
                     <ul>

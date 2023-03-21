@@ -16,5 +16,10 @@
         <p class="text-white font-[600] text-[20px] leading-5"> {{ Session::get('alert') }}</p>
     </div>
     @endif
-    
+
+    @if($errors->any())
+    <div class="px-10 py-3 bg-red-800">
+        <p class="text-white font-[600] text-[20px] leading-5"> Plece fill up all mandatory input field </p>
+    </div>
+    @endif    
 </div>

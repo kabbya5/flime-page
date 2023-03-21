@@ -67,24 +67,25 @@ form{
 <script type="text/javascript">
 Dropzone.options.dropzone =
     {
-    maxFilesize: 12,
+    maxFilesize: 500,
     renameFile: function(file) {
         var dt = new Date();
         var time = dt.getTime();
         return time+file.name;
     },
-    acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,",
+    acceptedFiles: ".jpeg,.jpg,.png,.zip,.rar,.doc,.docx,.pdf,",
     addRemoveLinks: true,
-    timeout: 5000,
+    timeout: 5000000000,
     success: function(file, response) 
     {
-        alert('The file has been Successfully Upload');
+        alert('The file has been Successfully Upload');        
     },
     error: function(file, response)
     {
         alert('please fill in this field');
     }
 };
+
 $(document).ready(function(){
     $('input').prop('disabled', true);
     $("input.mb-5").prop('disabled', false);

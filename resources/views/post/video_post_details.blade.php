@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@section('style')
+    .video-image{
+        width:475px;
+        height:289px;
+    }
+@endsection
 @section('content')
 <div class="hero">
     <div class="flex flex-col-reverse justify-center items-center md:flex-row md:justify-between items-center">
@@ -21,10 +27,12 @@
             </a> 
         </div>
         
-         
         @else
-        <div class="post-item p-2 w-[475px] h-[289px]">                    
-            <iframe class="rounded-md w-full h-full" src="{{ $post->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="post-item p-2 w-[475px] h-[289px]"> 
+            <div class="youtube relative" video-id={{ $post->video_link }}>
+                <img src="{{ asset('/media/icon/play.png') }}" class="absolute">
+                <img src="//i.ytimg.com/vi/{{ $post->video_link}}/hqdefault.jpg" class="video-image">
+            </div>                   
         </div>   
         @endif
         
