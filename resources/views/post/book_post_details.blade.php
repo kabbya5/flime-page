@@ -21,7 +21,7 @@
             <div class="post-details max-w-[640px] mt-6 md:mt-2 px-[19px]">
                 <h2 class="text-black font-700 text-[32px] leading-[54px]"> {{ $post->post_name }} - {{ $post->post_date }}</h2>
                 <p class="font-[500] text-[#8E8E93] text-[16px] leading-[24px] mt-[10px] mb-[22px]">
-                   {{ $post->post_desciption }}
+                   {{ $post->post_description }}
                 </p>
                 <p class="font-[700] text-black text-[16px] leading-[24px] mt-[10px] mb-[7px]">
                     প্রধান সম্পাদকঃ

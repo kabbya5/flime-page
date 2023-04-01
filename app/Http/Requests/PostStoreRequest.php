@@ -29,7 +29,7 @@ class PostStoreRequest extends FormRequest
             'post_name' => 'required',
             'post_date' => 'required',
             'thumbnail'  => 'required:mimes:jpeg,png,jpg',
-            'post_description' => 'required|min:50|max:800',
+            'post_description' => 'required|max:800',
             'pdf_file' => 'required|mimes:pdf',
             'chief_editor' => 'required',
             'senior_editor' => 'required',

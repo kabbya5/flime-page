@@ -8,33 +8,22 @@
 
 @section('hero_section')
 <div class="hero w-full h-full">
-    <div class="flex justify-center items-center h-full md:h-44  md:pt-[190px]">
+    <div class="flex flex-col justify-center items-center h-full md:h-44  md:pt-[190px]">
         <h2 class="text-white text-[38px] md:text-[60px] font-[700] leading-[90px] h-f"> {{ $media->title }} </h2>
+        <p class="text-[18px] mt-[17px] text-white font-[500] leading-[30px] text-center md:w-[700px] px-3 md:px-0"> 
+            {{ $media->short_text }}
+        </p>
     </div>
 </div>
 @endsection
 @section('content')
     <!-- বিজ্ঞাপন ও নিরীক্ষা -->
-    <div class="container mx-auto my-10 md:mt-[204px]">
-        <div class="w-full mx-2 md:w-[676px] md:mx-auto">
-            <h2 class="font-700 text-[20px] md:text-[48px] leading-67 text-center text-black"> {{ $media->title }}</h2>
-            <p class="text-[18px] mt-[17px] text-[#8D8989] font-[600] leading-[30px] text-center md:text-left"> 
-                {{ $media->short_text }}
-            </p>
-
-            <div class="flex flex-col md:flex-row md:justify-between mt-[70px]">
-                <a href="{{ route('all.media.news') }}" class="py-2 px-[70px] font-700 text-[18px]  leading-[27px rounded-md text-[#4E4E51] transition duration-300 bg-gray-200 text-center hover:text-[#4801FF] hover:bg-blue-100">
-                    মোট নিবন্ধিত পত্রিকা
-                </a>
-                <a href="{{ route('media.form') }}" class="mt-5 md:mt-0 py-2 px-[32px] font-700 text-[18px] bg-blue-10 leading-[27px]  rounded-md bg-blue-100 transition duration-300  text-[#4801FF]  text-center">
-                    মিডিয়া তালিকাভুক্তির আবেদন
-                </a>
-            </div>
-
+    <div class="container mx-auto my-10">
+        <div class="w-full mx-2 md:w-[676px] md:mx-auto"> 
             <!-- form  -->
             <div class="w-full mt-10 md:mt-[140px] md:mb-[200px]">
                 <div class="w-full">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-center">
                         <h2 class="font-[700] leading-[37px] text-[25px] text-[#545454] text-left"> মিডিয়া তালিকাভুক্তির আবেদন </h2>
                     </div>
                     

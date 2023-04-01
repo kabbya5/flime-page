@@ -18,10 +18,10 @@ class AdminController extends Controller
         return view('backend.dashboard',compact('files'));
     }
 
-    public function clearencFile(){
-        $files = File::latest()->whereNotNull('clearence_id')->paginate(25);
-        return view('backend.dashboard',compact('files'));
-    }
+    // public function clearencFile(){
+    //     $files = File::latest()->whereNotNull('clearence_id')->paginate(25);
+    //     return view('backend.dashboard',compact('files'));
+    // }
 
     public function pictorialBangladeshFile(){
         $files = File::latest()->where('section','=','সচিত্র বাংলাদেশ')->paginate(25);

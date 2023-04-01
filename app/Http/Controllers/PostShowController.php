@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bibliograpy;
 use App\Models\MediaInputHeader;
+use App\Models\NewspaperNameClearanceHeader;
 use App\Models\Post;
 use App\Models\Section;
 use App\Models\Subsection;
@@ -28,11 +30,11 @@ class PostShowController extends Controller
 
     }
 
-    public function mediaNews(){
-        $registers = TotalRegistered::latest()->get();
-        $media = MediaInputHeader::first();
+    public function bibliograpyPost(){
+        $bibliograpy_posts = Bibliograpy::paginate(30); 
+        $clearence = NewspaperNameClearanceHeader::first();
 
-        return view('post.media_register',compact('registers','media'));
+        return view('post.bibliograpy_post',compact('bibliograpy_posts','clearence'));
     }
 
     public function ajaxSubsectionVideoPosts(Request $request,$id){

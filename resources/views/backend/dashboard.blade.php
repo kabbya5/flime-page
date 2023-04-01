@@ -13,27 +13,26 @@
                     <a href="{{ route('pictorial.bangladesh.file') }}" class="{{ (request()->is('admin/pictorial*')) ? 'active' : '' }} py-3 text-[14px] text-[#6E6E75] font-[600] leading-[21px]]"> সচিত্র বাংলাদেশ </a>
                     <a href="{{ route('menstrual.newborn.file') }}" class="{{ (request()->is('admin/menstrual*')) ? 'active' : '' }} py-3 text-[14px] text-[#6E6E75] font-[600] leading-[21px]]"> মাসিক নবারুণ  </a>
                     <a href="{{ route('bangladesh.quarterly.file') }}" class="{{ (request()->is('admin/bangladesh*')) ? 'active' : '' }} py-3  text-[14px] text-[#6E6E75] font-[600] leading-[21px]]"> বাংলাদেশ কোয়াটারলি  </a>
-                    <a href="{{ route('clearence.file') }}" class="{{ (request()->is('admin/clearence*')) ? 'active' : '' }} py-3 text-[14px] text-[#6E6E75] font-[600] leading-[21px]]"> নিবন্ধন </a>
                     <a href="{{ route('media.file') }}" class="{{ (request()->is('admin/media*')) ? 'active' : '' }} py-3 text-[14px] text-[#6E6E75] font-[600] leading-[21px]]"> বিজ্ঞাপন ও নিরীক্ষা </a>
                 </div>
-
+                @if ($files->count() > 0)
                 <div class="mt-[29px] data-table"> 
                     <div class="mt-7 overflow-x-auto">
-                        <table class="w-full whitespace-nowrap">
+                        <table class="whitespace-nowrap w-full">
                             <thead class="bg-pink-gradient ">
                                 <tr>
-                                    <th align="center" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> নাম </th>
-                                    <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> বিষয় </th>
-                                    <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> সেকশন </th>
-                                    <th align="left" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> জমার তারিখ </th>
-                                    <th align="center" class="py-[18px] font-700 text-white text-[13px] leading-[18px]"> অবস্থা </th>
+                                    <th align="center" class="py-[18px]  font-700 text-white text-[13px] leading-[18px]"> নাম </th>
+                                    <th align="left" class="py-[18px]  font-700 text-white text-[13px] leading-[18px]"> বিষয় </th>
+                                    <th align="left" class="py-[18px]  font-700 text-white text-[13px] leading-[18px]"> সেকশন </th>
+                                    <th align="left" class="py-[18px]  font-700 text-white text-[13px] leading-[18px]"> জমার তারিখ </th>
+                                    <th align="center" class="py-[18px]  font-700 text-white text-[13px] leading-[18px]"> অবস্থা </th>
                                     <th align="center"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($files as $file)
                                 <tr tabindex="0" class="{{ $file->status }} focus:outline-none border-t border-gray-200 rounded mt-[3px]">
-                                    <td>
+                                    <td class="">
                                         <div class="ml-5 flex items-center py-[24px]">
                                             <label class="input-checkbox" data-id="{{ $file->id }}">
                                                 <input type="checkbox">
@@ -45,23 +44,23 @@
                                             <img class="mx-4 h-[40px] w-[40px] rounded-full" src="{{ asset('media/icon/user.png') }}" alt="{{ $file->user->slug }}">
                                             @endif
                                            
-                                            <p class="font-700 text-[14px] leading-[21px] text-black">{{ $file->user->name }}</p>
+                                            <p class="font-700  md:text-[12px] 2xl:text-[14px] leading-[21px] text-black">{{ str_limit($file->user->name,15,'...') }}</p>
                                         </div>
                                     </td>
-                                    <td class="text-left pr-10">
-                                        <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]"> {{ $file->subject }}</p>
+                                    <td class="text-left pl-5">
+                                        <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]"> {{ $file->subject }} </p>
                                     </td>
-                                    <td class="text-left">
-                                        <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]"> {{ $file->section }} </p>
+                                    <td class="text-left pl-5"> 
+                                        <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]">  {{ $file->section }} </p>
                                     </td>
-                                    <td class="text-left">
+                                    <td class="text-left pl-5"> 
                                         <p class="font-[600] text-[14px] leading-[21px] text-[#8E8E93]"> {{ $file->create_date }}</p>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center"> 
                                         <span class="{{ $file->status }} font-[600] text-[14px] leading-[21px]] w-[82px] py-1"> {{ $file->status }} </span>
                                     </td>
-                                    <td class="text-right">             
-                                        <div id="doropdown-toggoler" class="w-full pr-[22px] relative flex flex-col ">
+                                    <td class="text-center pl-6">        
+                                        <div id="doropdown-toggoler" class="pr-[22px] relative flex flex-col justify-center items-center">
                                             <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
                                             <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
                                             <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
@@ -73,11 +72,14 @@
                                                         <a href="{{ route('file.status.change',[$file->id,'none']) }}" class="btn text-[#565956]">
                                                             none
                                                         </a>
-                                                        <a href="{{ route('file.status.change',[$file->id,'panding']) }}" class="btn text-[#5B62EB]">
+                                                        <a href="{{ route('file.status.change',[$file->id,'pending']) }}" class="btn text-[#5B62EB]">
                                                            pending
                                                         </a>
-                                                        <a href="{{ route('file.status.change',[$file->id,'selected']) }}" class="btn text-[#00B035]">
+                                                        <a href="{{ route('file.status.change',[$file->id,'selected']) }}" class="btn text-orange-500">
                                                             Selected
+                                                        </a>
+                                                        <a href="{{ route('file.status.change',[$file->id,'accepted']) }}" class="btn text-[#00B035]">
+                                                            Accepted
                                                         </a>
                                                         <a href="{{ route('file.status.change',[$file->id,'rejected']) }}" class="btn text-[#F71111]">
                                                             Rejected
@@ -101,6 +103,12 @@
                         {{ $files->links('pagination::tailwind') }}
                     </div>
                 </div>
+                @else
+                   <div class="mt-10">
+                        <p class="text-[#313131] text-xl font-[400] leading-7"> No Data Found </p>
+                    </div> 
+                @endif
+                
             </div>
         </div>
     </div> 

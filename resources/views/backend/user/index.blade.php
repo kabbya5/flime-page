@@ -48,6 +48,7 @@
                                             <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
                                             <span class="mb-[5px] bg-[#D8D8D8] w-[4px] h-[4px]"> </span>
     
+                                            @if (auth()->user()->permision_post == 'supper_admin')
                                             <div class="shadow-lg dropdown-items absolute hidden left-[-160px] top-[-10px]">
                                                 <a href="{{ route('admin.users.edit',[$user->slug,$user->id]) }}" class="btn text-[#2518FF] border-b flex items-center capitalize font-[600] text-[18px] leading-7">
                                                     <img src="{{ asset('media/icon/edit.png') }}" alt="" class="mr-[10px] h-[18px]"> edit
@@ -56,14 +57,21 @@
                                                 <form action="{{ route('admin.user.delete',[$user->slug,$user->id]) }}" method="POST">
                                                     @csrf
                                                     @method("DELETE")
-    
                                                     <button type="submit" onclick="return confirm('Locate the data you want to delete ?')" 
                                                         class="btn border-b text-[#565956] flex items-center capitalize font-[600] text-[18px] leading-7">
                                                         <img src="{{ asset('media/icon/delete.png') }}" alt="" class="mr-[10px] h-[18px]"> Delete
                                                     </button>
                                                 </form>
+                                            </div>
+                                            @else
+                                            <div class="shadow-lg dropdown-items absolute hidden left-[-160px] top-[-10px]">
+                                                <a class="btn gray-500 border-b flex items-center capitalize font-[600] text-[18px] leading-7">
+                                                    <img src="{{ asset('media/icon/edit.png') }}" alt="" class="mr-[10px] h-[18px]">  Access denied 
+                                                </a>
+    
                                                 
                                             </div>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

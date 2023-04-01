@@ -3,7 +3,7 @@
         <div class="flex flex-wrap justify-around">
             <div class="mx-4 mb-6">
                 <div class="flex flex-col">
-                    <a href="#" class="flex items-center">
+                    <a href="/" class="flex items-center">
                         <img src="{{ asset('image/Capture.png')}}" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
                         <span class="self-center text-sm md:text-md font-semibold whitespace-nowrap text-black"> চলচ্চিত্র ও প্রকাশনা অধিদপ্তর  </span>
                     </a>
@@ -48,7 +48,7 @@
                     @foreach ($sections[2]->subsections as $subsection)
                     @if($subsection->subsection_position === 1)
                         
-                        <a href="{{ route('all.media.news') }}" class="block text-black mt-2">{{ $subsection->subsection_name }}</a>
+                        <a href="{{ route('bibliograpyPost') }}" class="block text-black mt-2">{{ $subsection->subsection_name }}</a>
                          
                     @else
                         
@@ -56,10 +56,6 @@
                         
                     @endif                      
                     @endforeach 
-                    
-                    <a href="{{ route('new.clearence.form') }}" class="block text-black mt-2">
-                        পত্রিকা নামের ছাড়পত্র
-                    </a>  
                 </div>
             </div>
         </div>

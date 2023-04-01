@@ -17,9 +17,7 @@
     <meta property="og:image:width" content="400">
     <meta property="og:image:height" content="400">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-     {{-- Fonts  --}}
+    {{-- Fonts  --}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
@@ -79,13 +77,10 @@
                                                 <a href="{{ route('user.file.upload') }}" class="block text-black"> লেখা জমা দিন </a>
                                         </li>
                                     @else
-                                    <li>
-                                        <a href="{{ route('new.clearence.form') }}" class="block text-black"> পত্রিকা নামের ছাড়পত্র </a>
-                                    </li> 
                                         @foreach ($section->subsections as $subsection)
                                             @if($subsection->subsection_position === 1)
                                                 <li>
-                                                    <a href="{{ route('all.media.news') }}" class="block text-black">{{ $subsection->subsection_name }}</a>
+                                                    <a href="{{ route('bibliograpyPost') }}" class="block text-black">{{ $subsection->subsection_name }}</a>
                                                 </li> 
                                             @else
                                                 <li>
@@ -103,7 +98,7 @@
 
                         @if (Route::has('login'))
                             @auth
-                                @if (auth()->user()->user_type == 'admin')
+                            @if (auth()->user()->user_type == 'admin')
                                 <li class="relative cursor-pointer">
                                     <a href="{{ route('admin.dashboard', auth()->user()->slug) }}" class="relative block py-1 pl-3 pr-4 text-white rounded hover:text-gray-100"> 
                                         <i class="fa-solid fa-bell fa-2x"></i>
@@ -124,7 +119,7 @@
                                     </a>
 
                                     @if (auth()->user()->unreadNotifications->count() > 0)
-                                        <div id="notification" class="hidden mt-10 absolute w-80 md:bg-white shadow-md right-[100%] pb-3 px-6">
+                                        <div id="notification" class="hidden mt-10 absolute w-80 md:bg-white shadow-md left-[-160px] pb-3 px-6">
                                             @foreach (auth()->user()->unreadNotifications as $notification)
                                                 <div class="pt-4 border-b-2 border-gray-300">
                                                     <p class="block text-white md:text-[#454545] text-[18px] font-[500] leading-[29px] mb-1"> Your file has been {{ $notification->data['status']}} </p>
@@ -135,7 +130,7 @@
                                             @endforeach
                                         </div>
                                     @else
-                                        <div id="notification" class="hidden mt-10 absolute w-80 md:bg-white shadow-md right-[100%] pb-3 px-6">
+                                        <div id="notification" class="hidden mt-10 absolute w-80 md:bg-white shadow-md left-[-160px] pb-3 px-6">
                                             
                                             <div class="pt-4 border-b-2 border-gray-300">
                                                 <p class="block text-white md:text-[#454545] text-[18px] font-[500] leading-[29px] mb-4"> Notification not found </p>          
@@ -178,7 +173,7 @@
 
                             @if (Route::has('register'))
                             <li>
-                                <a href="{{ route('register') }}" id="border-and-radius" class="block register-btn py-1 pl-3 pr-4 bg-white text-black rounded hover:bg-gray-100  md:border-0 md:hover:text-blue-700 md:p-0
+                                <a href="{{ route('register') }}" id="border-and-radius" class="block register-btn py-1 pl-3 pr-4 bg-white text-black rounded hover:bg-gray-100  md:border-0 md:hover:text-white md:p-0
                                     "> 
                                     আইডি খুলুন
                                 </a>
@@ -194,9 +189,6 @@
 
         @yield('hero_section')
     </div>
-
-    
-
     <main>
         @yield('content')
     </main>

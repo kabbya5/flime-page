@@ -26,7 +26,7 @@
         <div class="col-span-12 md:col-start-6 md:col-span-12 lg:col-start-5 lg:col-span-8">  
             <div class="lg:w-[720px] px-2 lg:px-0">
                 <h2 class="text-black font-[700] text-[45px]"> {{ $first_section->section_name }} </h2>
-                <p class="my-10 leading-[30px] text-[16px] text-[#8d8989] font-[600]">
+                <p class="my-[17px] leading-[30px] text-[16px] text-[#8d8989] font-[500]">
                     {{ $first_section->section_description }}
                 </p>
             </div>  
@@ -95,7 +95,7 @@
             <div class="col-span-12">  
                 <div class="lg:w-[720px]">
                     <h2 class="text-black font-[700] text-[45px] leading-[67.5px]"> {{ $second_section->section_name }} </h2>
-                    <p class="my-10 leading-[30px] text-[16px] text-[#8d8989] font-[600]">
+                    <p class="my-[17px] leading-[30px] text-[16px] text-[#8d8989] font-[500]">
                         {{ $second_section->section_description }}
                     </p>
                 </div>  
@@ -172,160 +172,83 @@
 <!-- নিবন্ধন -->
 
 <div class="py-10 md:py-[220px] flex flex-col items-center justify-center w-full bg-[#f9f9f9]">
-    <div class="container mx-auto px-4 md:px-10">
-        <div class="w-full mt-2 lg:w-[820px] px-2 mx-auto">
+    <div class="container mx-auto px-4">
+        <div class="lg:w-[700px] xl:w-[750px] flex flex-col items-center justify-center mx-auto">
             <h2 class="mb-[17px] font-[700] text-[45px] text-center"> {{ $news_header->title }} </h2>
-            <p class="font-[600] text-center text-[18px] text-[#8D8989] leading-[30px]">
+            <p class="font-[500] text-center text-[18px] text-[#8D8989] leading-[30px]">
                 {{ $news_header->short_text}}
             </p>
-        </div>
-
-        <div class="form input-overflow px-4 md:px-0 w-full mt-10 md:mt-[70px] border-blue rounded-md bg-white">
-            <div class="w-full md:w-[586px] my-10 md:my-[60px] mx-auto">
+        </div> 
+        <div class="form input-overflow px-4 md:px-0 w-full mt-10 md:mt-[70px] border-green rounded-md bg-white">
+            <div class="w-full my-10 md:my-[40px] px-4 md:px-[50px]">
                 <div class="flex items-center justify-between">
-                    <h2 class="font-[700] leading-[45px] text-[30px] text-[#545454] text-left"> পত্রিকা নামের ছাড়পত্র </h2>
-                    <a href="{{ route('new.clearence.form') }}"> <img src="{{ asset('media/icon/Bitmap.png') }}" class="w-10"></a>
+                    <h2 class="font-[700] leading-[45px] text-[30px] text-[#545454] text-left"> বিবলিওগ্রাফি </h2>
+                    <a href="{{ route('bibliograpyPost') }}"> <img src="{{ asset('media/icon/Bitmap.png') }}" class="w-10"></a>
                 </div>
-
-                <form class="my-10 md:mt-[40px]" action="{{ route('user.input.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="form-group mb-5 md:mb-10 flex flex-col">
-                       
-                        <div class="flex">
-                            <label for="" class=""> ১। শিক্ষাসনদ (সবগুলো)</label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('শিক্ষাসনদ_সবগুলো') error @enderror" type="file" name="শিক্ষাসনদ_সবগুলো">   
-
-                        @error("শিক্ষাসনদ_সবগুলো")
-                                <p class="mt-2 ml-6 text-red-500">{{ $message }}</p>    
-                        @enderror
-                    </div>
-                    
-                    
-                    <div class="form-group mb-5 md:mb-10 flex flex-col">
-                       
-                        <div class="flex">
-                            <label for="" class=""> ২। ব্যাংক আর্থিক স্বচ্ছলতা সনদপত্র</label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র') error @enderror" type="file" name="ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র">   
-
-                        @error("ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ৩। ব্যাংকের ৬ মাসের এস্টেটমেন্ট </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('ব্যাংকের_৬_মাসের_এস্টেটমেন্ট') error @enderror" type="file" name="ব্যাংকের_৬_মাসের_এস্টেটমেন্ট">   
-
-                        @error("ব্যাংকের_৬_মাসের_এস্টেটমেন্ট")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ৪। আয়কর প্রত্যয়নপত্র </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('আয়কর_প্রত্যয়নপত্র') error @enderror" type="file" name="আয়কর_প্রত্যয়নপত্র">   
-
-                        @error("আয়কর_প্রত্যয়নপত্র")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ৫। নাগরিক সনদপত্র (কমিশনার বা সিটি কর্পোরেশন) </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('নাগরিক_সনদপত্র') error @enderror" type="file" name="নাগরিক_সনদপত্র">   
-
-                        @error("নাগরিক_সনদপত্র")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ৬। ন্যাশনাল আইডি কার্ড (সত্যায়িত কপি) </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('ন্যাশনাল_আইডি_কার্ড') error @enderror" type="file" name="ন্যাশনাল_আইডি_কার্ড">   
-
-                        @error("ন্যাশনাল_আইডি_কার্ড")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ৭। সাংবাদিকতার অভিজ্ঞতার সনদপত্র </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('সাংবাদিকতার_অভিজ্ঞতার_সনদপত্র') error @enderror" type="file" name="সাংবাদিকতার_অভিজ্ঞতার_সনদপত্র">   
-
-                        @error("সাংবাদিকতার_অভিজ্ঞতার_সনদপত্র")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-    
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ৮। প্রেসের সাথে চুক্তিপত্র </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('সাংবাদিকতার_অভিজ্ঞতার_সনদপত্র') error @enderror" type="file" name="প্রেসের_সাথে_চুক্তিপত্র">   
-
-                        @error("প্রেসের_সাথে_চুক্তিপত্র")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ৯। ছাপাখানার ঘোষণাপত্রের সত্যায়িত কপি </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('ছাপাখানার_ঘোষণাপত্রের_সত্যায়িত_কপি') error @enderror" type="file" name="ছাপাখানার_ঘোষণাপত্রের_সত্যায়িত_কপি">   
-
-                        @error("ছাপাখানার_ঘোষণাপত্রের_সত্যায়িত_কপি")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-                    
-                    <div class="form-group mb-5 md:mb-10 flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ১০। লোকাল এমপি’র প্রত্যয়নপত্র যদি থাকে </label>
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('লোকাল_এমপি’র_প্রত্যয়নপত্র') error @enderror" type="file" name="লোকাল_এমপি’র_প্রত্যয়নপত্র">   
-
-                        @error("লোকাল_এমপি’র_প্রত্যয়নপত্র")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-5 md:mb-[80px] flex flex-col"> 
-                        <div class="flex">
-                            <label for="" class=""> ১১। বাড়ী ভাড়া চুক্তিপত্র </label>
-                            <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
-                        </div>
-                        <input class="ml-6 file-input border-none mt-3 @error('বাড়ী_ভাড়া_চুক্তিপত্র') error @enderror" type="file" name="বাড়ী_ভাড়া_চুক্তিপত্র">   
-
-                        @error("বাড়ী_ভাড়া_চুক্তিপত্র")
-                                <p class="mt-2 text-red-500 ml-6">{{ $message }}</p>    
-                        @enderror
-                    </div>
-
-                    <button type="submit" class="btn-gradient-pink font-700 text-[18px] leading-[27px] text-white py-2 px-[72px] rounded-md"> আবেদন করুন </button>      
-                </form>  
+ 
+                <div class="biliographi-table relative overflow-x-auto sm:rounded-lg mt-[41px]">
+                    <table class="w-fit text-sm text-left text-gray-500 mx-auto">
+                        <thead class="text-xs text-gray-700 uppercase">
+                            <tr>
+                                
+                                <th scope="col" class="pr-2">
+                                    ক্র.নং
+                                </th>
+                                <th scope="col" class="pr-2">
+                                    বইয়ের নাম
+                                </th>
+                                <th scope="col" class="pr-2">
+                                    লেখকের নাম
+                                </th>
+                                <th scope="col" class="pl-4 pr-2">
+                                    প্রকাশকের নাম ও ঠিকানা
+                                </th>
+                                <th scope="col" class="pr-2">
+                                    প্রথম প্রকাশ
+                                </th>
+                                <th scope="col" class="pr-2">
+                                    জমাদানের তারিখ
+                                </th>
+                                <th scope="col" class="text-left">
+                                    পুস্তকের ধরণ 
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($bibliograpy_posts as $key => $post)
+                            <tr class="">
+                                <th  class="pr-2 py-4 font-medium text-gray-900 whitespace-nowra" style="vertical-align:top;">
+                                    {{ $key + 1 }}
+                                </th>
+                                <td class="pr-2 py-4" style="vertical-align:top;" style="vertical-align:top;">
+                                   <p class="w-[120px]">  {{ $post->বইয়ের_নাম }} </p>
+                                </td>
+                                <td scope="row" class="pr-2 py-4" style="vertical-align:top;" style="vertical-align:top;">
+                                    <p class="w-[130px]">
+                                        {{ $post->লেখকের_নাম}}
+                                    </p> 
+                                </td>
+                                <td class="pl-4 pr-2 py-4" style="vertical-align:top;">
+                                    <p class="w-[230px]">
+                                        {{ $post->প্রকাশকের_নাম_ও_ঠিকানা }}
+                                    </p>        
+                                </td>
+                                
+                                <td class="pr-2 py-4" style="vertical-align:top;">
+                                    <p class="w-[120px]"> {{ $post->প্রথম_প্রকাশ }}</p>
+                                </td>
+        
+                                <td class="pr-2 py-4" style="vertical-align:top;">
+                                    <p class="w-[140px]">  {{ $post->জমাদানের_তারিখ }} </p>
+                                </td>
+                                <td class="py-4 text-left" style="vertical-align:top;">
+                                    <p class="w-[105px] xl:w-[110px]">  {{ $post->পুস্তকের_ধরণ }}</p>
+                                </td>
+                            </tr>  
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -336,26 +259,18 @@
 <div class="py-10 px-4 md:px-0 md:py-[210px] pt-10 md:pt-[210px] bg-gradient-white">
     <div class="container mx-auto">
         <div class="grid grid-cols-12 gap-4">
-            <div class="col-span-12 md:col-start-6 md:col-span-7 lg:col-start-5 lg:col-span-8">  
-                <div class="lg:w-[700px] xl:w-[750px]">
+            <div class="col-span-12">  
+                <div class="lg:w-[700px] xl:w-[750px] flex flex-col items-center justify-center mx-auto">
                     <h2 class="text-black font-[700] text-[45px] leading-[67px]"> {{ $media_header->title }} </h2>
-                    <p class="my-10 leading-[30px] text-[14px] xl:text-[16px] text-[#8d8989] font-[600]">
+                    <p class="my-[17px] leading-[30px] text-[14px] md:text-[18px] text-[#8d8989] font-[500] text-center">
                         {{ $media_header->short_text}}
                     </p>
                 </div>  
             </div>
-            <!-- button  -->
-            <div class="col-span-12 md:col-span-5 lg:col-span-4">
-                <div class="flex flex-col justify-center md:mr-[60px]">
-                    <a href="{{ route('all.media.news') }}" class="block lg:w-[300px]  py-3 mb-[12px] font-700 bg-white text-center text-black box-shadow media-hover">মোট নিবন্ধিত পত্রিকা</a>
-                    <a href="{{ route('media.form') }}" class="block lg:w-[300px]  py-3 mb-[12px] font-700 text-center text-white btn-gradient-orange box-shadow">মিডিয়া তালিকাভুক্তির আবেদন </a>
-                </div>
-            </div>
-    
             <!-- form -->
-            <div class="col-span-12 md:col-span-7 lg:col-span-8 bg-white md:px-[48px]">
+            <div class="col-span-12 bg-white md:px-[48px]">
                 <div class="grid grid-cols-12 gap-4 overflow-hidden">
-                    <div class="col-span-12 md:col-span-9 lg:col-span-10">
+                    <div class="col-span-12">
                         <div class="form w-full mt-10">
                             <div class="w-full lg:w-[586px] mx-auto form input-overflow">  
                                 <div class="flex items-center justify-between">
@@ -667,7 +582,7 @@
                                         @enderror
                                     </div>
             
-                                    <div class="form-group mb-5 md:mb-[24px] w-full lg:w-[740px]">
+                                    <div class="form-group mb-5 md:mb-[24px] w-full">
                                         <div class="flex">
                                             <label for="" class="block"> ১৯। বিলি বণ্টনের জন্য প্রত্যেক এজেন্টের নাম ও ঠিকানাসহ প্রত্যেক এজেন্টকে সরবরাহের সংখ্যা</label>
                                             <img class="ml-1 h-2" src="{{ asset('media/icon/mandatory.png') }}" alt="">
@@ -681,7 +596,7 @@
                                         @enderror
                                     </div>
             
-                                    <div class="form-group mb-5 md:mb-[80px] md:w-[750px]">
+                                    <div class="form-group mb-5 md:mb-[80px]">
                                         <label for="" class=""> বিলি বণ্টনের জন্য প্রত্যেক এজেন্টের নাম ও ঠিকানাসহ প্রত্যেক এজেন্টকে সরবরাহের সংখ্যা
                                             এ ছাড়াও নিম্নবর্ণিত কাগজপত্র আবেদনের সাথে সংযুক্ত করতে হবে </label>
                 

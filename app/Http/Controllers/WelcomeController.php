@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bibliograpy;
 use App\Models\MediaInputHeader;
 use App\Models\NewspaperNameClearanceHeader;
 use App\Models\Post;
@@ -22,6 +23,8 @@ class WelcomeController extends Controller
 
         $news_header = NewspaperNameClearanceHeader::first();
 
+        $bibliograpy_posts = Bibliograpy::limit(30)->get();
+
        
         $media_header = MediaInputHeader::first();
         return view('welcome',compact(
@@ -32,6 +35,7 @@ class WelcomeController extends Controller
             'book_posts',
             'news_header',
             'media_header',
+            'bibliograpy_posts',
         ));
     }
 }

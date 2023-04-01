@@ -51,6 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return 'slug';
     }
 
+    public function deletefile(){
+        return $this->hasOne(File::class,'user_file_delete_id');
+    }
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new \App\Notifications\EmailVerifyNotification);

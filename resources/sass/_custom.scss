@@ -46,6 +46,8 @@
 
 .register-btn:hover{
     background-image: linear-gradient(270deg, #b465da 0%, #cf6cc9 28.04%, #ee609c 67.6%, #ee609c 100%);
+    background-repeat: no-repeat;
+    color: #fff !important;
     border:2px solid #b465da  !important;
 }
 
@@ -113,11 +115,33 @@
     }
     
 
-.border-blue{
-    border:1px solid #007aff;
+.border-green{
+    border:1px solid #00B035;
     height: fit-content;
 }
 
+// বিবলিওগ্রাফি table 
+
+.biliographi-table thead tr th{
+    color: #5C14F6;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+}
+.biliographi-table thead{
+    border-bottom: 1px solid #5c14f6;
+}
+.biliographi-table tbody tr{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #C7C7CC;
+    font-size: 14px;
+    font-weight: 500;
+    color:#1b1b1b;
+    line-height: 24px;
+}
+.biliographi-table thead tr th, .biliographi-table thead tr td{
+    padding-bottom: 15px;
+}
 .post-slider .owl-dots, .post-book-slider .owl-dots{
     display: none;
 }
@@ -125,6 +149,9 @@
     padding:0;
     margin:0;
     background: transparent;
+}
+.sidebar{
+    width: 350px !important;
 }
 
 .form-group label{
@@ -214,17 +241,20 @@ select.dropdown:focus{
 }
 
 
-
-
-.dashboard .data-table td .panding{
+.dashboard .data-table td .pending{
     color: #5856D6;
     padding: 6px 15px;
     background:rgba(88, 86, 214, 0.1);
 }
-.dashboard .data-table td .selected{
+.dashboard .data-table td .accepted{
     color: #00B035;
     padding: 6px 15px;
     background:rgba(0, 176, 53, 0.10)
+}
+.dashboard .data-table td .selected{
+    color: rgb(249 115 22);
+    padding: 6px 15px;
+    background:rgb(249, 115, 22, .1);
 
 }
 .dashboard .data-table td .none{
@@ -246,9 +276,12 @@ select.dropdown:focus{
     border: 1px solid #F71111 !important;
 }
 .dashboard .data-table tr.selected.selected-checkbox{
+    border: 1px solid rgb(249 115 22) !important;
+}
+.dashboard .data-table tr.accepted.selected-checkbox{
     border: 1px solid #00B035 !important;
 }
-.dashboard .data-table tr.panding.selected-checkbox{
+.dashboard .data-table tr.pending.selected-checkbox{
     border: 1px solid #5856D6 !important;
 }
 .dashboard .data-table tr:hover ~ tr{
@@ -342,13 +375,16 @@ select.dropdown:focus{
 .rejected .input-checkbox input:checked ~ .checkmark {
     background-color: #F71111;
 }
-.selected .input-checkbox input:checked ~ .checkmark {
+.accepted .input-checkbox input:checked ~ .checkmark {
     background-color: #00B035;
+}
+.selected .input-checkbox input:checked ~ .checkmark {
+    background-color: rgb(249 115 22);
 }
 .none .input-checkbox input:checked ~ .checkmark {
     background-color: #565956;
 }
-.panding .input-checkbox input:checked ~ .checkmark {
+.pending .input-checkbox input:checked ~ .checkmark {
     background-color:#5856D6;
 }
 
@@ -365,9 +401,13 @@ select.dropdown:focus{
     background-repeat: no-repeat;
 }
 .slider-btn-background{
+    transition: all 0.3s;
     margin-left: -6px;
     margin-right: 6px;
     background-color: rgb(16,138,37,0.1) !important;
+}
+.slider-btn-background:hover{
+    color:#fff !important;
 }
 
 

@@ -3,69 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Events\FormSubmitedProcessed;
-use App\Models\Clearence;
 use App\Models\File;
 use App\Models\Media;
 use App\Models\MediaInputHeader;
-use App\Models\NewspaperNameClearanceHeader;
 use Illuminate\Http\Request;
 use Auth;
 
 class FormController extends Controller
 {
-    public function clearenceForm(){
-        $clearence = NewspaperNameClearanceHeader::first();
-        return view('form.clearence',compact('clearence'));
-    }
-
-    public function inputStore(Request $request){
-        $request->validate([
-            'শিক্ষাসনদ_সবগুলো' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'ব্যাংকের_৬_মাসের_এস্টেটমেন্ট' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'আয়কর_প্রত্যয়নপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'নাগরিক_সনদপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'ন্যাশনাল_আইডি_কার্ড' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'সাংবাদিকতার_অভিজ্ঞতার_সনদপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'প্রেসের_সাথে_চুক্তিপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'ছাপাখানার_ঘোষণাপত্রের_সত্যায়িত_কপি' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-            'লোকাল_এমপি’র_প্রত্যয়নপত্র' => 'mimes:png,jpg,jpeg,pdf,zip,rar',
-            'বাড়ী_ভাড়া_চুক্তিপত্র' => 'required|mimes:png,jpg,jpeg,pdf,zip,rar',
-        ]);
-
-        $data = [];
-        $data['শিক্ষাসনদ_সবগুলো'] = $this->fileUpload($request->file('শিক্ষাসনদ_সবগুলো'));
-        $data['ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র'] = $this->fileUpload($request->file('ব্যাংক_আর্থিক_স্বচ্ছলতা_সনদপত্র'));
-        $data['ব্যাংকের_৬_মাসের_এস্টেটমেন্ট'] = $this->fileUpload($request->file('ব্যাংকের_৬_মাসের_এস্টেটমেন্ট'));
-        $data['আয়কর_প্রত্যয়নপত্র'] = $this->fileUpload($request->file('আয়কর_প্রত্যয়নপত্র'));
-        $data['ন্যাশনাল_আইডি_কার্ড'] = $this->fileUpload($request->file('ন্যাশনাল_আইডি_কার্ড'));
-        $data['সাংবাদিকতার_অভিজ্ঞতার_সনদপত্র'] = $this->fileUpload($request->file('সাংবাদিকতার_অভিজ্ঞতার_সনদপত্র'));
-        $data['প্রেসের_সাথে_চুক্তিপত্র'] = $this->fileUpload($request->file('প্রেসের_সাথে_চুক্তিপত্র'));
-        $data['ছাপাখানার_ঘোষণাপত্রের_সত্যায়িত_কপি'] = $this->fileUpload($request->file('ছাপাখানার_ঘোষণাপত্রের_সত্যায়িত_কপি'));
-        if($request->hasFile('লোকাল_এমপি’র_প্রত্যয়নপত্র')){
-            $data['লোকাল_এমপি’র_প্রত্যয়নপত্র'] = $this->fileUpload($request->file('লোকাল_এমপি’র_প্রত্যয়নপত্র'));
-        }
-        
-        $data['বাড়ী_ভাড়া_চুক্তিপত্র'] = $this->fileUpload($request->file('বাড়ী_ভাড়া_চুক্তিপত্র'));
-        $data['নাগরিক_সনদপত্র'] = $this->fileUpload($request->file('নাগরিক_সনদপত্র'));
-        $data['user_id'] = Auth::id();
-
-        $clearence_id = Clearence::create($data)->id;
-
-        File::create([
-            'user_id' => $data['user_id'],
-            'clearence_id' => $clearence_id,
-            'subject' => 'পত্রিকা নামের ছাড়পত্র',
-            'section' => 'নিবন্ধন'
-        ]);
-
-        event(new FormSubmitedProcessed('Newspaper name clearance',$data['user_id']));
-
-        return back()->with('message','Form successfully submited!');
-        
-
-    }
-
     private function fileUpload($file){
         $file_name = hexdec(uniqid()).time().'.'.$file->getClientOriginalExtension();
         $file->move(public_path('/media/form/'), $file_name);
@@ -82,11 +27,11 @@ class FormController extends Controller
             'পত্রিকার_নাম' => 'required',
             'পত্রিকা_প্রকাশের_তারিখ' => 'required',
             'পত্রিকার_সাইজ' => 'required',
-            'কপি_সংখ্যা' => 'required|integer',
+            'কপি_সংখ্যা' => 'required',
             'প্রেস_ঠিকানা' => 'required',
-            'নিউজরিন্ট_সংখ্যা' => 'required|integer',
+            'নিউজরিন্ট_সংখ্যা' => 'required',
             'অফিসের_আয়তন' => 'required',
-            'ল্যাপটপের_সংখ্যা' => 'required|integer',
+            'ল্যাপটপের_সংখ্যা' => 'required',
             'ই_টিন_রেজিস্ট্রেশন' => 'required',
             'ভ্যাট_রেজিস্ট্রেশন_নাম্বার' => 'required',
             'সংবাদপত্র_বিক্রয়বাবদ_আয়' => 'required',

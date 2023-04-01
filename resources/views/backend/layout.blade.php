@@ -132,20 +132,12 @@
                             ইউজার
                         </a>
                     </li>
-
                     <li class="dashboard-items">
-                        <a href="{{route('admin.clearence.inputs.index')}}" class="dashbord-link {{ (request()->segment(2) == 'newspaper') ? 'active' : '' }}">
-                            <img  src="{{ asset('media/icon/registration.png') }}" alt="pdf-icon">
-                            <img class="img-white" src="{{ asset('media/icon/registration-white.png') }}" alt="pdf-icon">
-                            নিবন্ধন
-                        </a>
-                    </li>
-                    <li class="dashboard-items">
-                        <button id="doropdown-toggoler" class="{{ (request()->segment(2) == 'media') ? 'text-white active' : '' }}">
+                        <button id="doropdown-toggoler" class="{{ (request()->segment(2) == 'newspaper') ? 'text-white active' : '' }}">
                             <div class="dashbord-link">
-                                <img  src="{{ asset('media/icon/media-registration.png') }}" alt="pdf-icon">
-                                <img class="img-white" src="{{ asset('media/icon/media-registration-white.png') }}" alt="pdf-icon">
-                                বিজ্ঞাপন
+                                <img  src="{{ asset('media/icon/registration.png') }}" alt="pdf-icon">
+                                <img class="img-white" src="{{ asset('media/icon/registration-white.png') }}" alt="pdf-icon">
+                                নিবন্ধন
                                 <img class="ml-3 w-10 icon" src="{{ asset('media/icon/bottom-arrow.png') }}" alt="pdf-icon">
                                 <img class="img-white icon" src="{{ asset('media/icon/bottom-arrow-white.png') }}" alt="pdf-icon">
                             </div>
@@ -154,23 +146,42 @@
                             <ul class="dropdown-items ml-[30px] hidden">
 
                                 <li class="mt-[23px]">
-                                    <a href="{{route('admin.media.registereds.index')}}" class="dashbord-link active">
-                                        মোট নিবন্ধিত
+                                    <a href="{{route('admin.clearence.inputs.index')}}" class="dashbord-link active">
+                                        নিবন্ধন
                                     </a> 
                                 </li>
                                 <li class="mt-[23px]">
-                                    <a href="{{route('admin.media.inputs.index')}}" class="dashbord-link active">
-                                        আবেদন
+                                    <a href="{{route('admin.bibliograpy.index')}}" class="dashbord-link active">
+                                        বিবলিওগ্রাফি
                                     </a> 
                                 </li>
                             </ul>
                         </button>
                     </li>
+                  
+                    <li class="dashboard-items">
+                        <a href="{{route('admin.media.inputs.index')}}" class="dashbord-link {{  (request()->segment(2) == 'media') ? 'text-white active' : '' }}">
+                            <img  src="{{ asset('media/icon/media-registration.png') }}" alt="pdf-icon">
+                            <img class="img-white" src="{{ asset('media/icon/media-registration-white.png') }}" alt="pdf-icon">
+                                বিজ্ঞাপন
+                        </a>
+                    </li>
+                    @if (auth()->user()->permision_post == 'supper_admin')
+                    <li class="dashboard-items">
+                        <a href="{{route('admin.deleted.file')}}" class="dashbord-link {{  (request()->segment(2) == 'file') ? 'text-white active' : '' }}">
+                            <img  src="{{ asset('media/icon/delete-file.png') }}" alt="pdf-icon">
+                            <img class="img-white" src="{{ asset('media/icon/delete-file-white.png') }}" alt="pdf-icon">
+                            ডিলিট ফাইল
+                        </a>
+                    </li>  
+                    @endif
+                    
+
                     <li class="dashboard-items">
                         <a href="{{route('admin.setting.index')}}" class="dashbord-link {{ (request()->segment(2) == 'setting') ? 'active' : '' }}">
                             <img  src="{{ asset('media/icon/setting.png') }}" alt="pdf-icon">
                             <img class="img-white" src="{{ asset('media/icon/setting-white.png') }}" alt="pdf-icon">
-                            Settings
+                            সেটিংস
                         </a>
                     </li>
                 </ul>

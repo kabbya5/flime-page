@@ -4,7 +4,7 @@
 <div class="mt-10 md:mt-58">
     <div class="flex items-center justify-between">
         <h2 class="font-700 text-[30px] text-black leading-[20px]"> যোগ করুন  </h2>
-        <a href="{{ route('admin.subsections.index') }}" class="btn-gradient-green">
+        <a href="{{ route('admin.users.index') }}" class="btn-gradient-green">
             সকল ইউজার
         </a>
     </div>

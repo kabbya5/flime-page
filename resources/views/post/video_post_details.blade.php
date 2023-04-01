@@ -42,7 +42,7 @@
                 {{ $post->post_desciption }}
             </p>
             <p class="font-[700] text-black text-[16px] leading-[24px] mt-[10px] mb-[7px]">
-                প্রযেজকঃ
+                প্রযোজকঃ
                <span class="font-[500] text-[#8E8E93] text-[16px] leading-[24px]">
                 {{ $post->director }}
                 </span>

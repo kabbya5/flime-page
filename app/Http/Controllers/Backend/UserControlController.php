@@ -8,6 +8,7 @@ use App\Models\User;
 
 class UserControlController extends Controller
 {
+     
     public function index(){
         $users = User::latest()->paginate(25);
         return view('backend.user.index',compact('users'));
